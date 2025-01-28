@@ -12,7 +12,7 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
         primary: "#70cfdb",
-        secondary: "#00215d",
+        secondary: "#FFFFFFFF",
       },
       fontFamily: {
         sans: ["Montserrat", "Arial", "sans-serif"], // Agrega Montserrat como fuente principal
