@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 :root {
+  --primary-color: #007bff;
+  --secondary-color: #f6e15e;
+  --text-color: #ffffff;
   --background: #ffffff;
   --foreground: #171717;
 }
@@ -15,7 +18,19 @@
 }
 
 body {
+  background-color: var(--background);
+  color: var(--text-color);
+  font-family: 'Poppins', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
   color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--primary-color);
 }
