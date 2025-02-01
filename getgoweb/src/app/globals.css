@@ -34,3 +34,10 @@ a {
 a:hover {
   color: var(--primary-color);
 }
+
+@font-face {
+  font-family: 'MiFuentePersonalizada';
+  src: url('../../public/fonts/Montserrat-Medium.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
