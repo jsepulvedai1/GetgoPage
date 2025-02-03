@@ -13,6 +13,7 @@ export default {
         foreground: "var(--foreground)",
         primary: "#70cfdb",
         secondary: "#FFFFFFFF",
+        comp:"#6ecedb",
         customBlue: "#160d7f",
       },
       fontFamily: {
