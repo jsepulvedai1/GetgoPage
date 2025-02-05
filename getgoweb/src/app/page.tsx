@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import { Montserrat } from 'next/font/google';
 
@@ -18,16 +19,19 @@ export default function Home() {
           alt="GetGo Logo"
           width={180}
           height={80}
-          className="w-[10vw] h-auto"  // Ajustamos la imagen con un tamaño relativo
+          className="w-[10vw] h-auto"
         />
         <nav>
-          <ul className="flex gap-6 text-[#000080] text-[1.5vw]">  {/* Ajustamos el tamaño de texto usando vw */}
+          <ul className="flex gap-6 text-[#000080] text-[1.5vw]">
             <li className="hover:text-blue-400 cursor-pointer transition-all">Quienes Somos</li>
+            <li className="text-[#e63a8a] mx-2">|</li>
             <li className="hover:text-blue-400 cursor-pointer transition-all">Código QR</li>
+            <li className="text-[#e63a8a] mx-2">|</li>
             <li className="hover:text-blue-400 cursor-pointer transition-all">Ayuda</li>
           </ul>
         </nav>
       </header>
+
 
       {/* Hero Section */}
       <section className="px-0 py-16 flex flex-col md:flex-row gap-8" style={{ paddingTop: "80px" }}>
@@ -44,54 +48,92 @@ export default function Home() {
           </div>
         </div>
       </section>
-      {/* QR Section */}
-      <section className="px-8 py-16 flex flex-col md:flex-row items-center gap-12">
+      {/* Why GetGo Section */}
+      <p className="text-[2.2vw] text-[#000080] flex justify-center">
+        ¿Por qué GetGo?
+      </p>
+      <section className="font-light px-8 py-16 flex flex-col md:flex-row items-center gap-12">
         <div className="w-full md:w-1/2 flex justify-center">
-          <Image
-            src="/images/phone-app.png"
-            alt="QR Code on Phone"
-            width={500}
-            height={500}
-            className="w-full max-w-sm h-auto rounded-lg object-cover"
+          <img
+            src="/images/Icon-WhyGetGo-GetGo.gif"
+            alt="GIF de Icono GetGo"
+            className="w-[15vw] h-auto"
           />
         </div>
         <div className="text-center md:text-left w-full md:w-1/2">
-          <h3 className="text-4xl font-bold text-black bg-opacity-80 px-4 py-2 inline-block uppercase bg-[#6ecedb+]">
-            Escanea <br /> Nuestro QR
+          <div className="flex items-start mb-6">
+            <Image
+              src="/images/Percent-Icon.png"
+              alt="Icono"
+              width={30}
+              height={30}
+              className="mr-2"
+            />
+            <p className="text-[1.1vw] text-[#000080]">
+              Obtienes el 1% de cada carrera que realice tu referido, de manera perpetua.
+            </p>
+          </div>
+          <div className="flex items-start mb-6">
+            <Image
+              src="/images/Money-Icon.png"
+              alt="Icono"
+              width={28}
+              height={28}
+              className="mr-2"
+            />
+            <p className="text-[1.1vw] text-[#000080]">
+              Tarifas competitivas y posibilidad de recibir ingresos recurrentes.
+            </p>
+          </div>
+          <div className="flex items-start mb-6">
+            <Image
+              src="/images/Deal-Icon.png"
+              alt="Icono"
+              width={45}
+              height={45}
+              className="mr-2"
+            />
+            <p className="text-[1.1vw] text-[#000080]">
+              Relación con conductores más justa y rentable.
+            </p>
+          </div>
+        </div>
+      </section>
+
+
+      {/* QR Section */}
+      <section className="px-8 py-16 flex flex-col md:flex-row items-center gap-12">
+        <div className="text-center justify-left w-full md:w-1/2 order-2 md:order-1 mx-auto">
+          <h3 className="text-[2.5vw] font-bold bg-[#DBCF6E] text-[#000080] bg-opacity-80 px-9 py-5 inline-block uppercase bg-[#6ecedb]">
+            Descarga Nuestra App
           </h3>
-          <p className="text-lg text-[#000080] mb-6">
+          <br />
+          <br />
+          <p className="text-[1.3vw] text-[#000080] mb-6 max-w-3xl mx-auto text-justify">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
-          <div className="flex justify-center md:justify-start">
+
+          <div className="flex justify-center md:justify-middle">
             <Image
               src="/images/codigoQR.png"
               alt="QR Code"
               width={120}
               height={120}
-              className="w-48 h-auto rounded-lg"
+              className="w-[13vw] h-auto"
             />
           </div>
         </div>
+        <div className="w-full md:w-1/2 flex justify-center order-1 md:order-2">
+          <Image
+            src="/images/phone-app.png"
+            alt="QR Code on Phone"
+            width={500}
+            height={500}
+            className="w-[25vw] h-auto "
+          />
+        </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-12 flex flex-col md:flex-row justify-around items-center text-center space-y-8 md:space-y-0">
-        <div className="flex flex-col items-center">
-          <Image src="/Icon-OpinionUser.gif" alt="Users" width={80} height={80} className="w-20 h-auto" />
-          <h4 className="text-green-400 text-3xl font-bold">+999</h4>
-          <p className="text-[#000080] text-lg">Usuarios satisfechos</p>
-        </div>
-        <div className="flex flex-col items-center">
-          <Image src="/Icon-Driver.gif" alt="Drivers" width={80} height={80} className="w-20 h-auto" />
-          <h4 className="text-green-400 text-3xl font-bold">+999</h4>
-          <p className="text-[#000080] text-lg">Conductores registrados</p>
-        </div>
-        <div className="flex flex-col items-center">
-          <Image src="/Icon-travel.gif" alt="Travels" width={80} height={80} className="w-20 h-auto" />
-          <h4 className="text-green-400 text-3xl font-bold">+999</h4>
-          <p className="text-[#000080] text-lg">Viajes completados</p>
-        </div>
-      </section>
 
       {/* Help Section */}
       <footer className="px-0 py-16 flex flex-col md:flex-row gap-8" style={{ paddingTop: "30px" }}>
@@ -118,7 +160,7 @@ export default function Home() {
 
             <div className="z-15">
               <Image
-                src="/images/GetGo_Logo-OneInk.png"
+                src="/images/GetGo_Logo.png"
                 alt="GetGo Logo"
                 width={200}
                 height={100}
