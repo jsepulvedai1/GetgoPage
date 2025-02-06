@@ -23,11 +23,17 @@ export default function Home() {
         />
         <nav>
           <ul className="flex gap-6 text-[#000080] text-[1.5vw]">
+            <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">
             <li className="hover:text-blue-400 cursor-pointer transition-all">Quienes Somos</li>
+            </a>
             <li className="text-[#e63a8a] mx-2">|</li>
+            <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">
             <li className="hover:text-blue-400 cursor-pointer transition-all">Código QR</li>
+            </a>
             <li className="text-[#e63a8a] mx-2">|</li>
+            <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">
             <li className="hover:text-blue-400 cursor-pointer transition-all">Ayuda</li>
+            </a>
           </ul>
         </nav>
       </header>
