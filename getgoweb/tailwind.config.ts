@@ -14,7 +14,7 @@ export default {
         primary: "#70cfdb",
         secondary: "#FFFFFFFF",
         comp:"#6ecedb",
-        customBlue: "#160d7f",
+        customBlue: "#000080",
       },
       fontFamily: {
         sans: ["Montserrat", "Arial", "sans-serif"], // Agrega Montserrat como fuente principal

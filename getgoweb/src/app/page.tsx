@@ -170,6 +170,39 @@ export default function Home() {
           </div>
         </div>
       </footer>
+      <footer className="bg-customBlue text-white py-8 px-4  rounded-t-2xl">
+  <div className="flex justify-between items-start">
+    {/* Menú de enlaces */}
+    <div>
+      <ul className="space-y-2 text-2xl justify-right">
+        <li >LA EMPRESA</li>
+        <li >LEGAL</li>
+        <li >LA APP</li>
+      </ul>
+    </div>
+
+    {/* Íconos de redes sociales encima de texto de contacto */}
+    <div className=" text-right ml-auto">
+      <div className="flex justify-end gap-4 mb-4">
+        <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+        <img src="/images/linkedIn-icon_1.png" alt="LinkedIn" className="w-6 h-6 cursor-pointer" />
+        </a>
+        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+        <img src="/images/instagram-icon.png" alt="Instagram" className="w-6 h-6 cursor-pointer" />
+        </a>
+        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+        <img src="/images/facebook-Icon.png" alt="Facebook" className="w-6 h-6 cursor-pointer" />
+        </a>
+        <a href="https://www.x.com" target="_blank" rel="noopener noreferrer">
+        <img src="/images/x-icon.png" alt="Twitter/X" className="w-6 h-6 cursor-pointer" />
+        </a>
+      </div>
+      <p className="text-lg">Oficina Central Calle Paralelepípedo 9999, Santiago</p>
+      <p className="text-lg">contacto@getgo.cl | (+56) 2 7575 2500</p>
+      <p className="text-sm mt-2">Todos los derechos reservados GetGo® 2024</p>
+    </div>
+  </div>
+</footer>
 
     </div>
   );
