@@ -218,7 +218,7 @@ export default function Home() {
               >
                 <Image
                   src="/images/linkedIn-icon_1.png"
-                  alt="LinkedIn"
+                  alt="linkedind"
                   className="w-6 h-6 cursor-pointer"
                   width={500}
                   height={500}
@@ -230,7 +230,7 @@ export default function Home() {
                 rel="noopener noreferrer"
               >
                 <Image
-                  src="/images/instagram-icon.png"
+                  src="/images/insta.png"
                   alt="Instagram"
                   className="w-6 h-6 cursor-pointer"
                   width={500}
@@ -243,7 +243,7 @@ export default function Home() {
                 rel="noopener noreferrer"
               >
                 <Image
-                  src="/images/facebook-Icon.png"
+                  src="/images/f.png"
                   alt="Facebook"
                   className="w-6 h-6 cursor-pointer"
                   width={500}
