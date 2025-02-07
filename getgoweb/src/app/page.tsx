@@ -55,7 +55,7 @@ export default function Home() {
         <div
           className="w-full h-80 text-left relative bg-cover bg-center flex justify-center items-center"
           style={{
-            backgroundImage: "url('/images/backgroundHeader.png')",
+            backgroundImage: "url('/images/im.png')",
             height: "68vh",
             margin: "0",
             padding: "0",
