@@ -7,7 +7,7 @@ const montserrat = Montserrat({
   display: "swap",
 });
 
-export default function QuienesSomos() {
+export default function AboutUs() {
   return (
     <div className={`${montserrat.className} bg-[#f8f9fd] min-h-screen`}>
       <header className="fixed top-0 left-0 w-full flex justify-between items-center px-8 py-3 bg-[#f3fbff] bg-opacity-100 z-50">
