@@ -138,8 +138,6 @@ export default function Home() {
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
 
-          
-
           <div className="flex justify-center md:justify-middle">
             <Image
               src="/images/codigoQR.png"
@@ -218,10 +216,12 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img
+                <Image
                   src="/images/linkedIn-icon_1.png"
                   alt="LinkedIn"
                   className="w-6 h-6 cursor-pointer"
+                  width={500}
+                  height={500}
                 />
               </a>
               <a
@@ -229,10 +229,12 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img
+                <Image
                   src="/images/instagram-icon.png"
                   alt="Instagram"
                   className="w-6 h-6 cursor-pointer"
+                  width={500}
+                  height={500}
                 />
               </a>
               <a
@@ -240,10 +242,12 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img
+                <Image
                   src="/images/facebook-Icon.png"
                   alt="Facebook"
                   className="w-6 h-6 cursor-pointer"
+                  width={500}
+                  height={500}
                 />
               </a>
               <a
@@ -251,10 +255,12 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img
+                <Image
                   src="/images/x-icon.png"
                   alt="Twitter/X"
                   className="w-6 h-6 cursor-pointer"
+                  width={500}
+                  height={500}
                 />
               </a>
             </div>
