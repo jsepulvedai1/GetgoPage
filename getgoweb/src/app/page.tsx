@@ -56,7 +56,7 @@ export default function Home() {
           className="w-full h-80 text-left relative bg-cover bg-center flex justify-center items-center"
           style={{
             backgroundImage: "url('/images/im.png')",
-            height: "38vh",
+            height: "68vh",
             margin: "0",
             padding: "0",
           }}
@@ -66,7 +66,7 @@ export default function Home() {
               Regístrate en minutos <br /> gana al instante.
             </h2>
             <p className="text-[1vw] text-white mb-8 z-10">
-              Maneja con GetGo y convierte tu tiempo libre en dineros
+              Maneja con GetGo y convierte tu tiempo libre en dinero
             </p>
           </div>
         </div>
@@ -255,12 +255,10 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Image
-                  src="/images/x-icon.png"
+                <img
+                  src="/images/x.png"
                   alt="Twitter/X"
                   className="w-6 h-6 cursor-pointer"
-                  width={500}
-                  height={500}
                 />
               </a>
             </div>
