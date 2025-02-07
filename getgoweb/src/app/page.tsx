@@ -217,7 +217,7 @@ export default function Home() {
                 rel="noopener noreferrer"
               >
                 <Image
-                  src="/images/linkedIn-icon_1.png"
+                  src="/images/lin.png"
                   alt="linkedind"
                   className="w-6 h-6 cursor-pointer"
                   width={500}
