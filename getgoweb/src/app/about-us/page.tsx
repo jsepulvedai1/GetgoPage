@@ -24,7 +24,7 @@ export default function AboutUs() {
               <li className="hover:text-blue-400 cursor-pointer transition-all">
                 Inicio
               </li>
-            </Link>            
+            </Link>
             <li className="text-[#e63a8a] mx-2">|</li>
             <a
               href="https://www.google.com"
@@ -112,7 +112,7 @@ export default function AboutUs() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mt-12">
           <div className="text-center max-w-xs mx-auto">
             <Image
-              src="/images/icon-energy.png"
+              src="/icons/download.png"
               alt="Imparables"
               width={90}
               height={90}
@@ -128,7 +128,7 @@ export default function AboutUs() {
           </div>
           <div className="text-center max-w-xs mx-auto">
             <Image
-              src="/images/icon-impact.png"
+              src="/icons/2060284.png"
               alt="Valientes"
               width={90}
               height={90}
@@ -141,7 +141,7 @@ export default function AboutUs() {
           </div>
           <div className="text-center max-w-xs mx-auto">
             <Image
-              src="/icons/p.png"
+              src="/icons/images.png"
               alt="Coherentes"
               width={90}
               height={90}
@@ -157,7 +157,7 @@ export default function AboutUs() {
           </div>
           <div className="text-center max-w-xs mx-auto">
             <Image
-              src="/icons/d.png"
+              src="/icons/if.png"
               alt="Humildes"
               width={100}
               height={100}
@@ -190,10 +190,12 @@ export default function AboutUs() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img
-                  src="/images/linkedIn-icon_1.png"
-                  alt="LinkedIn"
+                <Image
+                  src="/images/lin.png"
+                  alt="linkedind"
                   className="w-6 h-6 cursor-pointer"
+                  width={500}
+                  height={500}
                 />
               </a>
               <a
@@ -201,10 +203,12 @@ export default function AboutUs() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img
-                  src="/images/instagram-icon.png"
+                <Image
+                  src="/images/insta.png"
                   alt="Instagram"
                   className="w-6 h-6 cursor-pointer"
+                  width={500}
+                  height={500}
                 />
               </a>
               <a
@@ -212,10 +216,12 @@ export default function AboutUs() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img
-                  src="/images/facebook-Icon.png"
+                <Image
+                  src="/images/f.png"
                   alt="Facebook"
                   className="w-6 h-6 cursor-pointer"
+                  width={500}
+                  height={500}
                 />
               </a>
               <a
@@ -224,7 +230,7 @@ export default function AboutUs() {
                 rel="noopener noreferrer"
               >
                 <img
-                  src="/images/x-icon.png"
+                  src="/images/x.png"
                   alt="Twitter/X"
                   className="w-6 h-6 cursor-pointer"
                 />

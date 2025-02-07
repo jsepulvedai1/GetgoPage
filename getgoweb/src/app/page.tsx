@@ -18,8 +18,8 @@ export default function Home() {
         <Image
           src="/images/GetGo_Logo.png"
           alt="GetGo Logo"
-          width={180}
-          height={80}
+          width={190}
+          height={90}
           className="w-[10vw] h-auto"
         />
         <nav>
@@ -49,7 +49,7 @@ export default function Home() {
 
       {/* Hero Section */}
       <section
-        className="px-0 py-16 flex flex-col md:flex-row gap-8"
+        className="px-0 py-5 flex flex-col md:flex-row gap-8"
         style={{ paddingTop: "80px" }}
       >
         <div
