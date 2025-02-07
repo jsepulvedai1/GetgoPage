@@ -50,7 +50,7 @@ export default function Home() {
       {/* Hero Section */}
       <section
         className="px-0 py-5 flex flex-col md:flex-row gap-8"
-        style={{ paddingTop: "80px" }}
+        style={{ paddingTop: "10px" }}
       >
         <div
           className="w-full h-80 text-left relative bg-cover bg-center flex justify-center items-center"
