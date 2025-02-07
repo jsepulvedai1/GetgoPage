@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import { Montserrat } from 'next/font/google';
+import WhatsAppButton from "./components/WhatsAppButton";
+import Link from "next/link";
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -10,8 +12,7 @@ const montserrat = Montserrat({
 
 export default function Home() {
   return (
-    <div className={`${montserrat.className} bg-cover bg-center min-h-screen`}
-    >
+    <div className={`${montserrat.className} bg-cover bg-center min-h-screen`}>
       {/* Navbar */}
       <header className="fixed top-0 left-0 w-full flex justify-between items-center px-8 py-3 bg-[#f3fbff] bg-opacity-100 z-50">
         <Image
@@ -23,27 +24,43 @@ export default function Home() {
         />
         <nav>
           <ul className="flex gap-6 text-[#000080] text-[1.5vw]">
-            <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">
-            <li className="hover:text-blue-400 cursor-pointer transition-all">Quienes Somos</li>
-            </a>
+            <Link href="/about-us">
+              <li className="hover:text-blue-400 cursor-pointer transition-all">
+                Quienes Somos
+              </li>
+            </Link>
             <li className="text-[#e63a8a] mx-2">|</li>
-            <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">
-            <li className="hover:text-blue-400 cursor-pointer transition-all">Código QR</li>
-            </a>
-            <li className="text-[#e63a8a] mx-2">|</li>
-            <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">
-            <li className="hover:text-blue-400 cursor-pointer transition-all">Ayuda</li>
+            <a
+              href="https://www.google.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <li className="hover:text-blue-400 cursor-pointer transition-all">
+                Ayuda
+              </li>
             </a>
           </ul>
         </nav>
       </header>
-
+      <div>
+        <h1 className="text-center text-2xl font-bold mt-10"></h1>
+        <WhatsAppButton />
+      </div>
 
       {/* Hero Section */}
-      <section className="px-0 py-16 flex flex-col md:flex-row gap-8" style={{ paddingTop: "80px" }}>
-        <div className="w-full h-80 text-left relative bg-cover bg-center flex justify-center items-center"
-          style={{ backgroundImage: "url('/images/backgroundHeader.png')", height: "68vh", margin: "0", padding: "0" }}>
-
+      <section
+        className="px-0 py-16 flex flex-col md:flex-row gap-8"
+        style={{ paddingTop: "80px" }}
+      >
+        <div
+          className="w-full h-80 text-left relative bg-cover bg-center flex justify-center items-center"
+          style={{
+            backgroundImage: "url('/images/backgroundHeader.png')",
+            height: "68vh",
+            margin: "0",
+            padding: "0",
+          }}
+        >
           <div className="text-left w-full px-8">
             <h2 className="text-[2.5vw] font-bold text-white leading-tight mb-6 uppercase z-10">
               Regístrate en minutos <br /> gana al instante.
@@ -55,7 +72,7 @@ export default function Home() {
         </div>
       </section>
       {/* Why GetGo Section */}
-      <p className="text-[2.2vw] text-[#000080] flex justify-center">
+      <p className="text-[2.5vw] text-[#000080] flex justify-center">
         ¿Por qué GetGo?
       </p>
       <section className="font-light px-8 py-16 flex flex-col md:flex-row items-center gap-12">
@@ -75,8 +92,9 @@ export default function Home() {
               height={30}
               className="mr-2"
             />
-            <p className="text-[1.1vw] text-[#000080]">
-              Obtienes el 1% de cada carrera que realice tu referido, de manera perpetua.
+            <p className="text-[1.5vw] text-[#000080]">
+              Obtienes el 1% de cada carrera que realice tu referido, de manera
+              perpetua.
             </p>
           </div>
           <div className="flex items-start mb-6">
@@ -87,8 +105,9 @@ export default function Home() {
               height={28}
               className="mr-2"
             />
-            <p className="text-[1.1vw] text-[#000080]">
-              Tarifas competitivas y posibilidad de recibir ingresos recurrentes.
+            <p className="text-[1.5vw] text-[#000080]">
+              Tarifas competitivas y posibilidad de recibir ingresos
+              recurrentes.
             </p>
           </div>
           <div className="flex items-start mb-6">
@@ -99,13 +118,12 @@ export default function Home() {
               height={45}
               className="mr-2"
             />
-            <p className="text-[1.1vw] text-[#000080]">
+            <p className="text-[1.5vw] text-[#000080]">
               Relación con conductores más justa y rentable.
             </p>
           </div>
         </div>
       </section>
-
 
       {/* QR Section */}
       <section className="px-8 py-16 flex flex-col md:flex-row items-center gap-12">
@@ -116,8 +134,11 @@ export default function Home() {
           <br />
           <br />
           <p className="text-[1.3vw] text-[#000080] mb-6 max-w-3xl mx-auto text-justify">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
+
+          
 
           <div className="flex justify-center md:justify-middle">
             <Image
@@ -140,16 +161,18 @@ export default function Home() {
         </div>
       </section>
 
-
       {/* Help Section */}
-      <footer className="px-0 py-16 flex flex-col md:flex-row gap-8" style={{ paddingTop: "30px" }}>
+      <footer
+        className="px-0 py-16 flex flex-col md:flex-row gap-8"
+        style={{ paddingTop: "30px" }}
+      >
         <div
           className="w-full text-left relative bg-cover bg-center flex justify-center items-center"
           style={{
             backgroundImage: "url('/images/Maqueta_Web-GetGo-V2_03.png')",
             height: "68vh",
             margin: "0",
-            padding: "0"
+            padding: "0",
           }}
         >
           <div className="flex flex-col justify-center items-center text-center z-10">
@@ -177,39 +200,74 @@ export default function Home() {
         </div>
       </footer>
       <footer className="bg-customBlue text-white py-8 px-4  rounded-t-2xl">
-  <div className="flex justify-between items-start">
-    {/* Menú de enlaces */}
-    <div>
-      <ul className="space-y-2 text-2xl justify-right">
-        <li >LA EMPRESA</li>
-        <li >LEGAL</li>
-        <li >LA APP</li>
-      </ul>
-    </div>
+        <div className="flex justify-between items-start">
+          {/* Menú de enlaces */}
+          <div>
+            <ul className="space-y-2 text-2xl justify-right">
+              <li>LA EMPRESA</li>
+              <li>LEGAL</li>
+              <li>LA APP</li>
+            </ul>
+          </div>
 
-    {/* Íconos de redes sociales encima de texto de contacto */}
-    <div className=" text-right ml-auto">
-      <div className="flex justify-end gap-4 mb-4">
-        <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
-        <img src="/images/linkedIn-icon_1.png" alt="LinkedIn" className="w-6 h-6 cursor-pointer" />
-        </a>
-        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
-        <img src="/images/instagram-icon.png" alt="Instagram" className="w-6 h-6 cursor-pointer" />
-        </a>
-        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-        <img src="/images/facebook-Icon.png" alt="Facebook" className="w-6 h-6 cursor-pointer" />
-        </a>
-        <a href="https://www.x.com" target="_blank" rel="noopener noreferrer">
-        <img src="/images/x-icon.png" alt="Twitter/X" className="w-6 h-6 cursor-pointer" />
-        </a>
-      </div>
-      <p className="text-lg">Oficina Central Calle Paralelepípedo 9999, Santiago</p>
-      <p className="text-lg">contacto@getgo.cl | (+56) 2 7575 2500</p>
-      <p className="text-sm mt-2">Todos los derechos reservados GetGo® 2024</p>
-    </div>
-  </div>
-</footer>
-
+          {/* Íconos de redes sociales encima de texto de contacto */}
+          <div className=" text-right ml-auto">
+            <div className="flex justify-end gap-4 mb-4">
+              <a
+                href="https://www.linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="/images/linkedIn-icon_1.png"
+                  alt="LinkedIn"
+                  className="w-6 h-6 cursor-pointer"
+                />
+              </a>
+              <a
+                href="https://www.instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="/images/instagram-icon.png"
+                  alt="Instagram"
+                  className="w-6 h-6 cursor-pointer"
+                />
+              </a>
+              <a
+                href="https://www.facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="/images/facebook-Icon.png"
+                  alt="Facebook"
+                  className="w-6 h-6 cursor-pointer"
+                />
+              </a>
+              <a
+                href="https://www.x.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="/images/x-icon.png"
+                  alt="Twitter/X"
+                  className="w-6 h-6 cursor-pointer"
+                />
+              </a>
+            </div>
+            <p className="text-lg">
+              Oficina Central Calle Paralelepípedo 9999, Santiago
+            </p>
+            <p className="text-lg">contacto@getgo.cl | (+56) 2 7575 2500</p>
+            <p className="text-sm mt-2">
+              Todos los derechos reservados GetGo® 2024
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
