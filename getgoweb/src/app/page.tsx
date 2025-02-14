@@ -21,14 +21,10 @@ export default function Home() {
       <header className="fixed top-0 left-0 w-full flex justify-between items-center px-6 md:px-10 py-3 bg-[#f3fbff] bg-opacity-100 z-50 shadow-md">
         <Navbar />
       </header>
-     <section
-  className="relative w-full h-[80vh] md:h-[70vh] flex items-center justify-start px-6 md:px-12
-             bg-cover md:bg-contain bg-center md:bg-right"
-  style={{ backgroundImage: "url('/images/im.png')" }}
->
-
-
-
+      <section
+        className="relative w-full h-[80vh] md:h-[70vh] flex items-center justify-start px-6 md:px-12 bg-cover bg-center"
+        style={{ backgroundImage: "url('/images/im.png')" }}
+      >
         <div className="w-full md:w-1/2 text-left justify-center pt-32 md:pt-48 ml-0">
           <motion.h2
             className="text-3xl md:text-5xl font-bold text-white leading-tight uppercase mb-6"
