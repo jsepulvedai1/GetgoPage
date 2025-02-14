@@ -1,6 +1,7 @@
 import { Montserrat } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
+import NavbarAbout from "./navbar-about";
 const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["900"],
@@ -11,32 +12,7 @@ export default function AboutUs() {
   return (
     <div className={`${montserrat.className} bg-[#f8f9fd] min-h-screen`}>
       <header className="fixed top-0 left-0 w-full flex justify-between items-center px-8 py-3 bg-[#f3fbff] bg-opacity-100 z-50">
-        <Image
-          src="/images/GetGo_Logo.png"
-          alt="GetGo Logo"
-          width={180}
-          height={80}
-          className="w-[10vw] h-auto"
-        />
-        <nav>
-          <ul className="flex gap-6 text-[#000080] text-[1.5vw]">
-            <Link href="/">
-              <li className="hover:text-blue-400 cursor-pointer transition-all">
-                Inicio
-              </li>
-            </Link>
-            <li className="text-[#e63a8a] mx-2">|</li>
-            <a
-              href="https://www.google.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <li className="hover:text-blue-400 cursor-pointer transition-all">
-                Ayuda
-              </li>
-            </a>
-          </ul>
-        </nav>
+        <NavbarAbout />
       </header>
       {/* Sección Hero */}
       <section className="text-center py-20 px-8">
@@ -171,70 +147,33 @@ export default function AboutUs() {
         </div>
       </section>
 
-      <footer className="bg-customBlue text-white py-8 px-4  rounded-t-2xl">
-        <div className="flex justify-between items-start">
-          {/* Menú de enlaces */}
-          <div>
-            <ul className="space-y-2 text-2xl justify-right">
+      <footer className="bg-[#000080] text-white py-8 px-6 md:px-12 rounded-t-3xl text-center md:text-left">
+        <div className="flex flex-col md:flex-row justify-between">
+          <div className="mb-6 md:mb-0">
+            <ul className="space-y-2 text-lg md:text-xl">
               <li>LA EMPRESA</li>
               <li>LEGAL</li>
               <li>LA APP</li>
             </ul>
           </div>
-
-          {/* Íconos de redes sociales encima de texto de contacto */}
-          <div className=" text-right ml-auto">
-            <div className="flex justify-end gap-4 mb-4">
-              <a
-                href="https://www.linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Image
-                  src="/images/lin.png"
-                  alt="linkedind"
-                  className="w-6 h-6 cursor-pointer"
-                  width={500}
-                  height={500}
-                />
-              </a>
-              <a
-                href="https://www.instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Image
-                  src="/images/insta.png"
-                  alt="Instagram"
-                  className="w-6 h-6 cursor-pointer"
-                  width={500}
-                  height={500}
-                />
-              </a>
-              <a
-                href="https://www.facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Image
-                  src="/images/f.png"
-                  alt="Facebook"
-                  className="w-6 h-6 cursor-pointer"
-                  width={500}
-                  height={500}
-                />
-              </a>
-              <a
-                href="https://www.x.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src="/images/x.png"
-                  alt="Twitter/X"
-                  className="w-6 h-6 cursor-pointer"
-                />
-              </a>
+          <div>
+            <div className="flex justify-center md:justify-end gap-4 mb-4">
+              {["lin", "insta", "f", "x"].map((social, index) => (
+                <a
+                  key={index}
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image
+                    src={`/images/${social}.png`}
+                    alt={social}
+                    width={30}
+                    height={30}
+                    className="w-6 h-6 cursor-pointer"
+                  />
+                </a>
+              ))}
             </div>
             <p className="text-lg">
               Oficina Central Calle Paralelepípedo 9999, Santiago

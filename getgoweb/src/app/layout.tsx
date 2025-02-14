@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "GetGo Driver",
+  title: "GetGo",
   description: "page title name",
 };
 

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Menu } from "lucide-react";
 
-const Navbar = () => {
+const NavbarAbout = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -35,9 +35,9 @@ const Navbar = () => {
         } md:flex flex-col md:flex-row absolute md:static top-16 left-0 w-full md:w-auto bg-[#f3fbff] md:bg-transparent p-4 md:p-0 shadow-md md:shadow-none`}
       >
         <ul className="flex flex-col md:flex-row gap-4 md:gap-6 text-lg font-semibold text-[#000080]">
-          <Link href="/about-us">
+          <Link href="/">
             <li className="hover:text-blue-400 cursor-pointer transition-all">
-              Quienes Somos
+              Inicio
             </li>
           </Link>
           <a
@@ -55,4 +55,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavbarAbout;

@@ -1,8 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
+"use client";
 import Image from "next/image";
 import { Montserrat } from "next/font/google";
-import WhatsAppButton from "./components/WhatsAppButton";
 import Navbar from "./components/navbar";
+import { motion } from "framer-motion";
+import SocialSidebar, { }  from "./components/social"
+import StoreButtons from "./components/store";
+
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -12,45 +16,70 @@ const montserrat = Montserrat({
 
 export default function Home() {
   return (
-    <div className={`${montserrat.className} bg-cover bg-center min-h-screen`}>
+    <div>
       {/* Navbar */}
       <header className="fixed top-0 left-0 w-full flex justify-between items-center px-6 md:px-10 py-3 bg-[#f3fbff] bg-opacity-100 z-50 shadow-md">
-        <Image
-          src="/images/GetGo_Logo.png"
-          alt="GetGo Logo"
-          width={190}
-          height={90}
-          className="w-24 md:w-40 h-auto"
-        />
         <Navbar />
       </header>
+     <section
+  className="relative w-full h-[80vh] md:h-[70vh] flex items-center justify-start px-6 md:px-12
+             bg-cover md:bg-contain bg-center md:bg-right"
+  style={{ backgroundImage: "url('/images/im.png')" }}
+>
 
-      {/* Hero Section */}
-      <section
-        className="relative w-full h-[80vh] md:h-[70vh] flex flex-col md:flex-row items-center justify-center px-6 md:px-12 bg-cover bg-center"
-        style={{ backgroundImage: "url('/images/im.png')" }}
-      >
-        <div className="w-full md:w-1/2 text-center md:text-left">
-          <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight uppercase mb-6">
-            Regístrate en minutos <br /> gana al instante.
-          </h2>
-          <p className="text-lg md:text-xl text-white mb-8">
+
+
+        <div className="w-full md:w-1/2 text-left justify-center pt-32 md:pt-48 ml-0">
+          <motion.h2
+            className="text-3xl md:text-5xl font-bold text-white leading-tight uppercase mb-6"
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+          >
+            Regístrate en minutos <br /> gana al instante
+          </motion.h2>
+
+          <motion.p
+            className="text-lg md:text-xl text-white mb-8"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.5 }}
+          >
             Maneja con GetGo y convierte tu tiempo libre en dinero
-          </p>
-          <WhatsAppButton />
+          </motion.p>
         </div>
       </section>
 
-      {/* Why GetGo Section */}
-      <section className="px-6 md:px-12 py-16 flex flex-col md:flex-row items-center gap-8">
-        <div className="w-full md:w-1/2 flex justify-center">
+      <div>
+        <SocialSidebar />
+      </div>
+      <motion.section
+        className="px-6 md:px-12 py-16 flex flex-col md:flex-row items-center gap-8"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        {/* GIF animado */}
+        <motion.div
+          className="w-full md:w-1/2 flex justify-center"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
           <img
             src="/images/Icon-WhyGetGo-GetGo.gif"
             alt="GIF GetGo"
             className="w-40 md:w-60 h-auto"
           />
-        </div>
-        <div className="w-full md:w-1/2">
+        </motion.div>
+
+        {/* Lista de Beneficios con animaciones */}
+        <motion.div
+          className="w-full md:w-1/2"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+        >
           {[
             {
               icon: "/images/Percent-Icon.png",
@@ -65,7 +94,13 @@ export default function Home() {
               text: "Relación con conductores más justa y rentable.",
             },
           ].map((item, index) => (
-            <div key={index} className="flex items-start mb-6">
+            <motion.div
+              key={index}
+              className="flex items-start mb-6"
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+            >
               <Image
                 src={item.icon}
                 alt="Icono"
@@ -74,11 +109,10 @@ export default function Home() {
                 className="mr-2"
               />
               <p className="text-lg md:text-xl text-[#000080]">{item.text}</p>
-            </div>
+            </motion.div>
           ))}
-        </div>
-      </section>
-
+        </motion.div>
+      </motion.section>
       {/* QR Section */}
       <section className="px-6 md:px-12 py-16 flex flex-col md:flex-row items-center gap-12">
         <div className="w-full md:w-1/2 text-center md:text-left">
@@ -86,10 +120,11 @@ export default function Home() {
             Descarga Nuestra App
           </h3>
           <p className="text-lg md:text-xl text-[#000080] mt-4 max-w-lg mx-auto md:mx-0">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Descargala ahora y comienza a disfrutar de todas sus ventajas. ¡Tu
+            viaje empieza aqui!
           </p>
-          <div className="flex justify-center md:justify-start mt-6">
+          <StoreButtons />
+          <div className="hidden md:flex justify-center items-center mt-6 w-full">
             <Image
               src="/images/codigoQR.png"
               alt="QR Code"
@@ -109,9 +144,8 @@ export default function Home() {
           />
         </div>
       </section>
-
       {/* Footer */}
-      <footer className="bg-customBlue text-white py-8 px-6 md:px-12 rounded-t-2xl text-center md:text-left">
+      <footer className="bg-[#000080] text-white py-8 px-6 md:px-12 rounded-t-3xl text-center md:text-left">
         <div className="flex flex-col md:flex-row justify-between">
           <div className="mb-6 md:mb-0">
             <ul className="space-y-2 text-lg md:text-xl">
