@@ -22,7 +22,7 @@ export default function Home() {
         <Navbar />
       </header>
       <section
-        className="relative w-full h-[80vh] md:h-[70vh] flex items-center justify-start px-6 md:px-12 bg-cover bg-center"
+       className="{`${montserrat.className}relative w-full h-[80vh] md:h-[70vh] flex items-center justify-start px-6 md:px-12 bg-cover bg-center"
         style={{ backgroundImage: "url('/images/im.png')" }}
       >
         <div className="w-full md:w-1/2 text-left justify-center pt-32 md:pt-48 ml-0">
@@ -179,6 +179,7 @@ export default function Home() {
           </div>
         </div>
       </footer>
+       <div className={`${montserrat.className}`}></div>
     </div>
   );
 }
