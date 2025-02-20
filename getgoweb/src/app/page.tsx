@@ -172,7 +172,7 @@ export default function Home() {
         </h2>
         <br></br>
         <a
-          href="https://www.google.com/"
+          href="/nuestro-sistema"
           className="inline-block bg-white text-[#db2392] py-4 px-7 rounded-lg text-lg font-bold hover:bg-gray-200 transition "
         >
           CONOCE NUESTRO SISTEMA
