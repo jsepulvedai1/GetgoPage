@@ -55,25 +55,46 @@ export default function Home() {
       <header className="fixed top-0 left-0 w-full flex justify-between items-center px-6 md:px-10 py-3 bg-[#f3fbff] bg-opacity-100 z-50 shadow-md">
         <Navbar />
       </header>
+      <br></br>
+      <br></br>
       <section
-        className={`${montserrat.className} relative w-full h-[80vh] md:h-[70vh] flex items-center justify-start px-6 md:px-12 bg-cover bg-center`}
+        className={`${montserrat.className} hidden md:block relative w-full h-[80vh] md:h-[70vh] flex items-center justify-start px-6 md:px-12 bg-cover bg-center`}
         style={{ backgroundImage: "url('/images/im.png')" }}
       >
         <div className="w-full md:w-1/2 text-left flex justify-center pt-20 md:pt-32 ml-0">
           <motion.h2
-            className="text-3xl md:text-5xl font-bold text-white leading-tight uppercase mb-6"
+            className="text-3xl md:text-4xl font-bold text-white leading-tight uppercase mb-6 drop-shadow-[2px_2px_4px_rgba(0,0,0,0.8)]"
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
+            <br></br>
             Regístrate en minutos <br />
             <span className="text-4xl md:text-6xl text-white">gana al instante</span><br />
-            <span className="text-4xl md:text-sm text-white">maneja con GetGo y convierte tu tiempo en dinero</span>
+            <span className="text-4xl md:text-lg text-white">maneja con GetGo y convierte tu tiempo en dinero</span>
+          </motion.h2>
+        </div>
+      </section>
+      <section
+        className={`${montserrat.className} block md:hidden relative w-full h-[80vh] md:h-[70vh] flex items-center justify-start px-6 md:px-12 bg-cover bg-center`}
+        style={{ backgroundImage: "url('/images/im5.png')" }}
+      >
+        <div className="w-full md:w-1/2 text-left flex justify-center pt-10 md:pt-40 ml-0">
+          <motion.h2
+            className="text-xl md:text-5xl font-bold text-white leading-tight uppercase mb-6 drop-shadow-[2px_2px_4px_rgba(0,0,0,0.8)]"
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+          >
+
+            Regístrate en minutos <br />
+            <span className="text-4xl md:text-6xl text-white">gana al instante</span><br />
+            <span className="text-xl md:text-sm text-white">maneja con GetGo y convierte tu tiempo en dinero</span>
           </motion.h2>
         </div>
       </section>
 
-      <div>
+      <div className="hidden md:block">
         <SocialSidebar />
       </div>
       <motion.section
@@ -82,7 +103,7 @@ export default function Home() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        {/* Lista de Beneficios con animaciones (ahora primero) */}
+        {/* Lista de Beneficios con animaciones*/}
         <motion.div
           className="w-full md:w-1/2"
           initial={{ opacity: 0, x: -50 }}
@@ -90,7 +111,7 @@ export default function Home() {
           transition={{ duration: 0.8, delay: 0.5 }}
         >
           <motion.h3
-            className="text-2xl md:text-5xl font-bold text-[#000080] text-center mb-6"
+            className="text-2xl md:text-5xl font-bold text-[#000080] text-center mb-6 "
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -146,13 +167,13 @@ export default function Home() {
       </motion.section>
 
       <div className="bg-[#db2392] text-white py-8 px-6 md:px-12 text-center md:text-center">
-        <h2 className="text-2xl md:text-3xl font-bold mb-4">
+        <h2 className="text-2xl md:text-3xl font-bold mb-4 drop-shadow-[2px_2px_4px_rgba(0,0,0,0.8)]">
           Conoce nuestro sistema de referidos
         </h2>
         <br></br>
         <a
           href="https://www.google.com/"
-          className="inline-block bg-white text-[#db2392] py-4 px-7 rounded-lg text-lg font-bold hover:bg-gray-200 transition"
+          className="inline-block bg-white text-[#db2392] py-4 px-7 rounded-lg text-lg font-bold hover:bg-gray-200 transition "
         >
           CONOCE NUESTRO SISTEMA
         </a>
@@ -162,7 +183,7 @@ export default function Home() {
         <h2 className="text-2xl md:text-4xl font-bold text-[#000080] mb-6">A DONDE VAYAS, NOS MOVEMOS CONTIGO</h2>
         <div className="relative w-full max-w-lg mx-auto overflow-hidden">
           {/* Botón Izquierdo */}
-          
+
 
           {/* Contenido del Carrusel */}
           <div className="flex items-center justify-center">
@@ -202,10 +223,10 @@ export default function Home() {
           <button
             className="absolute left-0 top-1/2 transform -translate-y-1/2 p-2 rounded-full shadow-md hover:bg-gray-200 transition"
             onClick={prevSlide}
-            style={{ opacity: 0.7 }} 
+            style={{ opacity: 0.7 }}
           >
             <Image
-              src="/images/Icon-ArrowSliderLeft-GetGoWeb.png" 
+              src="/images/Icon-ArrowSliderLeft-GetGoWeb.png"
               alt="Flecha izquierda"
               width={40}
               height={40}
@@ -226,7 +247,12 @@ export default function Home() {
           </p>
 
         </div>
-        <StoreButtons />
+        <div className="hidden md:block ">
+          <StoreButtons />
+        </div>
+        <div className="block md:hidden ">
+          <StoreButtons />
+        </div>
       </section>
       {/* Footer */}
       <footer className="bg-[#000080] text-white py-8 px-6 md:px-12 rounded-t-3xl text-center">

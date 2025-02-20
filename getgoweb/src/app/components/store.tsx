@@ -2,21 +2,20 @@ import Image from "next/image";
 
 const StoreButtons = () => {
   return (
-    <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-6 sm:gap-6">
+    <div className="flex flex-col items-center justify-center w-full gap-4 mt-6 sm:flex-row sm:gap-6">
       {/* Botón de App Store */}
       <a
         href="https://www.apple.com/app-store/"
         target="_blank"
         rel="noopener noreferrer"
-        className="w-48 sm:w-56 md:w-64 lg:w-72 transition-transform hover:scale-105"
+        className="w-50 sm:w-48 md:w-56 lg:w-64 transition-transform hover:scale-105" // Ajusta tamaños aquí
       >
         <Image
-          src="/images/App_Store-Button.png" // Ruta de la imagen
+          src="/images/App_Store-Button.png"
           alt="Descargar en App Store"
           width={300}
-          height={10}
-          // className="w-full h-auto"
-          style={{ maxWidth: "400px", height: "auto" }}
+          height={60}
+          className="w-full h-auto max-w-[250px] sm:max-w-[300px] md:max-w-[350px]" // Ajusta aquí también
         />
       </a>
 
@@ -25,15 +24,14 @@ const StoreButtons = () => {
         href="https://play.google.com/store"
         target="_blank"
         rel="noopener noreferrer"
-        className="w-48 md:w-56 md:w-64 lg:w-72 transition-transform hover:scale-105"
+        className="w-65 sm:w-48 md:w-56 lg:w-90 transition-transform hover:scale-105"
       >
         <Image
-          src="/images/Play_Store -Button.png" // Ruta de la imagen
+          src="/images/Play_Store -Button.png"
           alt="Descargar en Google Play"
           width={300}
           height={60}
-          // className="w-full h-auto"
-          style={{ maxWidth: "400px", height: "auto" }}
+          className="w-full h-auto max-w-[250px] sm:max-w-[250px] md:max-w-[300px]"
         />
       </a>
     </div>
