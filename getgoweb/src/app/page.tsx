@@ -18,16 +18,19 @@ const montserrat = Montserrat({
 export default function Home() {
   const messages = [
     {
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      image: "/images/Icon-GetGo_Arrow.png",
+      title: "GetGo Car / Ejecutivo",
+      text: "Este servicio conecta a pasajeros con conductores particulares en autos estándar, asegurando un traslado eficiente, seguro y confortable.",
+      image: "/images/Icon-GetGoCar.png",
     },
     {
-      text: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      image: "/images/Icon-GetGo_Arrow.png",
+      title: "GetGo Taxi",
+      text: "Si prefieres un taxi tradicional con la seguridad y facilidad de una app, GetGo Taxi es tu mejor opción. Conecta con taxistas registrados y certificados",
+      image: "/images/Icon-GetGoTaxi.png",
     },
     {
-      text: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-      image: "/images/Icon-GetGo_Arrow.png",
+      title: "GetGo XL",
+      text: "Para quienes necesitan mayor capacidad, GetGo XL ofrece vehículos más amplios, ideales para grupos, familias o traslados con equipaje extra",
+      image: "/images/Icon-GetGoXL.png",
     },
   ];
 
@@ -89,7 +92,7 @@ export default function Home() {
           >
             ¿Por qué GetGo?
           </motion.h3><br></br>
-          {[
+          {[ 
             {
               icon: "/images/Icon-GetGo_Arrow.png",
               text: "Obtienes el 1% de cada carrera que realice tu referido, de manera perpetua.",
@@ -105,7 +108,7 @@ export default function Home() {
           ].map((item, index) => (
             <motion.div
               key={index}
-              className="flex items-start mb-6"
+              className="flex items-center mb-6"
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
@@ -117,7 +120,7 @@ export default function Home() {
                 height={35}
                 className="mr-2"
               />
-              <p className="text-lg md:text-xl text-[#000080]">{item.text}</p>
+              <p className="text-lg md:text-2xl text-[#000080] ">{item.text}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -132,13 +135,12 @@ export default function Home() {
           <img
             src="/images/Icon-WhyGetGo-GetGo.gif"
             alt="GIF GetGo"
-            className="w-40 md:w-60 h-auto"
+            className="w-full md:w-80 max-w-full h-auto"
           />
         </motion.div>
       </motion.section>
 
-
-      <div className="bg-[#db2392] text-white py-8 px-6 md:px-12  text-center md:text-center">
+      <div className="bg-[#db2392] text-white py-8 px-6 md:px-12 text-center md:text-center">
         <h2 className="text-2xl md:text-3xl font-bold mb-4">
           Conoce nuestro sistema de referidos
         </h2>
@@ -152,7 +154,7 @@ export default function Home() {
       </div>
       {/* Carrusel - Agregado antes de la sección QR */}
       <section className="py-16 px-6 md:px-12 bg-gray-100 text-center">
-        <h2 className="text-2xl md:text-3xl font-bold text-[#000080] mb-6">Beneficios Exclusivos</h2>
+        <h2 className="text-2xl md:text-4xl font-bold text-[#000080] mb-6">A DONDE VAYAS, NOS MOVEMOS CONTIGO</h2>
         <div className="relative w-full max-w-lg mx-auto overflow-hidden">
           {/* Botón Izquierdo */}
           <button
@@ -173,7 +175,11 @@ export default function Home() {
                 transition={{ duration: 0.5 }}
                 className="flex flex-col items-center text-center px-6"
               >
-                <Image src={messages[index].image} alt="Ícono" width={50} height={50} />
+                <br></br>
+                <br></br>
+                {/* Título del mensaje agregado aquí */}
+                <h2 className="text-2xl md:text-3xl font-semibold text-[#000080] mb-4">{messages[index].title}</h2>
+                <Image src={messages[index].image} alt="Ícono" width={200} height={200} />
                 <p className="text-lg md:text-xl text-[#000080] mt-4">{messages[index].text}</p>
               </motion.div>
             </AnimatePresence>
@@ -195,21 +201,12 @@ export default function Home() {
             Descarga Nuestra App
           </h3>
           <p className="text-lg md:text-xl text-[#000080] mt-4 max-w-lg mx-auto md:justify-center ">
-            Descargala ahora y comienza a disfrutar de todas sus ventajas.<br/>
+            Descargala ahora y comienza a disfrutar de todas sus ventajas.<br />
             <span className="text-xl font-bold italic max-w-lg mx-auto whitespace-nowrap"> ¡Tu viaje empieza aqui!</span>
           </p>
-          
+
         </div>
         <StoreButtons />
-        {/* <div className="w-full md:w-1/2 flex justify-center">
-          <Image
-            src="/images/codigoQR.png"
-            alt="App en Teléfono"
-            width={400}
-            height={400}
-            className="w-60 md:w-80 h-auto"
-          />
-        </div> */}
       </section>
       {/* Footer */}
       <footer className="bg-[#000080] text-white py-8 px-6 md:px-12 rounded-t-3xl text-center">
