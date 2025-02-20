@@ -11,11 +11,12 @@ const StoreButtons = () => {
         className="w-48 sm:w-56 md:w-64 lg:w-72 transition-transform hover:scale-105"
       >
         <Image
-          src="/images/apple.svg" // Ruta de la imagen
+          src="/images/App_Store-Button.png" // Ruta de la imagen
           alt="Descargar en App Store"
-          width={100}
+          width={300}
           height={10}
-          className="w-full h-auto"
+          // className="w-full h-auto"
+          style={{ maxWidth: "400px", height: "auto" }}
         />
       </a>
 
@@ -24,14 +25,15 @@ const StoreButtons = () => {
         href="https://play.google.com/store"
         target="_blank"
         rel="noopener noreferrer"
-        className="w-48 sm:w-56 md:w-64 lg:w-72 transition-transform hover:scale-105"
+        className="w-48 md:w-56 md:w-64 lg:w-72 transition-transform hover:scale-105"
       >
         <Image
-          src="/images/play.png" // Ruta de la imagen
+          src="/images/Play_Store -Button.png" // Ruta de la imagen
           alt="Descargar en Google Play"
-          width={200}
+          width={300}
           height={60}
-          className="w-full h-auto"
+          // className="w-full h-auto"
+          style={{ maxWidth: "400px", height: "auto" }}
         />
       </a>
     </div>
