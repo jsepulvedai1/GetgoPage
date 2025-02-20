@@ -179,11 +179,10 @@ export default function Home() {
         </a>
       </div>
       {/* Carrusel - Agregado antes de la sección QR */}
-      <section className="py-16 px-6 md:px-12 bg-gray-100 text-center">
+      <section className="py-16 px-6 md:px-12 bg-[#f3fbff] text-center"> {/* Cambiar bg-gray-100 a bg-white */}
         <h2 className="text-2xl md:text-4xl font-bold text-[#000080] mb-6">A DONDE VAYAS, NOS MOVEMOS CONTIGO</h2>
         <div className="relative w-full max-w-lg mx-auto overflow-hidden">
           {/* Botón Izquierdo */}
-
 
           {/* Contenido del Carrusel */}
           <div className="flex items-center justify-center">
@@ -235,6 +234,7 @@ export default function Home() {
           </button>
         </div>
       </section>
+
       {/* QR Section */}
       <section className="px-6 md:px-12 py-16 flex flex-col md:flex-row items-center gap-12">
         <div className="w-full md:w-1/2 text-center md:md:justify-center">
