@@ -21,6 +21,7 @@ body {
   background-color: var(--background);
   color: var(--text-color);
   font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
 }
 
 h1, h2, h3, h4, h5, h6 {

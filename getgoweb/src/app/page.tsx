@@ -3,18 +3,44 @@
 import Image from "next/image";
 import { Montserrat } from "next/font/google";
 import Navbar from "./components/navbar";
-import { motion } from "framer-motion";
-import SocialSidebar, { } from "./components/social"
+import { motion, AnimatePresence } from "framer-motion";
+import SocialSidebar from "./components/social";
 import StoreButtons from "./components/store";
-
+import { useState } from "react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["900"],
+  weight: ["400", "600", "900"],
   display: "swap",
 });
 
 export default function Home() {
+  const messages = [
+    {
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      image: "/images/Icon-GetGo_Arrow.png",
+    },
+    {
+      text: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      image: "/images/Icon-GetGo_Arrow.png",
+    },
+    {
+      text: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+      image: "/images/Icon-GetGo_Arrow.png",
+    },
+  ];
+
+  const [index, setIndex] = useState(0);
+
+  const nextSlide = () => {
+    setIndex((prevIndex) => (prevIndex + 1) % messages.length);
+  };
+
+  const prevSlide = () => {
+    setIndex((prevIndex) => (prevIndex - 1 + messages.length) % messages.length);
+  };
+
   return (
     <div>
       {/* Navbar */}
@@ -22,20 +48,20 @@ export default function Home() {
         <Navbar />
       </header>
       <section
-        className="{`${montserrat.className}relative w-full h-[80vh] md:h-[70vh] flex items-center justify-start px-6 md:px-12 bg-cover bg-center"
+        className={`${montserrat.className} relative w-full h-[80vh] md:h-[70vh] flex items-center justify-start px-6 md:px-12 bg-cover bg-center`}
         style={{ backgroundImage: "url('/images/im.png')" }}
       >
-        <div className="w-full md:w-1/2 text-left justify-center pt-32 md:pt-48 ml-0">
+        <div className="w-full md:w-1/2 text-left flex justify-center pt-20 md:pt-32 ml-0">
           <motion.h2
-            className="text-3xl md:text-4xl font-bold text-white leading-tight uppercase mb-6"
+            className="text-3xl md:text-3xl font-bold text-white leading-tight uppercase mb-6"
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
             Regístrate en minutos <br />
-            <span className="text-4xl md:text-6xl text-white">gana al instante</span>
+            <span className="text-4xl md:text-6xl text-white">gana al instante</span><br />
+            <span className="text-4xl md:text-sm text-white">maneja con GetGo y convierte tu tiempo en dinero</span>
           </motion.h2>
-
         </div>
       </section>
 
@@ -48,38 +74,32 @@ export default function Home() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        {/* GIF animado */}
-        <motion.div
-          className="w-full md:w-1/2 flex justify-center"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          <img
-            src="/images/Icon-WhyGetGo-GetGo.gif"
-            alt="GIF GetGo"
-            className="w-40 md:w-60 h-auto"
-          />
-        </motion.div>
-
-        {/* Lista de Beneficios con animaciones */}
+        {/* Lista de Beneficios con animaciones (ahora primero) */}
         <motion.div
           className="w-full md:w-1/2"
-          initial={{ opacity: 0, x: 50 }}
+          initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
         >
+          <motion.h3
+            className="text-2xl md:text-3xl font-bold text-[#000080] text-center mb-6"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            ¿Por qué GetGo?
+          </motion.h3><br></br>
           {[
             {
-              icon: "/images/Percent-Icon.png",
+              icon: "/images/Icon-GetGo_Arrow.png",
               text: "Obtienes el 1% de cada carrera que realice tu referido, de manera perpetua.",
             },
             {
-              icon: "/images/Money-Icon.png",
+              icon: "/images/Icon-GetGo_Arrow.png",
               text: "Tarifas competitivas y posibilidad de recibir ingresos recurrentes.",
             },
             {
-              icon: "/images/Deal-Icon.png",
+              icon: "/images/Icon-GetGo_Arrow.png",
               text: "Relación con conductores más justa y rentable.",
             },
           ].map((item, index) => (
@@ -101,7 +121,22 @@ export default function Home() {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* GIF animado (ahora al final) */}
+        <motion.div
+          className="w-full md:w-1/2 flex justify-center"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <img
+            src="/images/Icon-WhyGetGo-GetGo.gif"
+            alt="GIF GetGo"
+            className="w-40 md:w-60 h-auto"
+          />
+        </motion.div>
       </motion.section>
+
 
       <div className="bg-[#db2392] text-white py-8 px-6 md:px-12  text-center md:text-center">
         <h2 className="text-2xl md:text-3xl font-bold mb-4">
@@ -109,12 +144,50 @@ export default function Home() {
         </h2>
         <br></br>
         <a
-          href="/pagina-referidos"  // Aquí pones la ruta de la página a la que deseas redirigir
-          className="inline-block bg-white text-[#db2392] py-3 px-7 rounded-lg text-lg font-semibold hover:bg-gray-200 transition"
+          href="https://www.google.com/"
+          className="inline-block bg-white text-[#db2392] py-4 px-7 rounded-lg text-lg font-bold hover:bg-gray-200 transition"
         >
           CONOCE NUESTRO SISTEMA
         </a>
       </div>
+      {/* Carrusel - Agregado antes de la sección QR */}
+      <section className="py-16 px-6 md:px-12 bg-gray-100 text-center">
+        <h2 className="text-2xl md:text-3xl font-bold text-[#000080] mb-6">Beneficios Exclusivos</h2>
+        <div className="relative w-full max-w-lg mx-auto overflow-hidden">
+          {/* Botón Izquierdo */}
+          <button
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 p-2 bg-white rounded-full shadow-md hover:bg-gray-200 transition"
+            onClick={prevSlide}
+          >
+            <ArrowLeft size={24} />
+          </button>
+
+          {/* Contenido del Carrusel */}
+          <div className="flex items-center justify-center">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{ duration: 0.5 }}
+                className="flex flex-col items-center text-center px-6"
+              >
+                <Image src={messages[index].image} alt="Ícono" width={50} height={50} />
+                <p className="text-lg md:text-xl text-[#000080] mt-4">{messages[index].text}</p>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Botón Derecho */}
+          <button
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 p-2 bg-white rounded-full shadow-md hover:bg-gray-200 transition"
+            onClick={nextSlide}
+          >
+            <ArrowRight size={24} />
+          </button>
+        </div>
+      </section>
       {/* QR Section */}
       <section className="px-6 md:px-12 py-16 flex flex-col md:flex-row items-center gap-12">
         <div className="w-full md:w-1/2 text-center md:text-left">
@@ -122,8 +195,8 @@ export default function Home() {
             Descarga Nuestra App
           </h3>
           <p className="text-lg md:text-xl text-[#000080] mt-4 max-w-lg mx-auto md:mx-0">
-            Descargala ahora y comienza a disfrutar de todas sus ventajas. ¡Tu
-            viaje empieza aqui!
+            Descargala ahora y comienza a disfrutar de todas sus ventajas.
+            <span className="text-4xl md:text-xl font-bold italic"> ¡Tu viaje empieza aqui!</span>
           </p>
           <StoreButtons />
 
@@ -142,9 +215,9 @@ export default function Home() {
       <footer className="bg-[#000080] text-white py-8 px-6 md:px-12 rounded-t-3xl text-center">
         <div className="mb-6">
           <ul className="flex justify-center space-x-6 text-lg md:text-xl">
-            <li>LA EMPRESA</li>
-            <li>LEGAL</li>
-            <li>LA APP</li>
+            <li>LA EMPRESA - </li>
+            <li> LEGAL - </li>
+            <li> LA APP</li>
           </ul>
         </div>
 
