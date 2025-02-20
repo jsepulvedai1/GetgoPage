@@ -192,7 +192,7 @@ export default function Home() {
             style={{ opacity: 0.7 }}
           >
             <Image
-              src="/images/Icon-ArrowSliderRight-GetGoWeb.png" // Reemplaza con la ruta de tu imagen
+              src="/images/Icon-ArrowSliderRight-GetGoWeb.png"
               alt="Flecha izquierda"
               width={40}
               height={40}
@@ -202,10 +202,10 @@ export default function Home() {
           <button
             className="absolute left-0 top-1/2 transform -translate-y-1/2 p-2 rounded-full shadow-md hover:bg-gray-200 transition"
             onClick={prevSlide}
-            style={{ opacity: 0.7 }}  // Aquí controlas la opacidad
+            style={{ opacity: 0.7 }} 
           >
             <Image
-              src="/images/Icon-ArrowSliderLeft-GetGoWeb.png" // Reemplaza con la ruta de tu imagen
+              src="/images/Icon-ArrowSliderLeft-GetGoWeb.png" 
               alt="Flecha izquierda"
               width={40}
               height={40}
