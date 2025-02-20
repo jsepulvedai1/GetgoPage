@@ -32,6 +32,11 @@ export default function Home() {
       text: "Para quienes necesitan mayor capacidad, GetGo XL ofrece vehículos más amplios, ideales para grupos, familias o traslados con equipaje extra",
       image: "/images/Icon-GetGoXL.png",
     },
+    {
+      title: "Gana dinero por compartir",
+      text: "Con GetGo, cada conexión cuenta. A través del sistema de referidos, puedes ganar dinero simplemente compartiendo tu código con amigos y conocidos. Cada vez que alguien se registra y viaja con GetGo, tú recibes un porcentaje de sus carreras.",
+      image: "/images/Icon-GetGoReferrals.png",
+    },
   ];
 
   const [index, setIndex] = useState(0);
@@ -92,7 +97,7 @@ export default function Home() {
           >
             ¿Por qué GetGo?
           </motion.h3><br></br>
-          {[ 
+          {[
             {
               icon: "/images/Icon-GetGo_Arrow.png",
               text: "Obtienes el 1% de cada carrera que realice tu referido, de manera perpetua.",
@@ -157,12 +162,7 @@ export default function Home() {
         <h2 className="text-2xl md:text-4xl font-bold text-[#000080] mb-6">A DONDE VAYAS, NOS MOVEMOS CONTIGO</h2>
         <div className="relative w-full max-w-lg mx-auto overflow-hidden">
           {/* Botón Izquierdo */}
-          <button
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 p-2 bg-white rounded-full shadow-md hover:bg-gray-200 transition"
-            onClick={prevSlide}
-          >
-            <ArrowLeft size={24} />
-          </button>
+          
 
           {/* Contenido del Carrusel */}
           <div className="flex items-center justify-center">
@@ -189,8 +189,28 @@ export default function Home() {
           <button
             className="absolute right-0 top-1/2 transform -translate-y-1/2 p-2 bg-white rounded-full shadow-md hover:bg-gray-200 transition"
             onClick={nextSlide}
+            style={{ opacity: 0.7 }}
           >
-            <ArrowRight size={24} />
+            <Image
+              src="/images/Icon-ArrowSliderRight-GetGoWeb.png" // Reemplaza con la ruta de tu imagen
+              alt="Flecha izquierda"
+              width={40}
+              height={40}
+            />
+            <ArrowRight size={1} />
+          </button>
+          <button
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 p-2 rounded-full shadow-md hover:bg-gray-200 transition"
+            onClick={prevSlide}
+            style={{ opacity: 0.7 }}  // Aquí controlas la opacidad
+          >
+            <Image
+              src="/images/Icon-ArrowSliderLeft-GetGoWeb.png" // Reemplaza con la ruta de tu imagen
+              alt="Flecha izquierda"
+              width={40}
+              height={40}
+            />
+            <ArrowLeft size={1} />
           </button>
         </div>
       </section>
