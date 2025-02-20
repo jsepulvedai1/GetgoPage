@@ -57,8 +57,7 @@ export default function Home() {
       </header>
       <br></br>
       <br></br>
-      <section
-        className={`${montserrat.className} hidden md:block relative w-full h-[80vh] md:h-[70vh] flex items-center justify-start px-6 md:px-12 bg-cover bg-center`}
+      <section className={`${montserrat.className} hidden md:block relative w-full h-[80vh] md:h-[70vh] flex items-center justify-start px-6 md:px-12 bg-cover bg-center`}
         style={{ backgroundImage: "url('/images/im.png')" }}
       >
         <div className="w-full md:w-1/2 text-left flex justify-center pt-20 md:pt-32 ml-0">
