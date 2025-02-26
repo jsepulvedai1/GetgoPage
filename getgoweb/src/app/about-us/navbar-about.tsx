@@ -12,7 +12,7 @@ const NavbarAbout = () => {
       {/* Logo */}
       <Link href="/">
         <Image
-          src="/images/GetGo_Logo.png"
+          src="/images/GetGo_Logotype.png"
           alt="GetGo Logo"
           width={180}
           height={80}

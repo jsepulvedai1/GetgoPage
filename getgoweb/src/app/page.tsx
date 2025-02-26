@@ -33,6 +33,11 @@ export default function Home() {
       image: "/images/Icon-GetGoXL.png",
     },
     {
+      title: "GetGo Mujer",
+      text: "Con GetGo Mujer, ofrecemos una opción de transporte exclusiva para mujeres, con conductoras verificadas para mayor seguridad y tranquilidad en cada viaje",
+      image: "/images/Icon-GetGoMujer.png",
+    },
+    {
       title: "Gana dinero por compartir",
       text: "Con GetGo, cada conexión cuenta. A través del sistema de referidos, puedes ganar dinero simplemente compartiendo tu código con amigos y conocidos. Cada vez que alguien se registra y viaja con GetGo, tú recibes un porcentaje de sus carreras.",
       image: "/images/Icon-GetGoReferrals.png",
