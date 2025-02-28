@@ -10,77 +10,149 @@ const montserrat = Montserrat({
 
 export default function AboutUs() {
     return (
-        <div className={`${montserrat.className} bg-[#f8f9fd] min-h-screen`}>
-            <header className="fixed top-0 left-0 w-full flex justify-between items-center px-8 py-3 bg-[#f3fbff] bg-opacity-100 z-50">
-                <NavbarNuestroSistema />
-            </header>
-            {/* Sección Hero */}
-            <br></br>
-            <section className="text-center py-20 px-8">
-                <h1 className="text-4xl md:text-4xl font-bold text-[#000080] leading-tight">
-                    Como generar dinero con GetGo.
-                </h1>
-                <div className="mt-6 bg-white text-gray-700 p-4 rounded-lg shadow-md max-w-3xl mx-auto border border-gray-300">
-                    <p className="text-lg font-normal">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-                        standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-                        a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
-                        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
-                        Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions
-                        of Lorem Ipsum.
-                    </p>
-                </div>
-            </section>
-            <section className="flex flex-col items-center text-center py-10 px-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10 max-w-5xl">
-                    <div className="relative flex justify-center md:col-span-2">
-                        <Image
-                            src="/images/im4.png"
-                            alt="Fotógrafa en coche"
-                            width={500}
-                            height={300}
-                            className="rounded-xl"
-                        />
-                    </div>
-                </div>
-            </section>
+      <div className={`${montserrat.className} bg-[#f8f9fd] min-h-screen`}>
+        <header className="fixed top-0 left-0 w-full flex justify-between items-center px-8 py-3 bg-[#f3fbff] bg-opacity-100 z-50">
+          <NavbarNuestroSistema />
+        </header>
+        {/* Sección Hero */}
+        <br></br>
+        <br />
+        <br />
+        <section className="mt-12 text-gray-800">
+          <h2 className="text-2xl font-bold text-center text-[#000080]">
+            🚀 Gana con el Sistema de Referidos de GetGo 💰
+          </h2>
+          <p className="mt-4 text-lg text-center max-w-2xl mx-auto">
+            En <span className="font-semibold">GetGo</span>, recomendar es
+            ganar. Genera ingresos extra de manera sencilla mientras ayudas a
+            más personas a descubrir la mejor forma de moverse. ¡Sigue estos
+            simples pasos y empieza a ganar hoy mismo!
+          </p>
 
-
-            <footer className="bg-[#000080] text-white py-8 px-6 md:px-12 rounded-t-3xl text-center">
-                <div className="mb-6">
-                    <ul className="flex justify-center space-x-6 text-lg md:text-xl">
-                        <li>LA EMPRESA - </li>
-                        <li> LEGAL - </li>
-                        <li> LA APP</li>
-                    </ul>
-                </div>
-
-                <div className="mb-4">
-                    <div className="flex justify-center gap-6">
-                        {["lin", "insta", "f", "x"].map((social, index) => (
-                            <a
-                                key={index}
-                                href="#"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                <Image
-                                    src={`/images/${social}.png`}
-                                    alt={social}
-                                    width={30}
-                                    height={30}
-                                    className="w-6 h-6 cursor-pointer"
-                                />
-                            </a>
-                        ))}
-                    </div>
-                </div>
-
-                <p className="text-sm mt-2">
-                    Todos los derechos reservados GetGo® 2024
+          <div className="mt-10 space-y-10 max-w-3xl mx-auto">
+            <div className="flex items-start gap-4">
+              <span className="text-3xl text-green-500">✅</span>
+              <div>
+                <h3 className="text-xl font-semibold text-[#000080]">
+                  1. Regístrate en GetGo
+                </h3>
+                <p className="text-gray-600">
+                  📲 Descarga la app, crea tu cuenta y accede al apartado de
+                  referidos.
                 </p>
-            </footer>
-            <div className={`${montserrat.className}`}></div>
-        </div>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <span className="text-3xl text-green-500 text-[#000080]">✅</span>
+              <div>
+                <h3 className="text-xl font-semibold text-[#000080]">
+                  2. Comparte tu código único
+                </h3>
+                <p className="text-gray-600">
+                  🔗 Encuentra tu código en la app y compártelo con amigos y
+                  familiares por WhatsApp, redes sociales o como prefieras.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <span className="text-3xl text-green-500">✅</span>
+              <div>
+                <h3 className="text-xl font-semibold text-[#000080]">
+                  3. Tus referidos se registran y viajan
+                </h3>
+                <p className="text-gray-600">
+                  🚗 Cuando alguien usa tu código para registrarse y realiza su
+                  primer viaje, ¡tú ganas!
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <span className="text-3xl text-green-500">✅</span>
+              <div>
+                <h3 className="text-xl font-semibold text-[#000080]">
+                  4. Gana con cada viaje de tus referidos
+                </h3>
+                <p className="text-gray-600">
+                  💰 Recibe un porcentaje de cada viaje completado por tus
+                  referidos. ¡No es un bono único, es una ganancia recurrente!
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <span className="text-3xl text-green-500">✅</span>
+              <div>
+                <h3 className="text-xl font-semibold text-[#000080]">
+                  5. Retira tus ganancias fácilmente
+                </h3>
+                <p className="text-gray-600">
+                  🏦 Tus comisiones se acumulan y puedes cobrarlas de forma
+                  semanal o mensual según prefieras.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-12 text-center">
+            <h3 className="text-2xl font-bold text-gray-900">
+              📲 Empieza a ganar hoy mismo
+            </h3>
+            <p className="mt-2 text-lg text-gray-600">
+              Descarga GetGo, comparte tu código y genera ingresos con cada
+              viaje. ¡Tu red puede hacer la diferencia!
+            </p>
+          </div>
+        </section>
+
+        <section className="flex flex-col items-center text-center py-10 px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10 max-w-5xl">
+            <div className="relative flex justify-center md:col-span-2">
+              <video width="600" controls>
+                <source src="/video.mp4" type="video/mp4" />
+                Tu navegador no soporta la etiqueta de video.
+              </video>
+            </div>
+          </div>
+        </section>
+
+        <footer className="bg-[#000080] text-white py-8 px-6 md:px-12 rounded-t-3xl text-center">
+          <div className="mb-6">
+            <ul className="flex justify-center space-x-6 text-lg md:text-xl">
+              <li>LA EMPRESA - </li>
+              <li> LEGAL - </li>
+              <li> LA APP</li>
+            </ul>
+          </div>
+
+          <div className="mb-4">
+            <div className="flex justify-center gap-6">
+              {["lin", "insta", "f", "x"].map((social, index) => (
+                <a
+                  key={index}
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image
+                    src={`/images/${social}.png`}
+                    alt={social}
+                    width={30}
+                    height={30}
+                    className="w-6 h-6 cursor-pointer"
+                  />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <p className="text-sm mt-2">
+            Todos los derechos reservados GetGo® 2024
+          </p>
+        </footer>
+        <div className={`${montserrat.className}`}></div>
+      </div>
     );
 }
