@@ -33,23 +33,24 @@ export default function AboutUs() {
               className="rounded-xl"
             />
           </div>
-
+          <div className="bg-[#f3f1fd] text-[#2D2D2D] p-6 rounded-xl flex items-center w-full shadow-md">
+            <p className="text-left">
+              <span className="font-bold text-lg">Nuestra mision</span> <br />
+              Es conectar con personas para transportar con seguridad,
+              eficiencia y puntualidad."
+            </p>
+          </div>
+  
           <div className="bg-[#f3f1fd] text-[#2D2D2D] p-6 rounded-xl flex items-center w-full shadow-md">
             <p className="text-left">
               <span className="font-bold text-lg">Nuestra Vision</span> <br />
               "Es liderar el transporte por aplicación en Latinoamérica,
-              poniendo la seguridad, innovación y tecnología al servicio de nuestros socios
-              y de un futuro más conectado.”
+              poniendo la seguridad, innovación y tecnología al servicio de
+              nuestros socios y de un futuro más conectado.”
             </p>
           </div>
 
           {/* Segunda fila */}
-          <div className="bg-[#f3f1fd] text-[#2D2D2D] p-6 rounded-xl flex items-center w-full shadow-md">
-            <p className="text-left">
-            <span className="font-bold text-lg">Nuestra mision</span> <br />
-              Es conectar con personas para transportar con seguridad, eficiencia y puntualidad."
-            </p>
-          </div>
 
           <div className="relative">
             <Image
@@ -77,7 +78,7 @@ export default function AboutUs() {
               beneficie tanto a pasajeros como a conductores. Buscamos crear una
               comunidad donde cada conexión signifique más que solo un traslado.
             </p>
-          </div> */ }
+          </div> */}
         </div>
       </section>
       <section className="bg-white py-20 px-8 max-w-7xl mx-auto">
@@ -97,7 +98,8 @@ export default function AboutUs() {
               {/* Imparables */}
             </h3>
             <p className="text-gray-600 text-lg leading-relaxed">
-              Proporcionar soluciones de transporte personalizadas e innovadoras que conecten personas de forma segura.
+              Proporcionar soluciones de transporte personalizadas e innovadoras
+              que conecten personas de forma segura.
             </p>
           </div>
           <div className="text-center max-w-xs mx-auto">
@@ -112,7 +114,8 @@ export default function AboutUs() {
               {/* Imparables */}
             </h3>
             <p className="text-gray-600 text-lg leading-relaxed">
-              Inspirar y apoyar a nuestros socios para que construyan negocios prósperos y sostenibles.
+              Inspirar y apoyar a nuestros socios para que construyan negocios
+              prósperos y sostenibles.
             </p>
           </div>
           <div className="text-center max-w-xs mx-auto">
@@ -179,22 +182,17 @@ export default function AboutUs() {
       </section>
       <footer className="bg-[#000080] text-white py-8 px-6 md:px-12 rounded-t-3xl text-center">
         <div className="mb-6">
-          <ul className="flex justify-center space-x-6 text-lg md:text-xl">
+          {/* <ul className="flex justify-center space-x-6 text-lg md:text-xl">
             <li>LA EMPRESA - </li>
             <li> LEGAL - </li>
             <li> LA APP</li>
-          </ul>
+          </ul> */}
         </div>
 
         <div className="mb-4">
           <div className="flex justify-center gap-6">
             {["lin", "insta", "f", "x"].map((social, index) => (
-              <a
-                key={index}
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a key={index} href="#" target="_blank" rel="noopener noreferrer">
                 <Image
                   src={`/images/${social}.png`}
                   alt={social}
@@ -208,7 +206,7 @@ export default function AboutUs() {
         </div>
 
         <p className="text-sm mt-2">
-          Todos los derechos reservados GetGo® 2024
+          Todos los derechos reservados GetGo® 2025
         </p>
       </footer>
       <div className={`${montserrat.className}`}></div>

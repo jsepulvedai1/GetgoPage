@@ -120,11 +120,11 @@ export default function AboutUs() {
 
         <footer className="bg-[#000080] text-white py-8 px-6 md:px-12 rounded-t-3xl text-center">
           <div className="mb-6">
-            <ul className="flex justify-center space-x-6 text-lg md:text-xl">
+            {/* <ul className="flex justify-center space-x-6 text-lg md:text-xl">
               <li>LA EMPRESA - </li>
               <li> LEGAL - </li>
               <li> LA APP</li>
-            </ul>
+            </ul> */}
           </div>
 
           <div className="mb-4">
@@ -149,7 +149,7 @@ export default function AboutUs() {
           </div>
 
           <p className="text-sm mt-2">
-            Todos los derechos reservados GetGo® 2024
+            Todos los derechos reservados GetGo® 2025
           </p>
         </footer>
         <div className={`${montserrat.className}`}></div>

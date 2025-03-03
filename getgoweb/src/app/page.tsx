@@ -62,7 +62,8 @@ export default function Home() {
       </header>
       <br></br>
       <br></br>
-      <section className={`${montserrat.className} hidden md:block relative w-full h-[80vh] md:h-[70vh] flex items-center justify-start px-6 md:px-12 bg-cover bg-center`}
+      <section
+        className={`${montserrat.className} hidden md:block relative w-full h-[80vh] md:h-[70vh] flex items-center justify-start px-6 md:px-12 bg-cover bg-center`}
         style={{ backgroundImage: "url('/images/im.png')" }}
       >
         <div className="w-full md:w-1/2 text-left flex justify-center pt-20 md:pt-32 ml-0">
@@ -74,8 +75,13 @@ export default function Home() {
           >
             <br></br>
             Regístrate en minutos <br />
-            <span className="text-4xl md:text-6xl text-white">gana al instante</span><br />
-            <span className="text-4xl md:text-lg text-white">maneja con GetGo y convierte tu tiempo en dinero</span>
+            <span className="text-4xl md:text-6xl text-white">
+              gana al instante
+            </span>
+            <br />
+            <span className="text-4xl md:text-lg text-white">
+              maneja con GetGo y convierte tu tiempo en dinero
+            </span>
           </motion.h2>
         </div>
       </section>
@@ -90,10 +96,14 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
-
             Regístrate en minutos <br />
-            <span className="text-4xl md:text-6xl text-white">gana al instante</span><br />
-            <span className="text-xl md:text-sm text-white">maneja con GetGo y convierte tu tiempo en dinero</span>
+            <span className="text-4xl md:text-6xl text-white">
+              gana al instante
+            </span>
+            <br />
+            <span className="text-xl md:text-sm text-white">
+              maneja con GetGo y convierte tu tiempo en dinero
+            </span>
           </motion.h2>
         </div>
       </section>
@@ -121,7 +131,8 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             ¿Por qué GetGo?
-          </motion.h3><br></br>
+          </motion.h3>
+          <br></br>
           {[
             {
               icon: "/images/Icon-GetGo_Arrow.png",
@@ -183,8 +194,12 @@ export default function Home() {
         </a>
       </div>
       {/* Carrusel - Agregado antes de la sección QR */}
-      <section className="py-16 px-6 md:px-12 bg-[#f3fbff] text-center"> {/* Cambiar bg-gray-100 a bg-white */}
-        <h2 className="text-2xl md:text-4xl font-bold text-[#000080] mb-6">A DONDE VAYAS, NOS MOVEMOS CONTIGO</h2>
+      <section className="py-16 px-6 md:px-12 bg-[#f3fbff] text-center">
+        {" "}
+        {/* Cambiar bg-gray-100 a bg-white */}
+        <h2 className="text-2xl md:text-4xl font-bold text-[#000080] mb-6">
+          A DONDE VAYAS, NOS MOVEMOS CONTIGO
+        </h2>
         <div className="relative w-full max-w-lg mx-auto overflow-hidden">
           {/* Botón Izquierdo */}
 
@@ -202,9 +217,18 @@ export default function Home() {
                 <br></br>
                 <br></br>
                 {/* Título del mensaje agregado aquí */}
-                <h2 className="text-2xl md:text-3xl font-semibold text-[#000080] mb-4">{messages[index].title}</h2>
-                <Image src={messages[index].image} alt="Ícono" width={200} height={200} />
-                <p className="text-lg md:text-xl text-[#000080] mt-4">{messages[index].text}</p>
+                <h2 className="text-2xl md:text-3xl font-semibold text-[#000080] mb-4">
+                  {messages[index].title}
+                </h2>
+                <Image
+                  src={messages[index].image}
+                  alt="Ícono"
+                  width={200}
+                  height={200}
+                />
+                <p className="text-lg md:text-xl text-[#000080] mt-4">
+                  {messages[index].text}
+                </p>
               </motion.div>
             </AnimatePresence>
           </div>
@@ -246,10 +270,13 @@ export default function Home() {
             Descarga Nuestra App
           </h3>
           <p className="text-lg md:text-xl text-[#000080] mt-4 max-w-lg mx-auto md:justify-center ">
-            Descargala ahora y comienza a disfrutar de todas sus ventajas.<br />
-            <span className="text-xl font-bold italic max-w-lg mx-auto whitespace-nowrap"> ¡Tu viaje empieza aqui!</span>
+            Descargala ahora y comienza a disfrutar de todas sus ventajas.
+            <br />
+            <span className="text-xl font-bold italic max-w-lg mx-auto whitespace-nowrap">
+              {" "}
+              ¡Tu viaje empieza aqui!
+            </span>
           </p>
-
         </div>
         <div className="hidden md:block ">
           <StoreButtons />
@@ -260,26 +287,34 @@ export default function Home() {
       </section>
       {/* Footer */}
       <footer className="bg-[#000080] text-white py-8 px-6 md:px-12 rounded-t-3xl text-center">
-        <div className="mb-6">
+        {/* <div className="mb-6">
           <ul className="flex justify-center space-x-6 text-lg md:text-xl">
             <li>LA EMPRESA - </li>
             <li> LEGAL - </li>
             <li> LA APP</li>
           </ul>
-        </div>
+        </div> */}
 
         <div className="mb-4">
           <div className="flex justify-center gap-6">
-            {["lin", "insta", "f", "x"].map((social, index) => (
+            {[
+              {
+                name: "lin",
+                link: "https://www.tiktok.com/@getgo.chile",
+              },
+              { name: "insta", link: "https://www.instagram.com/getgo.cl" },
+              { name: "f", link: "https://www.facebook.com/GetGoAppCL" },
+              { name: "x", link: "https://x.com/GetGoCL" },
+            ].map((social, index) => (
               <a
                 key={index}
-                href="#"
+                href={social.link}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <Image
-                  src={`/images/${social}.png`}
-                  alt={social}
+                  src={`/images/${social.name}.png`}
+                  alt={social.name}
                   width={30}
                   height={30}
                   className="w-6 h-6 cursor-pointer"
@@ -290,7 +325,7 @@ export default function Home() {
         </div>
 
         <p className="text-sm mt-2">
-          Todos los derechos reservados GetGo® 2024
+          Todos los derechos reservados GetGo® 2025
         </p>
       </footer>
       <div className={`${montserrat.className}`}></div>

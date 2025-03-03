@@ -3,9 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { Menu } from "lucide-react";
+import ContactForm from "../contact-us/contact-us-form";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false); // Estado para el menú de navegación
+  const [isFormOpen, setIsFormOpen] = useState(false); // Estado para
 
   return (
     <header className="fixed top-0 left-0 w-full flex justify-between items-center px-6 md:px-10 py-3 bg-[#f3fbff] text-[#000080] z-50 shadow-md">
@@ -32,25 +34,31 @@ const Navbar = () => {
 
       {/* Navigation Links */}
       <nav
-        className={`${isOpen ? "flex" : "hidden"
-          } md:flex flex-col md:flex-row absolute md:static top-16 left-0 w-full md:w-auto bg-[#f3fbff] md:bg-transparent p-4 md:p-0 shadow-md md:shadow-none`}
+        className={`${
+          isOpen ? "flex" : "hidden"
+        } md:flex flex-col md:flex-row absolute md:static top-16 left-0 w-full md:w-auto bg-[#f3fbff] md:bg-transparent p-4 md:p-0 shadow-md md:shadow-none`}
       >
         <ul className="flex flex-col md:flex-row gap-4 md:gap-6 text-lg font-semibold text-[#000080]">
+          {/* Enlace "Quienes Somos" */}
           <Link href="/about-us">
             <li className="hover:text-blue-400 cursor-pointer transition-all">
               Quienes Somos
             </li>
           </Link>
-          <a
-            href="https://www.google.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <li className="hover:text-blue-400 cursor-pointer transition-all">
-              Ayuda
-            </li>
-          </a>
+
+          {/* Enlace "Contáctanos" */}
+          <li className="hover:text-blue-400 cursor-pointer transition-all">
+            <a
+              onClick={() => setIsFormOpen(!isFormOpen)} // Abrir/cerrar el formulario
+              className="text-[#000080] hover:text-blue-400"
+            >
+              Contáctanos
+            </a>
+          </li>
         </ul>
+
+        {/* Componente ContactForm */}
+        <ContactForm isFormOpen={isFormOpen} setIsFormOpen={setIsFormOpen} />
       </nav>
     </header>
   );

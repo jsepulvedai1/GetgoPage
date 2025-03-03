@@ -30,7 +30,7 @@
 //           </p>
 //           <p className="text-lg">contacto@getgo.cl | (+56) 2 7575 2500</p>
 //           <p className="text-sm mt-2">
-//             Todos los derechos reservados GetGo® 2024
+//             Todos los derechos reservados GetGo® 2025
 //           </p>
 //         </div>
 //       </div>
