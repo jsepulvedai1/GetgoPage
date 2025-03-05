@@ -299,7 +299,7 @@ export default function Home() {
           <div className="flex justify-center gap-6">
             {[
               {
-                name: "lin",
+                name: "dd",
                 link: "https://www.tiktok.com/@getgo.chile",
               },
               { name: "insta", link: "https://www.instagram.com/getgo.cl" },

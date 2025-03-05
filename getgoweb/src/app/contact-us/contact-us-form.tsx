@@ -49,21 +49,27 @@ export default function ContactForm({
     setIsFormOpen(false);
   };
 
-  const sendEmail = async (data: {
-    name: string;
-    email: string;
-    message: string;
-  }) => {
-    try {
-      await fetch("/api/send-email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-    } catch (error) {
-      console.error("Error al enviar el correo", error);
+const sendEmail = async (data: {
+  name: string;
+  email: string;
+  message: string;
+}) => {
+  try {
+    const response = await fetch("/api/send-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error("Error en el envío");
     }
-  };
+
+    console.log("Correo enviado exitosamente!");
+  } catch (error) {
+    console.error("Error al enviar el correo", error);
+  }
+};
 
   return (
     <div className="relative" ref={formRef}>

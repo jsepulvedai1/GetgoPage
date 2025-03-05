@@ -129,16 +129,24 @@ export default function AboutUs() {
 
           <div className="mb-4">
             <div className="flex justify-center gap-6">
-              {["lin", "insta", "f", "x"].map((social, index) => (
+              {[
+                {
+                  name: "dd",
+                  link: "https://www.tiktok.com/@getgo.chile",
+                },
+                { name: "insta", link: "https://www.instagram.com/getgo.cl" },
+                { name: "f", link: "https://www.facebook.com/GetGoAppCL" },
+                { name: "x", link: "https://x.com/GetGoCL" },
+              ].map((social, index) => (
                 <a
                   key={index}
-                  href="#"
+                  href={social.link}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <Image
-                    src={`/images/${social}.png`}
-                    alt={social}
+                    src={`/images/${social.name}.png`}
+                    alt={social.name}
                     width={30}
                     height={30}
                     className="w-6 h-6 cursor-pointer"
