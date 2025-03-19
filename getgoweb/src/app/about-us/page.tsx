@@ -33,17 +33,17 @@ export default function AboutUs() {
               className="rounded-xl"
             />
           </div>
-          <div className="bg-[#f3f1fd] text-[#2D2D2D] p-6 rounded-xl flex items-center w-full shadow-md">
+          <div className="bg-[#f3f1fd] text-[#2D2D2D] font-semibold p-6 rounded-xl flex items-center w-full shadow-md">
             <p className="text-left">
-              <span className="font-bold text-lg">Nuestra mision</span> <br />
+              <span className="font-black text-lg">Nuestra mision</span> <br />
               Es conectar con personas para transportar con seguridad,
               eficiencia y puntualidad."
             </p>
           </div>
 
-          <div className="bg-[#f3f1fd] text-[#2D2D2D] p-6 rounded-xl flex items-center w-full shadow-md">
+          <div className="bg-[#f3f1fd] text-[#2D2D2D] font-semibold p-6 rounded-xl flex items-center w-full shadow-md">
             <p className="text-left">
-              <span className="font-bold text-lg">Nuestra Vision</span> <br />
+              <span className="font-black text-lg">Nuestra Vision</span> <br />
               "Es liderar el transporte por aplicación en Latinoamérica,
               poniendo la seguridad, innovación y tecnología al servicio de
               nuestros socios y de un futuro más conectado.”
@@ -97,7 +97,7 @@ export default function AboutUs() {
             <h3 className="text-[#000080] font-bold text-xl mt-4">
               {/* Imparables */}
             </h3>
-            <p className="text-gray-600 text-lg leading-relaxed">
+            <p className="text-gray-600 text-lg font-bold leading-relaxed">
               Proporcionar soluciones de transporte personalizadas e innovadoras
               que conecten personas de forma segura.
             </p>
@@ -113,7 +113,7 @@ export default function AboutUs() {
             <h3 className="text-[#000080] font-bold text-xl mt-4">
               {/* Imparables */}
             </h3>
-            <p className="text-gray-600 text-lg leading-relaxed">
+            <p className="text-gray-600 text-lg font-bold leading-relaxed">
               Inspirar y apoyar a nuestros socios para que construyan negocios
               prósperos y sostenibles.
             </p>
@@ -129,7 +129,7 @@ export default function AboutUs() {
             <h3 className="text-[#000080] font-bold text-xl mt-4">
               {/* Imparables */}
             </h3>
-            <p className="text-gray-600 text-lg leading-relaxed">
+            <p className="text-gray-600 text-lg font-bold leading-relaxed">
               Entregar beneficios para conductores y usuarios.
             </p>
           </div>
@@ -144,7 +144,7 @@ export default function AboutUs() {
             <h3 className="text-[#000080] font-bold text-xl mt-4">
               {/* Valientes */}
             </h3>
-            <p className="text-gray-600 text-lg leading-relaxed">
+            <p className="text-gray-600 text-lg font-bold leading-relaxed">
               Ofrecer servicios de transporte confiable, seguro y eficiente.
             </p>
           </div>
@@ -159,7 +159,7 @@ export default function AboutUs() {
             <h3 className="text-[#000080] font-bold text-xl mt-4">
               {/* Coherentes */}
             </h3>
-            <p className="text-gray-600 text-lg leading-relaxed">
+            <p className="text-gray-600 text-lg font-bold leading-relaxed">
               Ser una plataforma con servicios seguros para los usuarios.
             </p>
           </div>
@@ -174,7 +174,7 @@ export default function AboutUs() {
             <h3 className="text-[#000080] font-bold text-xl mt-4">
               {/* Humildes */}
             </h3>
-            <p className="text-gray-600 text-lg leading-relaxed">
+            <p className="text-gray-600 text-lg font-bold leading-relaxed">
               Entregar servicios diferenciados.
             </p>
           </div>
