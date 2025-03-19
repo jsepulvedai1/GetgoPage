@@ -4,7 +4,7 @@ import Image from "next/image";
 import NavbarNuestroSistema from "./navbar-nuestro-sistema";
 const montserrat = Montserrat({
     subsets: ["latin"],
-    weight: ["900"],
+    weight: ["400", "600", "700", "900"],
     display: "swap",
 });
 
@@ -19,11 +19,11 @@ export default function AboutUs() {
         <br />
         <br />
         <section className="mt-12 text-gray-800">
-          <h2 className="text-2xl font-bold text-center text-[#000080]">
+          <h2 className="text-4xl font-bold text-center text-[#000080]">
             🚀 Gana con el Sistema de Referidos de GetGo 💰
           </h2>
-          <p className="mt-4 text-lg text-center max-w-2xl mx-auto">
-            En <span className="font-semibold">GetGo</span>, recomendar es
+          <p className="mt-4 text-lg font-semibold text-center max-w-2xl mx-auto">
+            En <span className="font-black">GetGo</span>, recomendar es
             ganar. Genera ingresos extra de manera sencilla mientras ayudas a
             más personas a descubrir la mejor forma de moverse. ¡Sigue estos
             simples pasos y empieza a ganar hoy mismo!
@@ -33,10 +33,10 @@ export default function AboutUs() {
             <div className="flex items-start gap-4">
               <span className="text-3xl text-green-500">✅</span>
               <div>
-                <h3 className="text-xl font-semibold text-[#000080]">
+                <h3 className="text-xl font-bold text-[#000080]">
                   1. Regístrate en GetGo
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 font-semibold">
                   📲 Descarga la app, crea tu cuenta y accede al apartado de
                   referidos.
                 </p>
@@ -46,10 +46,10 @@ export default function AboutUs() {
             <div className="flex items-start gap-4">
               <span className="text-3xl text-green-500 text-[#000080]">✅</span>
               <div>
-                <h3 className="text-xl font-semibold text-[#000080]">
+                <h3 className="text-xl font-bold text-[#000080]">
                   2. Comparte tu código único
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 font-semibold">
                   🔗 Encuentra tu código en la app y compártelo con amigos y
                   familiares por WhatsApp, redes sociales o como prefieras.
                 </p>
@@ -59,10 +59,10 @@ export default function AboutUs() {
             <div className="flex items-start gap-4">
               <span className="text-3xl text-green-500">✅</span>
               <div>
-                <h3 className="text-xl font-semibold text-[#000080]">
+                <h3 className="text-xl font-bold text-[#000080]">
                   3. Tus referidos se registran y viajan
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 font-semibold">
                   🚗 Cuando alguien usa tu código para registrarse y realiza su
                   primer viaje, ¡tú ganas!
                 </p>
@@ -72,10 +72,10 @@ export default function AboutUs() {
             <div className="flex items-start gap-4">
               <span className="text-3xl text-green-500">✅</span>
               <div>
-                <h3 className="text-xl font-semibold text-[#000080]">
+                <h3 className="text-xl font-bold text-[#000080]">
                   4. Gana con cada viaje de tus referidos
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 font-semibold">
                   💰 Recibe un porcentaje de cada viaje completado por tus
                   referidos. ¡No es un bono único, es una ganancia recurrente!
                 </p>
@@ -85,10 +85,10 @@ export default function AboutUs() {
             <div className="flex items-start gap-4">
               <span className="text-3xl text-green-500">✅</span>
               <div>
-                <h3 className="text-xl font-semibold text-[#000080]">
+                <h3 className="text-xl font-bold text-[#000080]">
                   5. Retira tus ganancias fácilmente
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 font-semibold">
                   🏦 Tus comisiones se acumulan y puedes cobrarlas de forma
                   semanal o mensual según prefieras.
                 </p>
@@ -100,7 +100,7 @@ export default function AboutUs() {
             <h3 className="text-2xl font-bold text-gray-900">
               📲 Empieza a ganar hoy mismo
             </h3>
-            <p className="mt-2 text-lg text-gray-600">
+            <p className="mt-2 text-lg font-semibold text-gray-600">
               Descarga GetGo, comparte tu código y genera ingresos con cada
               viaje. ¡Tu red puede hacer la diferencia!
             </p>
