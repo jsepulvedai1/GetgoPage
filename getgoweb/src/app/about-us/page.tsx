@@ -82,7 +82,7 @@ export default function AboutUs() {
         </div>
       </section>
       <section className="bg-white py-20 px-8 max-w-7xl mx-auto">
-        <h2 className="text-3xl font-extrabold text-[#000080] text-center">
+        <h2 className="text-3xl font-extrabold text-[#000080] text-center italic">
           Los objetivos que nos guían
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12 mt-12 justify-center">
