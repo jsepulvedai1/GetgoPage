@@ -97,13 +97,13 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
-            Regístrate en minutos <br />
-            <span className="text-4xl md:text-6xl text-white">
-              gana al instante
+            <br />
+            <span className="text-4xl md:text-6xl text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.4)] italic">
+              Tu viaje, tu ritmo
             </span>
             <br />
-            <span className="text-xl md:text-sm text-white">
-              maneja con GetGo y convierte tu tiempo en dinero
+            <span className="text-xl md:text-sm text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">
+            Encuentra el viaje perfecto con la comodidad y seguridad de GetGo
             </span>
           </motion.h2>
         </div>

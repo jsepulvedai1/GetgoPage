@@ -98,11 +98,11 @@ export default function AboutUs() {
 
           <div className="mt-12 text-center">
             <h3 className="text-2xl font-bold text-gray-900">
-              📲 Empieza a ganar hoy mismo
+              Empieza a ganar hoy mismo
             </h3>
             <p className="mt-2 text-lg font-semibold text-gray-600">
               Descarga GetGo, comparte tu código y genera ingresos con cada
-              viaje. ¡Tu red puede hacer la diferencia!
+              viaje. ¡Tu red puede hacer la diferencia!📲 
             </p>
           </div>
         </section>
