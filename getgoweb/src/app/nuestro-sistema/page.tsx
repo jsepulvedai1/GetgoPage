@@ -33,11 +33,11 @@ export default function AboutUs() {
             <div className="flex items-start gap-4">
               <span className="text-xl text-green-500">✅</span>
               <div>
-                <h3 className="text-xl font-semibold text-[#000080]">
+                <h3 className="text-xl font-bold text-[#000080] italic">
                   1. Regístrate en GetGo
                 </h3>
                 <p className="text-gray-600 font-normal">
-                  📲 Descarga la app, crea tu cuenta y accede al apartado de
+                  Descarga la app, crea tu cuenta y accede al apartado de
                   referidos.
                 </p>
               </div>
@@ -46,11 +46,11 @@ export default function AboutUs() {
             <div className="flex items-start gap-4">
               <span className="text-xl text-green-500 text-[#000080]">✅</span>
               <div>
-                <h3 className="text-xl font-semibold text-[#000080]">
+                <h3 className="text-xl font-bold text-[#000080] italic">
                   2. Comparte tu código único
                 </h3>
                 <p className="text-gray-600 font-normal">
-                  🔗 Encuentra tu código en la app y compártelo con amigos y
+                  Encuentra tu código en la app y compártelo con amigos y
                   familiares por WhatsApp, redes sociales o como prefieras.
                 </p>
               </div>
@@ -59,7 +59,7 @@ export default function AboutUs() {
             <div className="flex items-start gap-4">
               <span className="text-xl text-green-500">✅</span>
               <div>
-                <h3 className="text-xl font-semibold text-[#000080]">
+                <h3 className="text-xl font-bold text-[#000080] italic">
                   3. Tus referidos se registran y viajan
                 </h3>
                 <p className="text-gray-600 font-normal">
@@ -72,7 +72,7 @@ export default function AboutUs() {
             <div className="flex items-start gap-4">
               <span className="text-xl text-green-500">✅</span>
               <div>
-                <h3 className="text-xl font-semibold text-[#000080]">
+                <h3 className="text-xl font-bold text-[#000080] italic">
                   4. Gana con cada viaje de tus referidos
                 </h3>
                 <p className="text-gray-600 font-normal">
@@ -85,7 +85,7 @@ export default function AboutUs() {
             <div className="flex items-start gap-4">
               <span className="text-xl text-green-500">✅</span>
               <div>
-                <h3 className="text-xl font-semibold text-[#000080]">
+                <h3 className="text-xl font-bold text-[#000080] italic">
                   5. Retira tus ganancias fácilmente
                 </h3>
                 <p className="text-gray-600 font-normal">
