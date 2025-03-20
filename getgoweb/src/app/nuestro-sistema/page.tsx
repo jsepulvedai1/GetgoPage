@@ -130,10 +130,7 @@ export default function AboutUs() {
           <div className="mb-4">
             <div className="flex justify-center gap-6">
               {[
-                {
-                  name: "dd",
-                  link: "https://www.tiktok.com/@getgo.chile",
-                },
+                { name: "tiktok", link: "https://www.tiktok.com/@getgo.chile",},
                 { name: "insta", link: "https://www.instagram.com/getgo.cl" },
                 { name: "f", link: "https://www.facebook.com/GetGoAppCL" },
                 { name: "x", link: "https://x.com/GetGoCL" },
