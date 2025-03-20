@@ -33,7 +33,7 @@ export default function AboutUs() {
               className="rounded-xl"
             />
           </div>
-          <div className="bg-[#f3f1fd] text-[#2D2D2D] font-semibold p-6 rounded-xl flex items-center w-full shadow-md">
+          <div className="bg-[#f3f1fd] text-[#2D2D2D] font-normal p-6 rounded-xl flex items-center w-full shadow-md">
             <p className="text-left">
               <span className="font-black text-lg italic">Nuestra mision</span> <br />
               Es conectar con personas para transportar con seguridad,
@@ -41,7 +41,7 @@ export default function AboutUs() {
             </p>
           </div>
 
-          <div className="bg-[#f3f1fd] text-[#2D2D2D] font-semibold p-6 rounded-xl flex items-center w-full shadow-md">
+          <div className="bg-[#f3f1fd] text-[#2D2D2D] font-normal p-6 rounded-xl flex items-center w-full shadow-md">
             <p className="text-left">
               <span className="font-black text-lg italic">Nuestra Vision</span> <br />
               "Es liderar el transporte por aplicación en Latinoamérica,
@@ -82,7 +82,7 @@ export default function AboutUs() {
         </div>
       </section>
       <section className="bg-white py-20 px-8 max-w-7xl mx-auto">
-        <h2 className="text-3xl font-extrabold text-[#000080] text-center italic">
+        <h2 className="text-3xl font-black text-[#000080] text-center italic">
           Los objetivos que nos guían
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12 mt-12 justify-center">
@@ -97,7 +97,7 @@ export default function AboutUs() {
             <h3 className="text-[#000080] font-bold text-xl mt-4">
               {/* Imparables */}
             </h3>
-            <p className="text-gray-600 text-lg font-semibold leading-relaxed text-center tracking-tight">
+            <p className="text-gray-600 text-lg font-normal leading-relaxed text-center tracking-tight">
               Proporcionar soluciones de transporte personalizadas e innovadoras que conecten personas de forma segura.
             </p>
           </div>
@@ -112,7 +112,7 @@ export default function AboutUs() {
             <h3 className="text-[#000080] font-bold text-xl mt-4">
               {/* Imparables */}
             </h3>
-            <p className="text-gray-600 text-lg font-semibold leading-relaxed text-center tracking-tight">
+            <p className="text-gray-600 text-lg font-normal leading-relaxed text-center tracking-tight">
               Inspirar y apoyar a nuestros socios para que construyan negocios prósperos y sostenibles.
             </p>
           </div>
@@ -127,7 +127,7 @@ export default function AboutUs() {
             <h3 className="text-[#000080] font-bold text-xl mt-4">
               {/* Imparables */}
             </h3>
-            <p className="text-gray-600 text-lg font-semibold leading-relaxed ">
+            <p className="text-gray-600 text-lg font-normal leading-relaxed ">
               Entregar beneficios para conductores y usuarios.
             </p>
           </div>
@@ -142,7 +142,7 @@ export default function AboutUs() {
             <h3 className="text-[#000080] font-bold text-xl mt-4">
               {/* Valientes */}
             </h3>
-            <p className="text-gray-600 text-lg font-semibold leading-relaxed">
+            <p className="text-gray-600 text-lg font-normal leading-relaxed">
               Ofrecer servicios de transporte confiable, seguro y eficiente.
             </p>
           </div>
@@ -157,7 +157,7 @@ export default function AboutUs() {
             <h3 className="text-[#000080] font-bold text-xl mt-4">
               {/* Coherentes */}
             </h3>
-            <p className="text-gray-600 text-lg font-semibold leading-relaxed text-center tracking-tight">
+            <p className="text-gray-600 text-lg font-normal leading-relaxed text-center tracking-tight">
               Ser una plataforma con servicios seguros para los usuarios.
             </p>
           </div>
@@ -172,7 +172,7 @@ export default function AboutUs() {
             <h3 className="text-[#000080] font-bold text-xl mt-4">
               {/* Humildes */}
             </h3>
-            <p className="text-gray-600 text-lg font-semibold leading-relaxed">
+            <p className="text-gray-600 text-lg font-normal leading-relaxed">
               Entregar servicios diferenciados.
             </p>
           </div>
