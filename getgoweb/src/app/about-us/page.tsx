@@ -4,8 +4,9 @@ import Image from "next/image";
 import NavbarAbout from "./navbar-about";
 const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["900"],
+  weight: ["400", "600", "900"],
   display: "swap",
+  preload: false, // ← evita errores si el CSS de preload no carga bien en cPanel
 });
 
 export default function AboutUs() {
@@ -16,7 +17,7 @@ export default function AboutUs() {
       </header>
       <br></br>
       <br></br>
-      {/* Sección Hero */}
+      {/* Sección Hero */}çç
       <section className="text-center py-20 px-8">
         <h1 className="text-4xl md:text-5xl font-extrabold text-[#000080] leading-tight">
           Nuestra misión es hacer que cada viaje cuente.
@@ -35,7 +36,8 @@ export default function AboutUs() {
           </div>
           <div className="bg-[#f3f1fd] text-[#2D2D2D] font-normal p-6 rounded-xl flex items-center w-full shadow-md">
             <p className="text-left">
-              <span className="font-black text-lg italic">Nuestra mision</span> <br />
+              <span className="font-black text-lg italic">Nuestra mision</span>{" "}
+              <br />
               Es conectar con personas para transportar con seguridad,
               eficiencia y puntualidad."
             </p>
@@ -43,7 +45,8 @@ export default function AboutUs() {
 
           <div className="bg-[#f3f1fd] text-[#2D2D2D] font-normal p-6 rounded-xl flex items-center w-full shadow-md">
             <p className="text-left">
-              <span className="font-black text-lg italic">Nuestra Vision</span> <br />
+              <span className="font-black text-lg italic">Nuestra Vision</span>{" "}
+              <br />
               "Es liderar el transporte por aplicación en Latinoamérica,
               poniendo la seguridad, innovación y tecnología al servicio de
               nuestros socios y de un futuro más conectado.”
@@ -98,7 +101,8 @@ export default function AboutUs() {
               {/* Imparables */}
             </h3>
             <p className="text-gray-600 text-lg font-normal leading-relaxed text-center tracking-tight">
-              Proporcionar soluciones de transporte personalizadas e innovadoras que conecten personas de forma segura.
+              Proporcionar soluciones de transporte personalizadas e innovadoras
+              que conecten personas de forma segura.
             </p>
           </div>
           <div className="text-center max-w-xs mx-auto">
@@ -113,7 +117,8 @@ export default function AboutUs() {
               {/* Imparables */}
             </h3>
             <p className="text-gray-600 text-lg font-normal leading-relaxed text-center tracking-tight">
-              Inspirar y apoyar a nuestros socios para que construyan negocios prósperos y sostenibles.
+              Inspirar y apoyar a nuestros socios para que construyan negocios
+              prósperos y sostenibles.
             </p>
           </div>
           <div className="text-center max-w-xs mx-auto">

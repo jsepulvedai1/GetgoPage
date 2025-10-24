@@ -13,8 +13,8 @@ const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["400", "600", "900"],
   display: "swap",
+  preload: false, // ← evita errores si el CSS de preload no carga bien en cPanel
 });
-
 export default function Home() {
   const messages = [
     {
@@ -103,7 +103,7 @@ export default function Home() {
             </span>
             <br />
             <span className="text-xl md:text-sm text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">
-            Encuentra el viaje perfecto con la comodidad y seguridad de GetGo
+              Encuentra el viaje perfecto con la comodidad y seguridad de GetGo
             </span>
           </motion.h2>
         </div>
@@ -288,13 +288,25 @@ export default function Home() {
       </section>
       {/* Footer */}
       <footer className="bg-[#000080] text-white py-8 px-6 md:px-12 rounded-t-3xl text-center">
-        {/* <div className="mb-6">
-          <ul className="flex justify-center space-x-6 text-lg md:text-xl">
-            <li>LA EMPRESA - </li>
-            <li> LEGAL - </li>
-            <li> LA APP</li>
+        <div className="mb-6">
+          <ul className="flex justify-center flex-wrap gap-6 text-sm md:text-base">
+            <li>
+              <a href="/legal" className="hover:underline">
+                Términos y condiciones
+              </a>
+            </li>
+            {/* <li>
+              <a href="/legal/privacidad" className="hover:underline">
+                Política de privacidad
+              </a>
+            </li>
+            <li>
+              <a href="/legal/cookies" className="hover:underline">
+                Política de cookies
+              </a>
+            </li> */}
           </ul>
-        </div> */}
+        </div>
 
         <div className="mb-4">
           <div className="flex justify-center gap-6">

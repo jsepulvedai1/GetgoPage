@@ -3,9 +3,10 @@ import { Montserrat } from "next/font/google";
 import Image from "next/image";
 import NavbarNuestroSistema from "./navbar-nuestro-sistema";
 const montserrat = Montserrat({
-    subsets: ["latin"],
-    weight: ["400", "600", "700", "900"],
-    display: "swap",
+  subsets: ["latin"],
+  weight: ["400", "600", "900"],
+  display: "swap",
+  preload: false, // ← evita errores si el CSS de preload no carga bien en cPanel
 });
 
 export default function AboutUs() {

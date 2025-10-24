@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
   --primary-color: #007bff;
   --secondary-color: #f6e15e;
@@ -39,7 +40,7 @@ a:hover {
 
 @font-face {
   font-family: 'MiFuentePersonalizada';
-  src: url('../../public/fonts/Montserrat-Medium.ttf') format('truetype');
+  src: url('/fonts/Montserrat-Medium.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
