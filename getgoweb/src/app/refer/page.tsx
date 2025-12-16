@@ -19,6 +19,7 @@ export default function ReferralPage() {
   const [platform, setPlatform] = useState<"ios" | "android" | "desktop">("desktop");
   const appOpenedRef = useRef(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const deeplinkAttemptedRef = useRef(false);
 
   // URLs de las stores
   const playStoreUrl = "https://play.google.com/store/apps/details?id=com.getgoapp.pasajero";
@@ -138,30 +139,41 @@ export default function ReferralPage() {
     // Para iOS y Android, intentar abrir la app primero con App Links / Universal Links
     if (platform === "ios" || platform === "android") {
       if (typeof window === "undefined") return;
+      
+      // Evitar intentos múltiples
+      if (deeplinkAttemptedRef.current) {
+        console.log("Deeplink already attempted, skipping");
+        return;
+      }
 
-      // ✅ ACTUALIZADO: Usar la nueva URL de Vercel
+      const currentHost = window.location.hostname;
       const encodedCode = encodeURIComponent(referralCode);
-      const deepLinkUrl = `https://getgo-page-h84g.vercel.app/refer?code=${encodedCode}`;
+      
+      // Si ya estamos en getgoapp.cl, NO intentar deeplink (evita loop)
+      // Solo esperar y redirigir a la store si la app no se abre
+      if (currentHost === "getgoapp.cl" || currentHost.includes("getgoapp.cl")) {
+        console.log("Already on getgoapp.cl domain, waiting for app to open or redirecting to store");
+        deeplinkAttemptedRef.current = true;
+        
+        // Esperar un momento para ver si la app se abre
+        timeoutRef.current = setTimeout(() => {
+          if (!appOpenedRef.current) {
+            console.log("App did not open, redirecting to store...");
+            redirectToStore();
+          }
+        }, 2000);
+        
+        return;
+      }
 
-      console.log("Deep Link URL:", deepLinkUrl);
-      console.log("Referral Code:", referralCode);
-      console.log("Platform:", platform);
-
-      // Intentar abrir la app
-      // Si la app está instalada y los archivos .well-known están configurados:
-      // - Android: Abre automáticamente sin diálogo (App Links)
-      // - iOS: Abre automáticamente sin diálogo (Universal Links)
-      // Si no está instalada o no está configurado: redirige a la store después del timeout
-
+      // Si estamos en otro dominio (ej: vercel.app), redirigir a getgoapp.cl
+      // Esto permite que los App Links funcionen correctamente
+      console.log("Redirecting to getgoapp.cl for deeplink");
+      deeplinkAttemptedRef.current = true;
+      const deepLinkUrl = `https://getgoapp.cl/refer?code=${encodedCode}`;
+      
+      // Redirigir al dominio correcto (solo una vez)
       window.location.href = deepLinkUrl;
-
-      // Si después de 1.5 segundos no se abrió la app, redirigir a la store
-      timeoutRef.current = setTimeout(() => {
-        if (!appOpenedRef.current) {
-          console.log("App did not open, redirecting to store...");
-          redirectToStore();
-        }
-      }, 1500);
 
       // Limpiar timeout si el componente se desmonta
       return () => {
