@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Montserrat } from "next/font/google";
 
 const montserrat = Montserrat({
@@ -13,17 +13,15 @@ const montserrat = Montserrat({
 export default function ReferralPage() {
   const [referralCode, setReferralCode] = useState("N/A");
   const displayCode = referralCode.replace(/0/g, "Ø");
-
-  const [message, setMessage] = useState("Redirigiendo a la tienda...");
+  const [message, setMessage] = useState("Redirigiendo...");
   const [showLoading, setShowLoading] = useState(false);
   const [showFallback, setShowFallback] = useState(false);
-  const [platform, setPlatform] = useState<"ios" | "android" | "desktop">(
-    "desktop"
-  );
+  const [platform, setPlatform] = useState<"ios" | "android" | "desktop">("desktop");
+  const appOpenedRef = useRef(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // URLs de las stores
-  const playStoreUrl =
-    "https://play.google.com/store/apps/details?id=com.getgoapp.pasajero";
+  const playStoreUrl = "https://play.google.com/store/apps/details?id=com.getgoapp.pasajero";
   const appStoreUrl = "https://apps.apple.com/app/id1234567890"; // TODO: Reemplazar con tu App Store ID real
 
   // Obtener código de referido de la URL y detectar plataforma
@@ -33,15 +31,13 @@ export default function ReferralPage() {
       const urlParams = new URLSearchParams(window.location.search);
       const code = urlParams.get("code") || "N/A";
       
-      // Debug: verificar que el código se obtiene correctamente
       console.log("URL completa:", window.location.href);
       console.log("Código obtenido de URL:", code);
       
       setReferralCode(code);
 
       // Detectar plataforma
-      const userAgent =
-        navigator.userAgent || navigator.vendor || (window as Window & { opera?: string }).opera || "";
+      const userAgent = navigator.userAgent || navigator.vendor || (window as Window & { opera?: string }).opera || "";
       const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !(window as Window & { MSStream?: unknown }).MSStream;
       const isAndroid = /android/i.test(userAgent);
 
@@ -55,7 +51,45 @@ export default function ReferralPage() {
     }
   }, []);
 
+  // Detectar si la app se abrió (la página pierde el foco)
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const handleBlur = () => {
+      console.log("App opened (page lost focus)");
+      appOpenedRef.current = true;
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        console.log("Page hidden, app likely opened");
+        appOpenedRef.current = true;
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current);
+          timeoutRef.current = null;
+        }
+      }
+    };
+
+    window.addEventListener("blur", handleBlur);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      window.removeEventListener("blur", handleBlur);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
+
   const redirectToStore = () => {
+    if (appOpenedRef.current) {
+      console.log("App already opened, skipping store redirect");
+      return;
+    }
+
     setShowLoading(true);
     setMessage("Redirigiendo a la tienda...");
 
@@ -105,31 +139,36 @@ export default function ReferralPage() {
     if (platform === "ios" || platform === "android") {
       if (typeof window === "undefined") return;
 
-      // Usar App Links / Universal Links directamente
-      // Esto funciona automáticamente si assetlinks.json (Android) y 
-      // apple-app-site-association (iOS) están configurados correctamente
-      // Codificar el código de referido para asegurar que caracteres especiales se manejen correctamente
+      // ✅ ACTUALIZADO: Usar la nueva URL de Vercel
       const encodedCode = encodeURIComponent(referralCode);
-      const deepLinkUrl = `https://getgoapp.cl/refer?code=${encodedCode}`;
+      const deepLinkUrl = `https://getgo-page-h84g.vercel.app/refer?code=${encodedCode}`;
 
-      // Debug: mostrar en consola (puedes quitar esto después)
       console.log("Deep Link URL:", deepLinkUrl);
       console.log("Referral Code:", referralCode);
+      console.log("Platform:", platform);
 
       // Intentar abrir la app
       // Si la app está instalada y los archivos .well-known están configurados:
       // - Android: Abre automáticamente sin diálogo (App Links)
       // - iOS: Abre automáticamente sin diálogo (Universal Links)
       // Si no está instalada o no está configurado: redirige a la store después del timeout
+
       window.location.href = deepLinkUrl;
 
-      // Si después de 2.5 segundos no se abrió la app, redirigir a la store
-      const timeout = setTimeout(() => {
-        redirectToStore();
-      }, 2500);
+      // Si después de 1.5 segundos no se abrió la app, redirigir a la store
+      timeoutRef.current = setTimeout(() => {
+        if (!appOpenedRef.current) {
+          console.log("App did not open, redirecting to store...");
+          redirectToStore();
+        }
+      }, 1500);
 
       // Limpiar timeout si el componente se desmonta
-      return () => clearTimeout(timeout);
+      return () => {
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current);
+        }
+      };
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [referralCode, platform]);
@@ -186,4 +225,3 @@ export default function ReferralPage() {
     </div>
   );
 }
-
