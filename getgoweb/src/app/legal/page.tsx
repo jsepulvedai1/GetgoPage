@@ -457,7 +457,36 @@ export default function TerminosYCondiciones() {
           </div>
           <div>
             <h2 className="text-2xl font-bold text-[#000080] italic mb-2 tracking-tight">
-              15. POLÍTICA DE PRIVACIDAD Y PROTECCIÓN DE DATOS PERSONALES
+              15. TRATAMIENTO DE DATOS DE UBICACIÓN (LOCATION)
+            </h2>
+          </div>
+          <div>
+            <p>
+              GETGO accede y trata datos de ubicación geográfica precisa (GPS, red móvil, Wi-Fi y Bluetooth) y, en algunos casos, de ubicación aproximada, con los siguientes fines:
+
+              Socios Conductores:
+
+              Permitir la asignación automática de viajes y la navegación hasta el punto de recogida y destino.
+
+              Actualizar la posición en tiempo real durante la conducción, incluso cuando la aplicación se encuentra en segundo plano, mientras el estado sea “disponible” o “en viaje”.
+
+              Garantizar la seguridad del viaje, permitir funciones como el botón SOS y generar registros de recorrido ante eventuales incidentes.
+
+              Socios Usuarios (Pasajeros):
+
+              Determinar la ubicación de recogida, calcular rutas, estimar tarifas y mostrar la posición del vehículo durante el trayecto.
+
+              Permitir el correcto emparejamiento con conductores cercanos y mejorar la precisión del servicio.
+
+              Los datos de ubicación se recogen únicamente cuando el Usuario otorga los permisos correspondientes en el sistema operativo (por ejemplo, “Permitir siempre” o “Permitir solo mientras se usa la aplicación”).
+              En el caso de los Socios Conductores, el uso de la ubicación en segundo plano es necesario para la prestación continua del servicio, incluso cuando la aplicación no está visible, pero el viaje o el estado de disponibilidad siguen activos.
+              El Usuario puede desactivar los permisos de ubicación en cualquier momento desde los ajustes de su dispositivo; sin embargo, ciertas funciones podrían dejar de estar disponibles.
+
+            </p>
+            <p>¨ ¨</p>
+
+            <h2 className="text-2xl font-bold text-[#000080] italic mb-2 tracking-tight">
+              16. POLÍTICA DE PRIVACIDAD Y PROTECCIÓN DE DATOS PERSONALES
             </h2>
           </div>
           <div>
