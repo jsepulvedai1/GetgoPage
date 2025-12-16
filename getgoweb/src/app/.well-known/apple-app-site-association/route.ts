@@ -14,7 +14,7 @@ export async function GET() {
         'Access-Control-Allow-Origin': '*',
       },
     });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: 'File not found' },
       { status: 404 }

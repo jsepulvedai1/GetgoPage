@@ -16,6 +16,15 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "GetGo",
   description: "Getgo web",
+  icons: {
+    icon: [
+      { url: "/GetGo_Logo.png", type: "image/png" },
+      { url: "/favicon.ico", type: "image/x-icon" },
+    ],
+    apple: [
+      { url: "/GetGo_Logo.png", type: "image/png" },
+    ],
+  },
 };
 
 export default function RootLayout({
