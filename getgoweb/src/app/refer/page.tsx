@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import { Montserrat } from "next/font/google";
+import Script from "next/script";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -191,12 +192,23 @@ export default function ReferralPage() {
   };
 
   return (
-    <div
-      className={`${montserrat.className} min-h-screen flex items-center justify-center p-5`}
-      style={{
-        background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-      }}
-    >
+    <>
+      {/* Eruda Console para debugging en móvil */}
+      <Script
+        src="https://cdn.jsdelivr.net/npm/eruda"
+        strategy="afterInteractive"
+        onLoad={() => {
+          if (typeof window !== "undefined" && (window as any).eruda) {
+            (window as any).eruda.init();
+          }
+        }}
+      />
+      <div
+        className={`${montserrat.className} min-h-screen flex items-center justify-center p-5`}
+        style={{
+          background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+        }}
+      >
       <div className="bg-white rounded-[20px] p-10 max-w-[500px] w-full shadow-[0_20px_60px_rgba(0,0,0,0.3)] text-center">
         <div className="w-[120px] h-[120px] mx-auto mb-8 rounded-[30px] flex items-center justify-center text-5xl text-white font-bold bg-gradient-to-br from-[#667eea] to-[#764ba2]">
           GG
@@ -233,7 +245,8 @@ export default function ReferralPage() {
             </a>
           </div>
         )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }

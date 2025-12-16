@@ -137,7 +137,7 @@ export default function Home() {
           {[
             {
               icon: "/images/Icon-GetGo_Arrow.png",
-              text: "Obtienes el 1% de cada carrera que realice tu referido, de manera perpetua.",
+              text: "Obtiene el 1% de cada carrera que realice tu referido, de manera perpetua.",
             },
             {
               icon: "/images/Icon-GetGo_Arrow.png",
