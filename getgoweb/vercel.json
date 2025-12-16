@@ -1,6 +1,4 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": "out",
   "headers": [
     {
       "source": "/.well-known/(.*)",
@@ -14,16 +12,6 @@
           "value": "*"
         }
       ]
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/.well-known/assetlinks.json",
-      "destination": "/.well-known/assetlinks.json"
-    },
-    {
-      "source": "/.well-known/apple-app-site-association",
-      "destination": "/.well-known/apple-app-site-association"
     }
   ]
 }

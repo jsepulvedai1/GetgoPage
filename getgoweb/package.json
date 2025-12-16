@@ -4,11 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build && node scripts/copy-well-known.js",
+    "build": "next build",
     "start": "next start",
-    "export": "next export",
-    "lint": "next lint",
-    "postbuild": "node scripts/copy-well-known.js"
+    "lint": "next lint"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
