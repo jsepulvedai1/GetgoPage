@@ -4,7 +4,7 @@
     "target": {
       "namespace": "android_app",
       "package_name": "com.getgoapp.pasajero",
-        "sha256_cert_fingerprints": [
+      "sha256_cert_fingerprints": [
         "C8:7B:33:92:78:CF:B3:EA:ED:88:92:B2:C5:00:F8:EA:D0:37:26:28:90:30:CA:1A:43:04:FF:56:DD:12:87:57"
       ]
     }
