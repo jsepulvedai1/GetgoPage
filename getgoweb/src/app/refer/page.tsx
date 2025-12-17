@@ -59,25 +59,44 @@ export default function ReferralPage() {
 
   // Guardar código en backend (usando useCallback para evitar recrear la función)
   const saveCodeToBackend = useCallback(async (code: string): Promise<void> => {
+    if (!code || code === "N/A") {
+      console.warn("⚠️ Intento de guardar código inválido:", code);
+      return;
+    }
+
     try {
+      console.log("🔄 Intentando guardar código en backend:", code);
       const deviceId = getDeviceFingerprint();
+      console.log("📱 Device ID generado:", deviceId);
+
+      const payload = {
+        code,
+        device_id: deviceId,
+        timestamp: Date.now(),
+      };
+
+      console.log("📤 Enviando POST a /api/save-referral-code con:", payload);
+
       const response = await fetch("https://getgo-page-h84g.vercel.app/api/save-referral-code", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          code,
-          device_id: deviceId,
-          timestamp: Date.now(),
-        }),
+        body: JSON.stringify(payload),
       });
 
+      console.log("📥 Response status:", response.status, response.statusText);
+
       if (response.ok) {
-        console.log("✅ Código guardado en backend");
+        const data = await response.json();
+        console.log("✅ Código guardado en backend exitosamente:", data);
       } else {
-        console.warn("⚠️ Error guardando en backend:", response.status);
+        const errorData = await response.text();
+        console.warn("⚠️ Error guardando en backend:", response.status, errorData);
       }
     } catch (error) {
       console.error("❌ Error guardando en backend:", error);
+      if (error instanceof Error) {
+        console.error("❌ Error details:", error.message, error.stack);
+      }
       // No lanzar error, solo loguear (localStorage es el fallback)
     }
   }, [getDeviceFingerprint]);
@@ -148,7 +167,7 @@ export default function ReferralPage() {
         setPlatform("desktop");
       }
     }
-  }, []);
+  }, [saveCodeToBackend]);
 
   // Detectar si la app se abrió usando múltiples métodos
   useEffect(() => {
@@ -406,7 +425,7 @@ export default function ReferralPage() {
       };
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [referralCode, platform]);
+  }, [referralCode, platform, saveCodeToBackend]);
 
   const handleManualClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
