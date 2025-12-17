@@ -1,0 +1,27 @@
+# Permitir acceso a archivos .well-known
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Permitir acceso directo a archivos .well-known
+  RewriteCond %{REQUEST_URI} ^/.well-known/
+  RewriteRule ^ - [L]
+</IfModule>
+
+# Configurar Content-Type para archivos JSON
+<IfModule mod_headers.c>
+  # Content-Type para assetlinks.json
+  <FilesMatch "assetlinks\.json$">
+    Header set Content-Type "application/json"
+  </FilesMatch>
+  
+  # Content-Type para apple-app-site-association (sin extensión)
+  <FilesMatch "apple-app-site-association$">
+    Header set Content-Type "application/json"
+  </FilesMatch>
+</IfModule>
+
+# Permitir acceso a directorios .well-known
+<DirectoryMatch "^.*/\.well-known/">
+  Require all granted
+  Options -Indexes
+</DirectoryMatch>
+
