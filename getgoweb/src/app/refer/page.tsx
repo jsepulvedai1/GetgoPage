@@ -26,31 +26,102 @@ export default function ReferralPage() {
   const playStoreUrl = "https://play.google.com/store/apps/details?id=com.getgoapp.pasajero";
   const appStoreUrl = "https://apps.apple.com/app/id6748690795";
 
-  // Generar fingerprint del dispositivo (usando useCallback para evitar recrear la función)
-  // IMPORTANTE: Este método debe coincidir con el usado en la app móvil
-  const getDeviceFingerprint = useCallback((): string => {
+  // Generar device_id basado en fingerprint del dispositivo
+  // Usa propiedades que se pueden obtener tanto en web como en app móvil
+  const getDeviceId = useCallback(async (): Promise<string> => {
     if (typeof window === "undefined") return "";
     
-    // Usar propiedades estables que se pueden replicar en la app móvil
-    // Orden: userAgent, language, screen size, timezone, device properties, CPU cores
-    const fingerprint = [
-      navigator.userAgent,
-      navigator.language,
-      screen.width + "x" + screen.height,
-      new Date().getTimezoneOffset().toString(),
-      // Reemplazo de canvas.toDataURL() con propiedades estables del dispositivo
-      [navigator.platform, navigator.vendor, screen.colorDepth, navigator.maxTouchPoints || 0].join("_"),
-      navigator.hardwareConcurrency?.toString() || "",
-    ].join("|");
-
-    let hash = 0;
-    for (let i = 0; i < fingerprint.length; i++) {
-      const char = fingerprint.charCodeAt(i);
-      hash = ((hash << 5) - hash) + char;
-      hash = hash & hash;
+    const STORAGE_KEY = "getgo_device_id";
+    
+    try {
+      // PRIORIDAD 1: Recuperar de localStorage (si ya se calculó antes)
+      const existingId = localStorage.getItem(STORAGE_KEY);
+      if (existingId) {
+        console.log("💾 Device ID recuperado de localStorage:", existingId);
+        return existingId;
+      }
+      
+      // PRIORIDAD 2: Calcular fingerprint basado en propiedades del dispositivo
+      console.log("🔄 Calculando device_id desde propiedades del dispositivo...");
+      
+      // 1. Screen size
+      const screenSize = `${screen.width}x${screen.height}`;
+      console.log("   - Screen size:", screenSize);
+      
+      // 2. Timezone offset
+      const timezoneOffset = new Date().getTimezoneOffset().toString();
+      console.log("   - Timezone offset:", timezoneOffset);
+      
+      // 3. Language
+      const language = navigator.language || navigator.languages?.[0] || "unknown";
+      console.log("   - Language:", language);
+      
+      // 4. Platform
+      const userAgent = navigator.userAgent || "";
+      let platform = "unknown";
+      if (/android/i.test(userAgent)) {
+        platform = "Android";
+      } else if (/iPad|iPhone|iPod/.test(userAgent)) {
+        platform = "iOS";
+      } else if (/Mac/.test(userAgent)) {
+        platform = "macOS";
+      } else if (/Win/.test(userAgent)) {
+        platform = "Windows";
+      } else if (/Linux/.test(userAgent)) {
+        platform = "Linux";
+      }
+      console.log("   - Platform:", platform);
+      
+      // 5. IP pública (obtenida de forma asíncrona)
+      let publicIp = "unknown";
+      try {
+        const ipResponse = await fetch("https://api.ipify.org?format=json", {
+          method: "GET",
+          // Timeout de 3 segundos
+          signal: AbortSignal.timeout(3000),
+        });
+        if (ipResponse.ok) {
+          const ipData = await ipResponse.json();
+          publicIp = ipData.ip || "unknown";
+          console.log("   - IP pública:", publicIp);
+        }
+      } catch (ipError) {
+        console.warn("   ⚠️ No se pudo obtener IP pública:", ipError);
+        // Continuar sin IP (no es crítico)
+      }
+      
+      // Combinar todas las propiedades
+      const fingerprint = [
+        screenSize,
+        timezoneOffset,
+        language,
+        platform,
+        publicIp,
+      ].join("|");
+      
+      console.log("   - Fingerprint completo:", fingerprint);
+      
+      // Generar hash del fingerprint
+      let hash = 0;
+      for (let i = 0; i < fingerprint.length; i++) {
+        const char = fingerprint.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash; // Convertir a 32-bit integer
+      }
+      
+      const deviceId = Math.abs(hash).toString(36);
+      console.log("✅ Device ID generado:", deviceId);
+      
+      // Guardar en localStorage para reutilizarlo
+      localStorage.setItem(STORAGE_KEY, deviceId);
+      
+      return deviceId;
+    } catch (error) {
+      console.error("❌ Error obteniendo device_id:", error);
+      // Fallback: generar un ID temporal
+      const fallbackId = `temp-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
+      return fallbackId;
     }
-
-    return Math.abs(hash).toString(36);
   }, []);
 
   // Guardar código en backend (usando useCallback para evitar recrear la función)
@@ -62,8 +133,8 @@ export default function ReferralPage() {
 
     try {
       console.log("🔄 Intentando guardar código en backend:", code);
-      const deviceId = getDeviceFingerprint();
-      console.log("📱 Device ID generado:", deviceId);
+      const deviceId = await getDeviceId();
+      console.log("📱 Device ID:", deviceId);
 
       const payload = {
         code,
@@ -95,7 +166,7 @@ export default function ReferralPage() {
       }
       // No lanzar error, solo loguear (localStorage es el fallback)
     }
-  }, [getDeviceFingerprint]);
+  }, [getDeviceId]);
 
   // Obtener código de referido de la URL y detectar plataforma
   useEffect(() => {
