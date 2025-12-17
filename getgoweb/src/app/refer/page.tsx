@@ -89,22 +89,13 @@ export default function ReferralPage() {
     }
   }, []);
 
-  // Detectar si la app se abrió (la página pierde el foco)
+  // Detectar si la app se abrió usando múltiples métodos
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const handleBlur = () => {
-      console.log("App opened (page lost focus)");
-      appOpenedRef.current = true;
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-        timeoutRef.current = null;
-      }
-    };
-
-    const handleVisibilityChange = () => {
-      if (document.hidden) {
-        console.log("Page hidden, app likely opened");
+    const markAppAsOpened = () => {
+      if (!appOpenedRef.current) {
+        console.log("✅ App detected as opened");
         appOpenedRef.current = true;
         if (timeoutRef.current) {
           clearTimeout(timeoutRef.current);
@@ -113,12 +104,61 @@ export default function ReferralPage() {
       }
     };
 
+    // Método 1: Blur event (página pierde foco)
+    const handleBlur = () => {
+      console.log("📱 Blur event detected");
+      // Pequeño delay para evitar falsos positivos
+      setTimeout(markAppAsOpened, 100);
+    };
+
+    // Método 2: Visibility change (página se oculta)
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        console.log("👁️ Page hidden (visibilitychange)");
+        markAppAsOpened();
+      }
+    };
+
+    // Método 3: Pagehide event (página se oculta, más confiable en iOS)
+    const handlePageHide = () => {
+      console.log("🚪 Page hide event detected");
+      markAppAsOpened();
+    };
+
+    // Método 4: Focus out (específico para algunos navegadores)
+    const handleFocusOut = () => {
+      console.log("🔍 Focus out event detected");
+      setTimeout(markAppAsOpened, 100);
+    };
+
+    // Método 5: Detectar si estamos en un iframe (algunos navegadores abren en iframe)
+    const checkIfInIframe = () => {
+      try {
+        if (window.self !== window.top) {
+          console.log("🖼️ Detected in iframe, app likely opened");
+          markAppAsOpened();
+        }
+      } catch {
+        // Si hay error de cross-origin, probablemente estamos en iframe
+        console.log("🖼️ Cross-origin error, likely in iframe");
+        markAppAsOpened();
+      }
+    };
+
+    // Agregar todos los listeners
     window.addEventListener("blur", handleBlur);
     document.addEventListener("visibilitychange", handleVisibilityChange);
+    window.addEventListener("pagehide", handlePageHide);
+    window.addEventListener("focusout", handleFocusOut);
+    
+    // Verificar iframe después de un pequeño delay
+    setTimeout(checkIfInIframe, 500);
 
     return () => {
       window.removeEventListener("blur", handleBlur);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
+      window.removeEventListener("pagehide", handlePageHide);
+      window.removeEventListener("focusout", handleFocusOut);
     };
   }, []);
 
@@ -205,13 +245,19 @@ export default function ReferralPage() {
         console.log(`Already on ${deeplinkDomain} domain, waiting for app to open or redirecting to store`);
         deeplinkAttemptedRef.current = true;
         
+        // Para iOS: Universal Links pueden tardar más en abrir la app
+        // Para Android: App Links verificados abren instantáneamente, pero no verificados pueden tardar
+        const timeoutDuration = platform === "ios" ? 3000 : 2500; // iOS necesita más tiempo
+        
         // Esperar un momento para ver si la app se abre
         timeoutRef.current = setTimeout(() => {
           if (!appOpenedRef.current) {
-            console.log("App did not open, redirecting to store...");
+            console.log("⏱️ Timeout reached, app did not open, redirecting to store...");
             redirectToStore();
+          } else {
+            console.log("✅ App opened successfully, not redirecting to store");
           }
-        }, 2000);
+        }, timeoutDuration);
         
         return;
       }
