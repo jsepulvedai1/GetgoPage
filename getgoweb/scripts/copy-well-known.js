@@ -27,3 +27,4 @@ files.forEach(file => {
 
 console.log('✅ Archivos .well-known copiados correctamente');
 
+

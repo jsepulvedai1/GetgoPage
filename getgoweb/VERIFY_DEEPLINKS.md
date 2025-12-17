@@ -290,3 +290,4 @@ Cuando todo funciona correctamente:
    - ✅ Usuario descarga app
    - ✅ Al abrir app, puede usar el código
 
+
