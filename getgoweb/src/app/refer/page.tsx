@@ -149,11 +149,12 @@ export default function ReferralPage() {
 
       const currentHost = window.location.hostname;
       const encodedCode = encodeURIComponent(referralCode);
+      const deeplinkDomain = "getgo-page-h84g.vercel.app";
       
-      // Si ya estamos en getgoapp.cl, NO intentar deeplink (evita loop)
+      // Si ya estamos en el dominio de deeplink, NO intentar deeplink (evita loop)
       // Solo esperar y redirigir a la store si la app no se abre
-      if (currentHost === "getgoapp.cl" || currentHost.includes("getgoapp.cl")) {
-        console.log("Already on getgoapp.cl domain, waiting for app to open or redirecting to store");
+      if (currentHost === deeplinkDomain || currentHost.includes(deeplinkDomain)) {
+        console.log(`Already on ${deeplinkDomain} domain, waiting for app to open or redirecting to store`);
         deeplinkAttemptedRef.current = true;
         
         // Esperar un momento para ver si la app se abre
@@ -167,11 +168,11 @@ export default function ReferralPage() {
         return;
       }
 
-      // Si estamos en otro dominio (ej: vercel.app), redirigir a getgoapp.cl
+      // Si estamos en otro dominio, redirigir al dominio de deeplink
       // Esto permite que los App Links funcionen correctamente
-      console.log("Redirecting to getgoapp.cl for deeplink");
+      console.log(`Redirecting to ${deeplinkDomain} for deeplink`);
       deeplinkAttemptedRef.current = true;
-      const deepLinkUrl = `https://getgoapp.cl/refer?code=${encodedCode}`;
+      const deepLinkUrl = `https://${deeplinkDomain}/refer?code=${encodedCode}`;
       
       // Redirigir al dominio correcto (solo una vez)
       window.location.href = deepLinkUrl;
