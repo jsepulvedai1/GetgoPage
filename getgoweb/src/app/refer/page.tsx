@@ -24,7 +24,7 @@ export default function ReferralPage() {
 
   // URLs de las stores
   const playStoreUrl = "https://play.google.com/store/apps/details?id=com.getgoapp.pasajero";
-  const appStoreUrl = "https://apps.apple.com/app/id1234567890"; // TODO: Reemplazar con tu App Store ID real
+  const appStoreUrl = "https://apps.apple.com/app/id6748690795";
 
   // Obtener código de referido de la URL y detectar plataforma
   useEffect(() => {
