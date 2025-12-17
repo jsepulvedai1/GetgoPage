@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 
-// Configuración para que funcione en Vercel con output: "export"
-export const dynamic = "force-dynamic";
-export const runtime = "nodejs";
+// En Vercel, las rutas API funcionan automáticamente como serverless functions
+// No necesitamos export const dynamic cuando se despliega en Vercel
+// Solo se usa durante el build local, pero Vercel lo maneja automáticamente
 
 // En producción, esto debería conectarse a una base de datos
 // Por ahora, solo retornamos éxito (puedes agregar lógica de almacenamiento después)
