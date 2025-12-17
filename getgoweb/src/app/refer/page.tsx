@@ -248,7 +248,9 @@ export default function ReferralPage() {
       // Si ya estamos en el dominio de deeplink, NO intentar deeplink (evita loop)
       // Solo esperar y redirigir a la store si la app no se abre
       if (currentHost === deeplinkDomain || currentHost.includes(deeplinkDomain)) {
-        console.log(`Already on ${deeplinkDomain} domain, waiting for app to open or redirecting to store`);
+        console.log(`📍 Already on ${deeplinkDomain} domain`);
+        console.log(`⏳ Waiting for app to open (App Links should handle this automatically)`);
+        console.log(`💡 If you see a dialog, choose "Open with GetGo"`);
         deeplinkAttemptedRef.current = true;
         
         // IMPORTANTE: Guardar código ANTES de esperar (por si acaso)
@@ -265,16 +267,46 @@ export default function ReferralPage() {
         
         // Para iOS: Universal Links pueden tardar más en abrir la app
         // Para Android: App Links verificados abren instantáneamente, pero no verificados pueden tardar
-        // Aumentamos el timeout para dar más tiempo, especialmente si App Links no están verificados
-        const timeoutDuration = platform === "ios" ? 4000 : 3500; // Más tiempo para ambos
+        // Si App Links no están verificados, Android muestra un diálogo que puede tardar más
+        // Aumentamos el timeout significativamente para dar tiempo al usuario de elegir la app
+        const timeoutDuration = platform === "ios" ? 5000 : 6000; // Más tiempo, especialmente para Android con diálogo
         
         console.log(`⏳ Esperando ${timeoutDuration}ms para ver si la app se abre...`);
+        console.log(`💡 Si ves un diálogo, elige "Abrir con GetGo" para que la app se abra`);
+        
+        // Verificar periódicamente si la página perdió el foco (más confiable que eventos)
+        let checkCount = 0;
+        const maxChecks = Math.floor(timeoutDuration / 500); // Verificar cada 500ms
+        
+        const checkInterval = setInterval(() => {
+          checkCount++;
+          
+          // Si la página está oculta o perdió el foco, probablemente la app se abrió
+          if (document.hidden || !document.hasFocus()) {
+            console.log("✅ Página oculta o sin foco detectado, app probablemente abierta");
+            appOpenedRef.current = true;
+            clearInterval(checkInterval);
+            if (timeoutRef.current) {
+              clearTimeout(timeoutRef.current);
+              timeoutRef.current = null;
+            }
+            return;
+          }
+          
+          // Si llegamos al máximo de checks, detener
+          if (checkCount >= maxChecks) {
+            clearInterval(checkInterval);
+          }
+        }, 500);
         
         // Esperar un momento para ver si la app se abre
         timeoutRef.current = setTimeout(() => {
+          clearInterval(checkInterval);
+          
           if (!appOpenedRef.current) {
             console.log("⏱️ Timeout reached, app did not open, redirecting to store...");
             console.log(`💾 Código ya guardado en localStorage: ${referralCode}`);
+            console.log(`📱 La app puede recuperar el código desde: https://getgo-page-h84g.vercel.app/get-referral-code`);
             redirectToStore();
           } else {
             console.log("✅ App opened successfully, not redirecting to store");
