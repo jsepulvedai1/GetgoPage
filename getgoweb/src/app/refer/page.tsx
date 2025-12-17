@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { Montserrat } from "next/font/google";
 import Script from "next/script";
 
@@ -26,6 +26,62 @@ export default function ReferralPage() {
   const playStoreUrl = "https://play.google.com/store/apps/details?id=com.getgoapp.pasajero";
   const appStoreUrl = "https://apps.apple.com/app/id6748690795";
 
+  // Generar fingerprint del dispositivo (usando useCallback para evitar recrear la función)
+  const getDeviceFingerprint = useCallback((): string => {
+    if (typeof window === "undefined") return "";
+    
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+    if (ctx) {
+      ctx.textBaseline = "top";
+      ctx.font = "14px Arial";
+      ctx.fillText("Device fingerprint", 2, 2);
+    }
+
+    const fingerprint = [
+      navigator.userAgent,
+      navigator.language,
+      screen.width + "x" + screen.height,
+      new Date().getTimezoneOffset().toString(),
+      canvas.toDataURL(),
+      navigator.hardwareConcurrency?.toString() || "",
+    ].join("|");
+
+    let hash = 0;
+    for (let i = 0; i < fingerprint.length; i++) {
+      const char = fingerprint.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash = hash & hash;
+    }
+
+    return Math.abs(hash).toString(36);
+  }, []);
+
+  // Guardar código en backend (usando useCallback para evitar recrear la función)
+  const saveCodeToBackend = useCallback(async (code: string): Promise<void> => {
+    try {
+      const deviceId = getDeviceFingerprint();
+      const response = await fetch("https://getgo-page-h84g.vercel.app/api/save-referral-code", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          code,
+          device_id: deviceId,
+          timestamp: Date.now(),
+        }),
+      });
+
+      if (response.ok) {
+        console.log("✅ Código guardado en backend");
+      } else {
+        console.warn("⚠️ Error guardando en backend:", response.status);
+      }
+    } catch (error) {
+      console.error("❌ Error guardando en backend:", error);
+      // No lanzar error, solo loguear (localStorage es el fallback)
+    }
+  }, [getDeviceFingerprint]);
+
   // Obtener código de referido de la URL y detectar plataforma
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -33,13 +89,17 @@ export default function ReferralPage() {
       const urlParams = new URLSearchParams(window.location.search);
       let code = urlParams.get("code") || "N/A";
       
-      // IMPORTANTE: SIEMPRE guardar el código en localStorage cuando hay uno en la URL
+      // IMPORTANTE: SIEMPRE guardar el código en localStorage Y backend cuando hay uno en la URL
       // Esto asegura que no se pierda aunque la app se abra o redirija a la tienda
       if (code !== "N/A") {
         try {
+          // Guardar en localStorage (fallback rápido)
           localStorage.setItem("getgo_referral_code", code);
           localStorage.setItem("getgo_referral_timestamp", Date.now().toString());
           console.log(`✅ Código guardado en localStorage desde URL: ${code}`);
+          
+          // Guardar en backend (persistencia más robusta)
+          saveCodeToBackend(code);
         } catch (error) {
           console.error("❌ Error guardando código en localStorage:", error);
         }
@@ -170,15 +230,23 @@ export default function ReferralPage() {
       return;
     }
 
-    // IMPORTANTE: Guardar el código en localStorage ANTES de redirigir
+    // IMPORTANTE: Guardar el código en localStorage Y backend ANTES de redirigir
     // Esto permite que la app lo recupere después de la instalación
     // (Aunque ya debería estar guardado, lo guardamos de nuevo por seguridad)
     if (typeof window !== "undefined" && referralCode !== "N/A") {
       try {
+        // Guardar en localStorage (fallback rápido)
         localStorage.setItem("getgo_referral_code", referralCode);
         localStorage.setItem("getgo_referral_timestamp", Date.now().toString());
         console.log(`💾 Código guardado en localStorage antes de redirigir a tienda: ${referralCode}`);
-        console.log(`📱 La app puede recuperar este código desde: https://getgo-page-h84g.vercel.app/get-referral-code`);
+        
+        // Guardar en backend (persistencia más robusta)
+        saveCodeToBackend(referralCode);
+        
+        console.log(`📱 La app puede recuperar este código desde:`);
+        console.log(`   - localStorage: getgo_referral_code`);
+        console.log(`   - Backend API: /api/save-referral-code?device_id=...`);
+        console.log(`   - Página web: https://getgo-page-h84g.vercel.app/get-referral-code`);
       } catch (error) {
         console.error("❌ Error guardando código en localStorage:", error);
       }
@@ -257,9 +325,13 @@ export default function ReferralPage() {
         // Esto asegura que el código esté guardado incluso si la app se abre rápidamente
         if (typeof window !== "undefined" && referralCode !== "N/A") {
           try {
+            // Guardar en localStorage (fallback rápido)
             localStorage.setItem("getgo_referral_code", referralCode);
             localStorage.setItem("getgo_referral_timestamp", Date.now().toString());
             console.log(`✅ Código guardado en localStorage (preventivo): ${referralCode}`);
+            
+            // Guardar en backend (persistencia más robusta)
+            saveCodeToBackend(referralCode);
           } catch (error) {
             console.error("❌ Error guardando código en localStorage:", error);
           }
