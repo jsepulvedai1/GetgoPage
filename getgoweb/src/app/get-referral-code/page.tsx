@@ -2,6 +2,31 @@
 
 import { useEffect, useState } from "react";
 
+// Tipos para las interfaces de WebView
+interface ReactNativeWebView {
+  postMessage: (message: string) => void;
+}
+
+interface WebKitMessageHandlers {
+  referralCode: {
+    postMessage: (code: string) => void;
+  };
+}
+
+interface WebKit {
+  messageHandlers?: WebKitMessageHandlers;
+}
+
+interface AndroidInterface {
+  onReferralCodeReceived: (code: string) => void;
+}
+
+interface WindowWithWebView extends Window {
+  ReactNativeWebView?: ReactNativeWebView;
+  webkit?: WebKit;
+  Android?: AndroidInterface;
+}
+
 /**
  * Página para que la app recupere el código de referido desde localStorage
  * 
@@ -31,9 +56,11 @@ export default function GetReferralCodePage() {
           setStatus("Código encontrado:");
 
           // Intentar enviar el código a la app nativa
+          const windowWithWebView = window as WindowWithWebView;
+
           // Método 1: React Native WebView
-          if (typeof window !== "undefined" && (window as any).ReactNativeWebView) {
-            (window as any).ReactNativeWebView.postMessage(
+          if (windowWithWebView.ReactNativeWebView) {
+            windowWithWebView.ReactNativeWebView.postMessage(
               JSON.stringify({
                 type: "referral_code",
                 code: storedCode,
@@ -41,17 +68,14 @@ export default function GetReferralCodePage() {
             );
           }
           // Método 2: iOS WKWebView
-          else if (
-            typeof window !== "undefined" &&
-            (window as any).webkit?.messageHandlers
-          ) {
-            (window as any).webkit.messageHandlers.referralCode.postMessage(
+          else if (windowWithWebView.webkit?.messageHandlers?.referralCode) {
+            windowWithWebView.webkit.messageHandlers.referralCode.postMessage(
               storedCode
             );
           }
           // Método 3: Android WebView con JavaScript Interface
-          else if (typeof window !== "undefined" && (window as any).Android) {
-            (window as any).Android.onReferralCodeReceived(storedCode);
+          else if (windowWithWebView.Android) {
+            windowWithWebView.Android.onReferralCodeReceived(storedCode);
           }
           // Fallback: mostrar en la página para que la app lo lea
           else {
