@@ -26,101 +26,54 @@ export default function ReferralPage() {
   const playStoreUrl = "https://play.google.com/store/apps/details?id=com.getgoapp.pasajero";
   const appStoreUrl = "https://apps.apple.com/app/id6748690795";
 
-  // Generar device_id basado en fingerprint del dispositivo
-  // Usa propiedades que se pueden obtener tanto en web como en app móvil
-  const getDeviceId = useCallback(async (): Promise<string> => {
+  // Obtener device_id: prioriza el que viene de la app móvil vía deeplink
+  // La app móvil debe pasar el device_id (Android ID o iOS IDFV) en la URL
+  // Ejemplo: https://getgo-page-h84g.vercel.app/refer?code=ABC123&device_id=9774d56d682e549c
+  const getDeviceId = useCallback((): string => {
     if (typeof window === "undefined") return "";
     
     const STORAGE_KEY = "getgo_device_id";
     
     try {
-      // PRIORIDAD 1: Recuperar de localStorage (si ya se calculó antes)
+      // PRIORIDAD 1: Obtener desde URL (si viene de la app móvil)
+      // La app debe pasar el device_id (Android ID o iOS IDFV) en el deeplink
+      const urlParams = new URLSearchParams(window.location.search);
+      const deviceIdFromUrl = urlParams.get("device_id");
+      if (deviceIdFromUrl && deviceIdFromUrl.trim() !== "" && deviceIdFromUrl !== "unknown") {
+        // Guardar en localStorage para futuras visitas
+        localStorage.setItem(STORAGE_KEY, deviceIdFromUrl);
+        console.log("📱 Device ID recibido de la app:", deviceIdFromUrl);
+        return deviceIdFromUrl;
+      }
+      
+      // PRIORIDAD 2: Recuperar de localStorage (si ya se guardó antes)
       const existingId = localStorage.getItem(STORAGE_KEY);
-      if (existingId) {
+      if (existingId && existingId !== "unknown") {
         console.log("💾 Device ID recuperado de localStorage:", existingId);
         return existingId;
       }
       
-      // PRIORIDAD 2: Calcular fingerprint basado en propiedades del dispositivo
-      console.log("🔄 Calculando device_id desde propiedades del dispositivo...");
-      
-      // 1. Screen size
-      const screenSize = `${screen.width}x${screen.height}`;
-      console.log("   - Screen size:", screenSize);
-      
-      // 2. Timezone offset
-      const timezoneOffset = new Date().getTimezoneOffset().toString();
-      console.log("   - Timezone offset:", timezoneOffset);
-      
-      // 3. Language
-      const language = navigator.language || navigator.languages?.[0] || "unknown";
-      console.log("   - Language:", language);
-      
-      // 4. Platform
-      const userAgent = navigator.userAgent || "";
-      let platform = "unknown";
-      if (/android/i.test(userAgent)) {
-        platform = "Android";
-      } else if (/iPad|iPhone|iPod/.test(userAgent)) {
-        platform = "iOS";
-      } else if (/Mac/.test(userAgent)) {
-        platform = "macOS";
-      } else if (/Win/.test(userAgent)) {
-        platform = "Windows";
-      } else if (/Linux/.test(userAgent)) {
-        platform = "Linux";
-      }
-      console.log("   - Platform:", platform);
-      
-      // 5. IP pública (obtenida de forma asíncrona)
-      let publicIp = "unknown";
-      try {
-        const ipResponse = await fetch("https://api.ipify.org?format=json", {
-          method: "GET",
-          // Timeout de 3 segundos
-          signal: AbortSignal.timeout(3000),
+      // PRIORIDAD 3: Fallback - generar UUID temporal
+      // Esto solo pasa si el usuario abre el link directamente en el navegador
+      // (sin pasar por la app móvil)
+      const generateUUID = (): string => {
+        return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
+          const r = (Math.random() * 16) | 0;
+          const v = c === "x" ? r : (r & 0x3) | 0x8;
+          return v.toString(16);
         });
-        if (ipResponse.ok) {
-          const ipData = await ipResponse.json();
-          publicIp = ipData.ip || "unknown";
-          console.log("   - IP pública:", publicIp);
-        }
-      } catch (ipError) {
-        console.warn("   ⚠️ No se pudo obtener IP pública:", ipError);
-        // Continuar sin IP (no es crítico)
-      }
+      };
       
-      // Combinar todas las propiedades
-      const fingerprint = [
-        screenSize,
-        timezoneOffset,
-        language,
-        platform,
-        publicIp,
-      ].join("|");
+      const fallbackId = generateUUID();
+      localStorage.setItem(STORAGE_KEY, fallbackId);
+      console.warn("⚠️ Device ID no recibido de la app, usando UUID temporal:", fallbackId);
+      console.warn("⚠️ La app móvil debe pasar device_id en el deeplink para que coincidan");
       
-      console.log("   - Fingerprint completo:", fingerprint);
-      
-      // Generar hash del fingerprint
-      let hash = 0;
-      for (let i = 0; i < fingerprint.length; i++) {
-        const char = fingerprint.charCodeAt(i);
-        hash = ((hash << 5) - hash) + char;
-        hash = hash & hash; // Convertir a 32-bit integer
-      }
-      
-      const deviceId = Math.abs(hash).toString(36);
-      console.log("✅ Device ID generado:", deviceId);
-      
-      // Guardar en localStorage para reutilizarlo
-      localStorage.setItem(STORAGE_KEY, deviceId);
-      
-      return deviceId;
+      return fallbackId;
     } catch (error) {
       console.error("❌ Error obteniendo device_id:", error);
-      // Fallback: generar un ID temporal
-      const fallbackId = `temp-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
-      return fallbackId;
+      // Fallback: generar un ID temporal (no persistente)
+      return `temp-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
     }
   }, []);
 
@@ -133,7 +86,7 @@ export default function ReferralPage() {
 
     try {
       console.log("🔄 Intentando guardar código en backend:", code);
-      const deviceId = await getDeviceId();
+      const deviceId = getDeviceId();
       console.log("📱 Device ID:", deviceId);
 
       const payload = {
