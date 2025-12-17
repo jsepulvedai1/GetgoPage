@@ -27,23 +27,19 @@ export default function ReferralPage() {
   const appStoreUrl = "https://apps.apple.com/app/id6748690795";
 
   // Generar fingerprint del dispositivo (usando useCallback para evitar recrear la función)
+  // IMPORTANTE: Este método debe coincidir con el usado en la app móvil
   const getDeviceFingerprint = useCallback((): string => {
     if (typeof window === "undefined") return "";
     
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
-    if (ctx) {
-      ctx.textBaseline = "top";
-      ctx.font = "14px Arial";
-      ctx.fillText("Device fingerprint", 2, 2);
-    }
-
+    // Usar propiedades estables que se pueden replicar en la app móvil
+    // Orden: userAgent, language, screen size, timezone, device properties, CPU cores
     const fingerprint = [
       navigator.userAgent,
       navigator.language,
       screen.width + "x" + screen.height,
       new Date().getTimezoneOffset().toString(),
-      canvas.toDataURL(),
+      // Reemplazo de canvas.toDataURL() con propiedades estables del dispositivo
+      [navigator.platform, navigator.vendor, screen.colorDepth, navigator.maxTouchPoints || 0].join("_"),
       navigator.hardwareConcurrency?.toString() || "",
     ].join("|");
 
