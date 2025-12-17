@@ -75,9 +75,9 @@ export default function ReferralPage() {
         timestamp: Date.now(),
       };
 
-      console.log("📤 Enviando POST a /api/save-referral-code con:", payload);
+      console.log("📤 Enviando POST a /api/v1/save-referral-code/ con:", payload);
 
-      const response = await fetch("https://getgo-page-h84g.vercel.app/api/save-referral-code", {
+      const response = await fetch("https://prod.getgoapp.com/api/v1/save-referral-code/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -264,7 +264,7 @@ export default function ReferralPage() {
         
         console.log(`📱 La app puede recuperar este código desde:`);
         console.log(`   - localStorage: getgo_referral_code`);
-        console.log(`   - Backend API: /api/save-referral-code?device_id=...`);
+        console.log(`   - Backend API: https://prod.getgoapp.com/api/v1/save-referral-code/?device_id=...`);
         console.log(`   - Página web: https://getgo-page-h84g.vercel.app/get-referral-code`);
       } catch (error) {
         console.error("❌ Error guardando código en localStorage:", error);
