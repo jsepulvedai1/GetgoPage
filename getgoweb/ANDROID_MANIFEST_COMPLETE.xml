@@ -1,0 +1,137 @@
+<!-- 
+    📋 VERSIÓN COMPLETA CORREGIDA DEL AndroidManifest.xml
+    
+    Cambios realizados:
+    1. ✅ Agregado android:autoVerify="true" al intent-filter de getgo-page-h84g.vercel.app
+    2. ⚠️ Comentados los intent-filter sin autoVerify (opcional, puedes descomentarlos si los necesitas)
+    3. ✅ El intent-filter con autoVerify está activo y apunta al dominio correcto
+-->
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
+    <queries>
+        <!-- WhatsApp (normal y Business) -->
+        <package android:name="com.whatsapp" />
+        <package android:name="com.whatsapp.w4b" />
+
+        <!-- Permite consultar handlers del scheme whatsapp:// -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="whatsapp" />
+        </intent>
+
+        <!-- (opcional) Fallback a wa.me en navegador -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" />
+        </intent>
+    </queries>
+
+    <application
+        android:label="Getgo"
+        android:icon="@mipmap/ic_launcher"
+        android:usesCleartextTraffic="true"
+        android:enableOnBackInvokedCallback="true"
+        android:name="com.getgoapp.pasajero.MainApplication">
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="getgo_channel" />
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:theme="@style/LaunchTheme"
+            android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|locale|layoutDirection|fontScale|density|uiMode"
+            android:windowSoftInputMode="adjustResize">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            
+            <!-- 
+                ✅ APP LINKS CON autoVerify="true" (PRODUCCIÓN)
+                Este es el que DEBE estar activo para App Links verificados
+                Requiere que assetlinks.json esté configurado correctamente
+            -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="https"
+                    android:host="getgo-page-h84g.vercel.app"
+                    android:pathPrefix="/refer" />
+            </intent-filter>
+
+            <!-- 
+                ⚠️ OPCIONAL: Intent-filters SIN autoVerify (para desarrollo/fallback)
+                Estos funcionan pero mostrarán un diálogo para elegir navegador/app
+                Descomenta solo si necesitas soportar estos dominios sin verificación
+            -->
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="https"
+                    android:host="www.getgo.cl"
+                    android:pathPrefix="/refer" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="https"
+                    android:host="getgoapp.cl"
+                    android:pathPrefix="/refer" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="https"
+                    android:host="getgoapp.com"
+                    android:pathPrefix="/refer" />
+            </intent-filter>
+            -->
+            
+            <meta-data
+                android:name="io.flutter.embedding.android.SplashScreenDrawable"
+                android:resource="@drawable/launch_background" />
+        </activity>
+
+        <service
+            android:name="id.flutter.flutter_background_service.BackgroundService"
+            android:exported="false"
+            android:foregroundServiceType="location"
+            tools:replace="android:exported" />
+
+        <meta-data
+            android:name="flutterEmbedding"
+            android:value="2" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyB985z0U9nO1LXSrpnn4qwnbDAe-7opBHI" />
+
+    </application>
+
+</manifest>
+

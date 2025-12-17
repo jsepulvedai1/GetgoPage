@@ -33,9 +33,19 @@ export default function ReferralPage() {
       const urlParams = new URLSearchParams(window.location.search);
       let code = urlParams.get("code") || "N/A";
       
-      // Si no hay código en la URL, intentar recuperarlo de localStorage
-      // (útil cuando el usuario vuelve después de instalar la app)
-      if (code === "N/A") {
+      // IMPORTANTE: SIEMPRE guardar el código en localStorage cuando hay uno en la URL
+      // Esto asegura que no se pierda aunque la app se abra o redirija a la tienda
+      if (code !== "N/A") {
+        try {
+          localStorage.setItem("getgo_referral_code", code);
+          localStorage.setItem("getgo_referral_timestamp", Date.now().toString());
+          console.log(`✅ Código guardado en localStorage desde URL: ${code}`);
+        } catch (error) {
+          console.error("❌ Error guardando código en localStorage:", error);
+        }
+      } else {
+        // Si no hay código en la URL, intentar recuperarlo de localStorage
+        // (útil cuando el usuario vuelve después de instalar la app)
         try {
           const storedCode = localStorage.getItem("getgo_referral_code");
           const storedTimestamp = localStorage.getItem("getgo_referral_timestamp");
@@ -47,25 +57,16 @@ export default function ReferralPage() {
             
             if (age < maxAge) {
               code = storedCode;
-              console.log(`Código recuperado de localStorage: ${code}`);
+              console.log(`✅ Código recuperado de localStorage: ${code}`);
             } else {
               // Código expirado, limpiar
               localStorage.removeItem("getgo_referral_code");
               localStorage.removeItem("getgo_referral_timestamp");
-              console.log("Código en localStorage expirado, limpiado");
+              console.log("⏰ Código en localStorage expirado, limpiado");
             }
           }
         } catch (error) {
-          console.error("Error leyendo localStorage:", error);
-        }
-      } else {
-        // Si hay código en la URL, guardarlo en localStorage
-        try {
-          localStorage.setItem("getgo_referral_code", code);
-          localStorage.setItem("getgo_referral_timestamp", Date.now().toString());
-          console.log(`Código guardado en localStorage desde URL: ${code}`);
-        } catch (error) {
-          console.error("Error guardando código en localStorage:", error);
+          console.error("❌ Error leyendo localStorage:", error);
         }
       }
       
@@ -164,20 +165,25 @@ export default function ReferralPage() {
 
   const redirectToStore = () => {
     if (appOpenedRef.current) {
-      console.log("App already opened, skipping store redirect");
+      console.log("✅ App already opened, skipping store redirect");
+      console.log(`💾 Código ya guardado en localStorage: ${referralCode}`);
       return;
     }
 
     // IMPORTANTE: Guardar el código en localStorage ANTES de redirigir
     // Esto permite que la app lo recupere después de la instalación
+    // (Aunque ya debería estar guardado, lo guardamos de nuevo por seguridad)
     if (typeof window !== "undefined" && referralCode !== "N/A") {
       try {
         localStorage.setItem("getgo_referral_code", referralCode);
         localStorage.setItem("getgo_referral_timestamp", Date.now().toString());
-        console.log(`Código guardado en localStorage: ${referralCode}`);
+        console.log(`💾 Código guardado en localStorage antes de redirigir a tienda: ${referralCode}`);
+        console.log(`📱 La app puede recuperar este código desde: https://getgo-page-h84g.vercel.app/get-referral-code`);
       } catch (error) {
-        console.error("Error guardando código en localStorage:", error);
+        console.error("❌ Error guardando código en localStorage:", error);
       }
+    } else {
+      console.warn("⚠️ No hay código de referido para guardar");
     }
 
     setShowLoading(true);
@@ -245,17 +251,34 @@ export default function ReferralPage() {
         console.log(`Already on ${deeplinkDomain} domain, waiting for app to open or redirecting to store`);
         deeplinkAttemptedRef.current = true;
         
+        // IMPORTANTE: Guardar código ANTES de esperar (por si acaso)
+        // Esto asegura que el código esté guardado incluso si la app se abre rápidamente
+        if (typeof window !== "undefined" && referralCode !== "N/A") {
+          try {
+            localStorage.setItem("getgo_referral_code", referralCode);
+            localStorage.setItem("getgo_referral_timestamp", Date.now().toString());
+            console.log(`✅ Código guardado en localStorage (preventivo): ${referralCode}`);
+          } catch (error) {
+            console.error("❌ Error guardando código en localStorage:", error);
+          }
+        }
+        
         // Para iOS: Universal Links pueden tardar más en abrir la app
         // Para Android: App Links verificados abren instantáneamente, pero no verificados pueden tardar
-        const timeoutDuration = platform === "ios" ? 3000 : 2500; // iOS necesita más tiempo
+        // Aumentamos el timeout para dar más tiempo, especialmente si App Links no están verificados
+        const timeoutDuration = platform === "ios" ? 4000 : 3500; // Más tiempo para ambos
+        
+        console.log(`⏳ Esperando ${timeoutDuration}ms para ver si la app se abre...`);
         
         // Esperar un momento para ver si la app se abre
         timeoutRef.current = setTimeout(() => {
           if (!appOpenedRef.current) {
             console.log("⏱️ Timeout reached, app did not open, redirecting to store...");
+            console.log(`💾 Código ya guardado en localStorage: ${referralCode}`);
             redirectToStore();
           } else {
             console.log("✅ App opened successfully, not redirecting to store");
+            console.log(`💾 Código guardado en localStorage: ${referralCode}`);
           }
         }, timeoutDuration);
         
