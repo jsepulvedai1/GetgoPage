@@ -280,24 +280,21 @@ export default function Home() {
       </section>
 
       {/* QR Section */}
-      <section className="px-6 md:px-12 py-16 flex flex-col md:flex-row items-center gap-12">
-        <div className="w-full md:w-1/2 text-center md:md:justify-center">
+      <section className="px-6 md:px-12 py-16 flex flex-col items-center gap-12 bg-white">
+        <div className="w-full text-center">
           <h3 className="text-2xl md:text-5xl font-bold bg-[#f7da3a] text-[#000080] px-6 py-2 inline-block uppercase ">
             Descarga Nuestra App
           </h3>
-          <p className="text-lg md:text-xl text-[#000080] mt-4 max-w-lg mx-auto md:justify-center ">
-            Descargala ahora y comienza a disfrutar de todas sus ventajas.
+          <p className="text-lg md:text-xl text-[#000080] mt-4 max-w-2xl mx-auto">
+            Elige tu perfil y comienza a disfrutar de todas las ventajas de GetGo.
             <br />
-            <span className="text-xl font-bold italic max-w-lg mx-auto whitespace-nowrap">
-              {" "}
-              ¡Tu viaje empieza aqui!
+            <span className="text-xl font-bold italic whitespace-nowrap">
+              ¡Tu viaje empieza aquí!
             </span>
           </p>
         </div>
-        <div className="hidden md:block ">
-          <StoreButtons />
-        </div>
-        <div className="block md:hidden ">
+        
+        <div className="w-full max-w-4xl">
           <StoreButtons />
         </div>
       </section>
