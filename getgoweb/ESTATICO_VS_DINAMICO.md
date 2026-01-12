@@ -193,3 +193,5 @@ Vercel ejecutará el build y las rutas API funcionarán como serverless function
 - ✅ Más rápido y barato
 - ✅ Para desarrollo local, usa `npm run dev`
 
+
+

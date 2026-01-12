@@ -208,3 +208,5 @@ curl https://getgo-page-h84g.vercel.app/.well-known/apple-app-site-association |
    - iOS verifica al instalar la app
    - Reinstala la app si es necesario
 
+
+

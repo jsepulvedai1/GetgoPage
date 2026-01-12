@@ -67,3 +67,5 @@ curl -X POST https://getgo-page-h84g.vercel.app/api/save-referral-code \
 
 Esto es **comportamiento esperado** de Next.js con `output: "export"`.
 
+
+

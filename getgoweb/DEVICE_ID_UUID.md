@@ -166,3 +166,5 @@ Future<String> getDeviceId() async {
 
 Pero para la mayoría de casos, el UUID simple es suficiente y más confiable.
 
+
+

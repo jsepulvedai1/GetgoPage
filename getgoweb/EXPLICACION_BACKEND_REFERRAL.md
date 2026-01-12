@@ -507,3 +507,5 @@ curl "https://getgo-page-h84g.vercel.app/api/save-referral-code?device_id=test-d
 
 **Ventaja principal:** El código persiste incluso si el usuario cambia de navegador o borra el cache, siempre que el fingerprint del dispositivo sea el mismo.
 
+
+

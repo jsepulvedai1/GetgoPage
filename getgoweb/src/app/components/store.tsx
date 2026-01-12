@@ -5,7 +5,7 @@ const StoreButtons = () => {
     <div className="flex flex-col items-center justify-center w-full gap-4 mt-6 sm:flex-row sm:gap-6">
       {/* Botón de App Store */}
       <a
-        href="https://www.apple.com/app-store/"
+        href="https://getgoapp.onelink.me/oZ2Z/tfis2x64"
         target="_blank"
         rel="noopener noreferrer"
         className="w-50 sm:w-48 md:w-60 lg:w-100 transition-transform hover:scale-105" // Ajusta tamaños aquí
@@ -21,7 +21,7 @@ const StoreButtons = () => {
 
       {/* Botón de Google Play */}
       <a
-        href="https://play.google.com/store"
+        href="https://getgoapp.onelink.me/oZ2Z/tfis2x64"
         target="_blank"
         rel="noopener noreferrer"
         className="w-65 sm:w-48 md:w-60 lg:w-100 transition-transform hover:scale-105"

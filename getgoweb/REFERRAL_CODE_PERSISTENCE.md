@@ -187,3 +187,5 @@ Cuando el usuario instala la app desde la tienda:
 - [iOS WKWebView - JavaScript Evaluation](https://developer.apple.com/documentation/webkit/wkwebview)
 - [localStorage API](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
 
+
+

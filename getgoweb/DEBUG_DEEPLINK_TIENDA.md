@@ -168,3 +168,5 @@ curl -I https://getgo-page-h84g.vercel.app/.well-known/assetlinks.json
 - Ver `DEBUG_APP_DETECTION.md` para más detalles de detección
 - Ver `ANDROID_APP_LINKS_DIAGNOSTIC.md` para comandos de diagnóstico
 
+
+

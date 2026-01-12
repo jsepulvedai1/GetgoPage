@@ -271,3 +271,5 @@ Si los fingerprints son iguales, los device_id deberían coincidir.
 - Para mayor estabilidad, considera usar solo las primeras 4 propiedades (sin IP)
 - El hash es determinístico: mismas propiedades = mismo device_id
 
+
+

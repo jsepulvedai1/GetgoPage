@@ -166,3 +166,5 @@ curl https://getgoapp.cl/.well-known/apple-app-site-association
 6. ✅ Configurar Associated Domains en Xcode
 
 
+
+

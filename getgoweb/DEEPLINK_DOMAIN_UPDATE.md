@@ -86,3 +86,5 @@ curl -I https://getgo-page-h84g.vercel.app/refer?code=TEST123
 
 Los archivos `.well-known` en `public/.well-known/` **NO necesitan cambios** porque no especifican el dominio - solo especifican los paths y la configuración de la app. Los deeplinks funcionarán con cualquier dominio siempre que los archivos `.well-known` estén accesibles en ese dominio.
 
+
+

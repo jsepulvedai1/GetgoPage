@@ -278,3 +278,5 @@ print('Device ID: $deviceId');
 - Ambos usarán el mismo ID para el mismo dispositivo
 - Si el usuario abre el link directamente en el navegador (sin app), se generará un UUID temporal
 
+
+

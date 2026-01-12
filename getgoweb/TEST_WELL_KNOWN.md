@@ -318,3 +318,5 @@ Cuando todo funciona correctamente:
    - App se abre automáticamente
    - Sin opción de abrir en Safari
 
+
+

@@ -175,3 +175,5 @@ adb shell am start -a android.intent.action.VIEW \
 
 He creado `ANDROID_MANIFEST_CORREGIDO.xml` con la versión completa corregida. Úsalo como referencia.
 
+
+

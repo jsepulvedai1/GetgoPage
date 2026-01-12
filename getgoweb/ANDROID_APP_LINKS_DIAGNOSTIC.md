@@ -210,3 +210,5 @@ adb shell am start -a android.intent.action.VIEW \
 - **Puedes forzar re-verificación** con `pm verify-app-links --re-verify`
 - **El SHA256 debe coincidir exactamente** (sin espacios, con dos puntos)
 
+
+

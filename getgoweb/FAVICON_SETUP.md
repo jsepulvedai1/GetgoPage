@@ -127,3 +127,5 @@ El favicon de Vercel aparece porque:
 Después de actualizar y redesplegar, deberías ver tu logo.
 
 
+
+

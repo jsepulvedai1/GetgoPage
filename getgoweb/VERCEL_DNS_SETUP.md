@@ -109,3 +109,5 @@ Si tus deeplinks usan `getgoapp.cl`, entonces:
 - [Vercel - Adding a Custom Domain](https://vercel.com/docs/concepts/projects/domains/add-a-domain)
 - [Vercel - DNS Configuration](https://vercel.com/docs/concepts/projects/domains/dns-records)
 
+
+
