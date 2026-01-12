@@ -3,11 +3,11 @@ import Image from "next/image";
 const StoreButtons = () => {
   const storeLinks = {
     pasajero: {
-      apple: "https://apps.apple.com/cl/app/getgo-pasajero/id6737515437", // Link actual de pasajero Apple
+      apple: "https://apps.apple.com/cl/app/id6748690795", // Nuevo link App Store Pasajero
       google: "https://play.google.com/store/apps/details?id=com.getgoapp.pasajero", // Link actual de pasajero Android
     },
     conductor: {
-      apple: "https://apps.apple.com/cl/app/getgo-conductor/id6737516035", // Link Conductor Apple
+      apple: "https://apps.apple.com/cl/app/id6749026117", // Nuevo link App Store Conductor
       google: "https://play.google.com/store/apps/details?id=com.getgodriver", // Link Conductor Android
     }
   };
