@@ -63,10 +63,16 @@ export default function Home() {
       <br></br>
       <br></br>
       <section
-        className={`${montserrat.className} hidden md:block relative w-full h-[80vh] md:h-[70vh] flex items-center justify-start px-6 md:px-12 bg-cover bg-center`}
-        style={{ backgroundImage: "url('/images/im.png')" }}
+        className={`${montserrat.className} hidden md:block relative w-full h-[80vh] md:h-[70vh] flex items-center justify-start px-6 md:px-12`}
       >
-        <div className="w-full md:w-1/2 text-left flex justify-center pt-20 md:pt-32 ml-0">
+        <Image
+          src="/images/im.png"
+          alt="Background"
+          fill
+          priority
+          className="object-cover object-center"
+        />
+        <div className="relative w-full md:w-1/2 text-left flex justify-center pt-20 md:pt-32 ml-0 z-10">
           <motion.h2
             className="text-3xl md:text-4xl font-bold text-white leading-tight uppercase mb-6 drop-shadow-[2px_2px_4px_rgba(0,0,0,0.8)]"
             initial={{ opacity: 0, y: -50 }}
@@ -87,10 +93,16 @@ export default function Home() {
         </div>
       </section>
       <section
-        className={`${montserrat.className} block md:hidden relative w-full h-[80vh] md:h-[70vh] flex items-center justify-start px-6 md:px-12 bg-cover bg-center`}
-        style={{ backgroundImage: "url('/images/im5.png')" }}
+        className={`${montserrat.className} block md:hidden relative w-full h-[80vh] md:h-[70vh] flex items-center justify-start px-6 md:px-12`}
       >
-        <div className="w-full md:w-1/2 text-left flex justify-center pt-10 md:pt-40 ml-0">
+        <Image
+          src="/images/im5.png"
+          alt="Background Mobile"
+          fill
+          priority
+          className="object-cover object-center"
+        />
+        <div className="relative w-full md:w-1/2 text-left flex justify-center pt-10 md:pt-40 ml-0 z-10">
           <motion.h2
             className="text-xl md:text-5xl font-bold text-white leading-tight uppercase mb-6 drop-shadow-[2px_2px_4px_rgba(0,0,0,0.8)]"
             initial={{ opacity: 0, y: -50 }}
@@ -174,10 +186,13 @@ export default function Home() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <img
+          <Image
             src="/images/Icon-WhyGetGo-GetGo.gif"
             alt="GIF GetGo"
+            width={320}
+            height={320}
             className="w-full md:w-80 max-w-full h-auto"
+            unoptimized
           />
         </motion.div>
       </motion.section>
