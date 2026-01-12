@@ -57,7 +57,7 @@ export default function AboutUs() {
 
           <div className="relative">
             <Image
-              src="/images/imagebar_reverse.jpg"
+              src="/images/imagebar_reverse.webp"
               alt="Ciudad iluminada de noche"
               width={500}
               height={300}
@@ -66,7 +66,7 @@ export default function AboutUs() {
           </div>
           {/* <div className="relative">
             <Image
-              src="/images/imagebar.jpg"
+              src="/images/imagebar.webp"
               alt="Fotógrafa en coche"
               width={500}
               height={300}

@@ -66,7 +66,7 @@ export default function Home() {
         className={`${montserrat.className} hidden md:block relative w-full h-[80vh] md:h-[70vh] flex items-center justify-start px-6 md:px-12`}
       >
         <Image
-          src="/images/im.png"
+          src="/images/im.webp"
           alt="Background"
           fill
           priority

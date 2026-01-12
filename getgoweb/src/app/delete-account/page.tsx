@@ -15,13 +15,13 @@ export default function AboutUs() {
   // Cambia estas rutas cuando subas tus imágenes finales
   const gallery = [
     {
-      src: "/images/2.png", 
+      src: "/images/2.webp", 
       alt: "Pantalla de configuración de cuenta: opción Eliminar cuenta",
       w: 600,
       h: 600,
     },
     {
-      src: "/images/1.png",
+      src: "/images/1.webp",
       alt: "Confirmación final de eliminación de cuenta",
       w: 600,
       h: 650,
