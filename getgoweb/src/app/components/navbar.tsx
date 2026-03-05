@@ -46,6 +46,13 @@ const Navbar = () => {
             </li>
           </Link>
 
+          {/* Enlace "Recuperar GetGo Pass" */}
+          <Link href="/recover-getgo-pass">
+            <li className="hover:text-blue-400 cursor-pointer transition-all">
+              Recuperar Pass
+            </li>
+          </Link>
+
           {/* Enlace "Contáctanos" */}
           <li className="hover:text-blue-400 cursor-pointer transition-all">
             <a
