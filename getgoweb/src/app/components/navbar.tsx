@@ -46,10 +46,10 @@ const Navbar = () => {
             </li>
           </Link>
 
-          {/* Enlace "Recuperar GetGo Pass" */}
+          {/* Enlace "Recuperar GetGoPass" */}
           <Link href="/recover-getgo-pass">
             <li className="hover:text-blue-400 cursor-pointer transition-all">
-              Recuperar Getgo Pass
+              Recuperar GetGoPass
             </li>
           </Link>
 
