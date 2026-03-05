@@ -49,7 +49,7 @@ const Navbar = () => {
           {/* Enlace "Recuperar GetGo Pass" */}
           <Link href="/recover-getgo-pass">
             <li className="hover:text-blue-400 cursor-pointer transition-all">
-              Recuperar Pass
+              Recuperar Getgo Pass
             </li>
           </Link>
 
