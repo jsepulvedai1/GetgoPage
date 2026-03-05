@@ -68,7 +68,7 @@ export default function RecoverGetGoPass() {
           <div className="text-center mb-8">
             <h1 className="text-2xl md:text-3xl font-black text-[#000080] mb-3">Recuperar GetGo Pass</h1>
             <p className="text-gray-500 font-medium">
-              Ingresa tu correo electrónico y número telefónico asociados a tu cuenta para recibir instrucciones de recuperación.
+              Ingresa tu correo electrónico y número telefónico asociados a tu cuenta, posteriormente recibirás instrucciones del área de soporte para guiarte en la recuperación de tu GetgoPass.
             </p>
           </div>
 
@@ -147,7 +147,7 @@ export default function RecoverGetGoPass() {
                   <span className="animate-pulse">Procesando...</span>
                 ) : (
                   <>
-                    Recuperar Pass <Send size={18} />
+                  Recuperar Getgo Pass <Send size={18} />
                   </>
                 )}
               </button>
