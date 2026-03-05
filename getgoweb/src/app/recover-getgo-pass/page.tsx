@@ -81,7 +81,7 @@ export default function RecoverGetGoPass() {
               <CheckCircle className="w-12 h-12 text-green-500 mx-auto mb-4" />
               <h3 className="text-xl font-bold text-green-800 mb-2">¡Solicitud enviada!</h3>
               <p className="text-green-700 mb-6">
-                Hemos enviado las instrucciones a <strong>{email}</strong> y un SMS a tu número registrado.
+                Pronto uno de nuestros miembros se comunicará contigo para restablecer tu pass.
               </p>
               <button 
                 onClick={() => { setStatus("idle"); setEmail(""); setPhone(""); }}
