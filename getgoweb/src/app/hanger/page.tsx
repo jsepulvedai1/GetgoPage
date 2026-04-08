@@ -42,7 +42,7 @@ function HangerContent() {
     try {
       // Store original styles to restore them later
       const originalStyle = hangerRef.current.style.cssText;
-      
+
       // Force desktop dimensions for capture
       hangerRef.current.style.width = "1280px";
       hangerRef.current.style.minWidth = "1280px";
@@ -83,6 +83,17 @@ function HangerContent() {
       setIsDownloading(false);
     }
   };
+
+  // Helper to adjust font size and tracking based on code length
+  const getCodeStyles = (text: string) => {
+    const len = text.length;
+    if (len <= 5) return "text-7xl md:text-9xl tracking-widest";
+    if (len <= 6) return "text-6xl md:text-8xl tracking-wider";
+    if (len <= 7) return "text-5xl md:text-7xl tracking-wide";
+    return "text-4xl md:text-6xl tracking-normal";
+  };
+
+  const codeStyles = getCodeStyles(code);
 
   return (
     <div className={`${montserrat.className} flex flex-col items-center justify-center min-h-screen bg-[#e2f2f5] p-0 overflow-hidden relative`}>
@@ -135,12 +146,12 @@ function HangerContent() {
         <div className="relative z-10 w-full max-w-5xl mx-auto flex flex-col items-center pt-10 pb-24 px-6">
 
           {/* Header Section */}
-          <div className="flex flex-col items-center mb-10">
-            <div className="flex flex-wrap justify-center items-center gap-4 mb-4">
-              <h1 className="text-[#0a1d37] text-4xl md:text-7xl font-black uppercase tracking-tighter italic">
+          <div className="flex flex-col items-center mb-12 text-center w-full">
+            <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-4 mb-4 w-full px-4">
+              <h1 className="text-[#0a1d37] text-4xl md:text-7xl font-black uppercase tracking-tighter italic leading-none">
                 BIENVENIDO A
               </h1>
-              <div className="relative h-[60px] md:h-[90px] w-[200px] md:w-[280px]">
+              <div className="relative h-[60px] md:h-[95px] w-[220px] md:w-[320px] flex items-center justify-center">
                 <Image
                   src="/images/GetGo_Logotype.png"
                   alt="GetGo Logo"
@@ -150,7 +161,7 @@ function HangerContent() {
                 />
               </div>
             </div>
-            <h2 className="text-[#0a1d37] text-xl md:text-4xl font-extrabold uppercase tracking-[0.2em] mt-2 opacity-90">
+            <h2 className="text-[#0a1d37] text-xl md:text-4xl font-extrabold uppercase tracking-[0.2em] mt-4 opacity-90 leading-tight">
               TU NUEVA APP DE TRANSPORTE
             </h2>
           </div>
@@ -161,12 +172,13 @@ function HangerContent() {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5 }}
-              className="bg-white rounded-[50px] shadow-2xl p-12 text-center relative border-[10px] border-white ring-2 ring-[#0a1d37]/5"
+              className="bg-white rounded-[50px] shadow-2xl p-6 md:p-12 text-center relative border-[10px] border-white ring-2 ring-[#0a1d37]/5"
             >
-              <span className="text-7xl md:text-9xl font-black text-[#0a1d37] tracking-widest drop-shadow-sm">
+              <span className={`font-black text-[#0a1d37] drop-shadow-sm ${codeStyles}`}>
                 {code.toUpperCase()}
               </span>
             </motion.div>
+
 
             {/* Pointing Hand with Tooltip */}
 
@@ -190,9 +202,7 @@ function HangerContent() {
             {/* QR Conductor */}
             <div className="flex flex-col items-center md:w-1/4 group">
               <div className="bg-[#e91e63] text-white px-6 py-3 rounded-t-[25px] font-black uppercase text-sm flex items-center gap-3 shadow-lg w-full justify-center z-10 translate-y-2 group-hover:translate-y-0 transition-transform">
-                <div className="bg-white/20 rounded-full p-1.5 backdrop-blur-sm">
-                  <Image src="/images/GetGo_Logo.png" alt="GG" width={20} height={20} className="brightness-0 invert opacity-80" />
-                </div>
+
                 <span>GetGo Conductor</span>
               </div>
               <div className="bg-white p-6 rounded-[35px] shadow-2xl w-full flex items-center justify-center aspect-square border-[8px] border-[#e91e63] z-0">
@@ -203,9 +213,7 @@ function HangerContent() {
             {/* QR Pasajero */}
             <div className="flex flex-col items-center md:w-1/4 group">
               <div className="bg-[#e91e63] text-white px-6 py-3 rounded-t-[25px] font-black uppercase text-sm flex items-center gap-3 shadow-lg w-full justify-center z-10 translate-y-2 group-hover:translate-y-0 transition-transform">
-                <div className="bg-white/20 rounded-full p-1.5 backdrop-blur-sm">
-                  <Image src="/images/GetGo_Logo.png" alt="GG" width={20} height={20} className="brightness-0 invert opacity-80" />
-                </div>
+
                 <span>GetGo Pasajero</span>
               </div>
               <div className="bg-white p-6 rounded-[35px] shadow-2xl w-full flex items-center justify-center aspect-square border-[8px] border-[#e91e63] z-0">
@@ -217,21 +225,7 @@ function HangerContent() {
         </div>
 
         {/* Footer scrolling text animation */}
-        <div className="absolute bottom-0 w-full bg-[#0a1d37] py-4 z-30 border-t-2 border-[#e91e63]/30 overflow-hidden">
-          <motion.div
-            animate={{ x: [0, -1000] }}
-            transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
-            className="flex whitespace-nowrap gap-16 px-8"
-          >
-            {[...Array(10)].map((_, i) => (
-              <div key={i} className="flex items-center gap-8 text-white font-black text-xl uppercase italic tracking-wider">
-                <span className="text-[#e91e63] text-2xl">◆</span>
-                Usa, recomienda y gana
-                <span className="text-[#e91e63] text-2xl">◆</span>
-              </div>
-            ))}
-          </motion.div>
-        </div>
+
 
         {/* Absolute Pins */}
         <div className="absolute top-[20%] left-[10%] opacity-10 pointer-events-none">
