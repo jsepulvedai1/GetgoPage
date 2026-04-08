@@ -17,8 +17,6 @@ import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { useRef, useState } from "react";
 
-const GETGO_PINK = "#e91e63";
-const GETGO_NAVY = "#0a1d37";
 const GETGO_LIGHT = "#e2f2f5";
 
 function HangerContent() {

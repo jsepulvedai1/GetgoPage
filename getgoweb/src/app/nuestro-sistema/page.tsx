@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import { Montserrat } from "next/font/google";
 import Image from "next/image";
 import NavbarNuestroSistema from "./navbar-nuestro-sistema";

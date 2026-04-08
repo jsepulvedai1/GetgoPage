@@ -1,4 +1,4 @@
-/* eslint-disable react/no-unescaped-entities */
+import Image from "next/image";
 import { Montserrat } from "next/font/google";
 import NavbarNuestroSistema from "./navbar-nuestro-sistema";
 
@@ -698,7 +698,7 @@ export default function TerminosYCondiciones() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img
+                <Image
                   src={`/images/${social.name}.png`}
                   alt={social.name}
                   width={30}
