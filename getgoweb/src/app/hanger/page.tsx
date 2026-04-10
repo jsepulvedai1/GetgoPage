@@ -26,6 +26,7 @@ function HangerContent() {
   const af_sub1 = searchParams.get("af_sub1") || code;
 
   const [isDownloading, setIsDownloading] = useState(false);
+  const [isPrinting, setIsPrinting] = useState(false);
   const hangerRef = useRef<HTMLDivElement>(null);
 
   // URL construction based on user prompt
@@ -36,6 +37,7 @@ function HangerContent() {
     if (!hangerRef.current) return;
 
     setIsDownloading(true);
+    setIsPrinting(true);
 
     try {
       // Store original styles to restore them later
@@ -47,7 +49,7 @@ function HangerContent() {
       hangerRef.current.style.position = "absolute"; // Take out of flow to avoid layout breaks
       hangerRef.current.style.left = "-9999px"; // Hide it during capture
 
-      // Small delay to ensure any layout shifts are settled
+      // Small delay to ensure any layout shifts and state changes are settled
       await new Promise(resolve => setTimeout(resolve, 800));
 
       const canvas = await html2canvas(hangerRef.current, {
@@ -79,6 +81,7 @@ function HangerContent() {
       alert("Hubo un error al generar el PDF. Por favor intenta de nuevo.");
     } finally {
       setIsDownloading(false);
+      setIsPrinting(false);
     }
   };
 
@@ -145,11 +148,11 @@ function HangerContent() {
 
           {/* Header Section */}
           <div className="flex flex-col items-center mb-12 text-center w-full">
-            <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-4 mb-4 w-full px-4">
-              <h1 className="text-[#0a1d37] text-4xl md:text-7xl font-black uppercase tracking-tighter italic leading-none">
+            <div className={`flex flex-wrap justify-center items-center gap-x-6 gap-y-4 mb-4 w-full px-4 ${isPrinting ? "flex-row" : ""}`}>
+              <h1 className={`text-[#0a1d37] font-black uppercase tracking-tighter italic leading-none ${isPrinting ? "text-7xl" : "text-4xl md:text-7xl"}`}>
                 BIENVENIDO A
               </h1>
-              <div className="relative h-[60px] md:h-[95px] w-[220px] md:w-[320px] flex items-center justify-center">
+              <div className={`relative flex items-center justify-center ${isPrinting ? "h-[95px] w-[320px]" : "h-[60px] md:h-[95px] w-[220px] md:w-[320px]"}`}>
                 <Image
                   src="/images/GetGo_Logotype.png"
                   alt="GetGo Logo"
@@ -159,7 +162,7 @@ function HangerContent() {
                 />
               </div>
             </div>
-            <h2 className="text-[#0a1d37] text-xl md:text-4xl font-extrabold uppercase tracking-[0.2em] mt-4 opacity-90 leading-tight">
+            <h2 className={`text-[#0a1d37] font-extrabold uppercase tracking-[0.2em] mt-4 opacity-90 leading-tight ${isPrinting ? "text-4xl" : "text-xl md:text-4xl"}`}>
               TU NUEVA APP DE TRANSPORTE
             </h2>
           </div>
@@ -170,9 +173,9 @@ function HangerContent() {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5 }}
-              className="bg-white rounded-[50px] shadow-2xl p-6 md:p-12 text-center relative border-[10px] border-white ring-2 ring-[#0a1d37]/5"
+              className={`bg-white rounded-[50px] shadow-2xl text-center relative border-[10px] border-white ring-2 ring-[#0a1d37]/5 ${isPrinting ? "p-12" : "p-6 md:p-12"}`}
             >
-              <span className={`font-black text-[#0a1d37] drop-shadow-sm ${codeStyles}`}>
+              <span className={`font-black text-[#0a1d37] drop-shadow-sm ${isPrinting ? getCodeStyles(code).replace("text-7xl ", "").replace("md:", "") : codeStyles}`}>
                 {code.toUpperCase()}
               </span>
             </motion.div>
@@ -183,10 +186,10 @@ function HangerContent() {
           </div>
 
           {/* QR Codes Section */}
-          <div className="flex flex-col md:flex-row gap-8 w-full justify-center items-stretch">
+          <div className={`flex gap-8 w-full justify-center items-stretch ${isPrinting ? "flex-row mt-8" : "flex-col md:flex-row"}`}>
 
             {/* Available On Section */}
-            <div className="bg-[#e91e63] rounded-[40px] p-10 flex flex-col justify-center items-center gap-8 shadow-2xl text-white md:w-1/3 relative overflow-hidden group">
+            <div className={`bg-[#e91e63] rounded-[40px] p-10 flex flex-col justify-center items-center gap-8 shadow-2xl text-white relative overflow-hidden group ${isPrinting ? "w-1/3" : "md:w-1/3"}`}>
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl group-hover:bg-white/20 transition-all" />
               <h3 className="text-4xl font-black uppercase text-center leading-[0.9] tracking-tighter italic">
                 Disponible en
@@ -198,9 +201,8 @@ function HangerContent() {
             </div>
 
             {/* QR Conductor */}
-            <div className="flex flex-col items-center md:w-1/4 group">
+            <div className={`flex flex-col items-center group ${isPrinting ? "w-1/4" : "md:w-1/4"}`}>
               <div className="bg-[#e91e63] text-white px-6 py-3 rounded-t-[25px] font-black uppercase text-sm flex items-center gap-3 shadow-lg w-full justify-center z-10 translate-y-2 group-hover:translate-y-0 transition-transform">
-
                 <span>GetGo Conductor</span>
               </div>
               <div className="bg-white p-6 rounded-[35px] shadow-2xl w-full flex items-center justify-center aspect-square border-[8px] border-[#e91e63] z-0">
@@ -209,9 +211,8 @@ function HangerContent() {
             </div>
 
             {/* QR Pasajero */}
-            <div className="flex flex-col items-center md:w-1/4 group">
+            <div className={`flex flex-col items-center group ${isPrinting ? "w-1/4" : "md:w-1/4"}`}>
               <div className="bg-[#e91e63] text-white px-6 py-3 rounded-t-[25px] font-black uppercase text-sm flex items-center gap-3 shadow-lg w-full justify-center z-10 translate-y-2 group-hover:translate-y-0 transition-transform">
-
                 <span>GetGo Pasajero</span>
               </div>
               <div className="bg-white p-6 rounded-[35px] shadow-2xl w-full flex items-center justify-center aspect-square border-[8px] border-[#e91e63] z-0">
