@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import QRCode from "react-qr-code";
 import { Montserrat } from "next/font/google";
-import { motion } from "framer-motion";
+
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -26,18 +26,17 @@ function HangerContent() {
   const af_sub1 = searchParams.get("af_sub1") || code;
 
   const [isDownloading, setIsDownloading] = useState(false);
-  const [isPrinting, setIsPrinting] = useState(false);
+
   const hangerRef = useRef<HTMLDivElement>(null);
 
   // URL construction based on user prompt
-  const driverUrl = `https://getgoappdriver.onelink.me/x3KZ/mu3pnam9?af_sub1=${af_sub1}&code=${code}&referral_code=${referral_code}`;
   const passengerUrl = `https://getgoapp.onelink.me/oZ2Z/tfis2x64?af_sub1=${af_sub1}&code=${code}&referral_code=${referral_code}`;
 
   const downloadAsPDF = async () => {
     if (!hangerRef.current) return;
 
     setIsDownloading(true);
-    setIsPrinting(true);
+    setIsDownloading(true);
 
     try {
       // Store original styles to restore them later
@@ -81,20 +80,9 @@ function HangerContent() {
       alert("Hubo un error al generar el PDF. Por favor intenta de nuevo.");
     } finally {
       setIsDownloading(false);
-      setIsPrinting(false);
     }
   };
 
-  // Helper to adjust font size and tracking based on code length
-  const getCodeStyles = (text: string) => {
-    const len = text.length;
-    if (len <= 5) return "text-7xl md:text-9xl tracking-widest";
-    if (len <= 6) return "text-6xl md:text-8xl tracking-wider";
-    if (len <= 7) return "text-5xl md:text-7xl tracking-wide";
-    return "text-4xl md:text-6xl tracking-normal";
-  };
-
-  const codeStyles = getCodeStyles(code);
 
   return (
     <div className={`${montserrat.className} flex flex-col items-center justify-center min-h-screen bg-[#001438] p-0 overflow-hidden relative`}>
