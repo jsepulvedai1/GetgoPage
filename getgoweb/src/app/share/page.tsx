@@ -1,12 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 export default function SharePage() {
-  const [redirecting, setRedirecting] = useState(true);
-
   useEffect(() => {
     // Intentar redirigir automáticamente a la tienda de apps
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const userAgent = navigator.userAgent || navigator.vendor || (window as any).opera;
     
     // Configuración de enlaces
@@ -14,6 +13,7 @@ export default function SharePage() {
     const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.getgoapp.pasajero';
     const fallbackUrl = 'https://www.getgo.cl';
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     if (/iPad|iPhone|iPod/.test(userAgent) && !(window as any).MSStream) {
       // Es iOS
       window.location.href = appStoreUrl;
