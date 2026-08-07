@@ -2,71 +2,174 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { Menu } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, Sparkles } from "lucide-react";
 import ContactForm from "../contact-us/contact-us-form";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false); // Estado para el menú de navegación
-  const [isFormOpen, setIsFormOpen] = useState(false); // Estado para
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isFormOpen, setIsFormOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isHome = pathname === "/";
 
   return (
-    <header className="fixed top-0 left-0 w-full flex justify-between items-center px-6 md:px-10 py-3 bg-white/80 backdrop-blur-xl text-[#000080] z-50 border-b border-blue-100/60 shadow-sm transition-all duration-300">
-      {/* Logo */}
-      <Link href="/">
-        <Image
-          src="/images/GetGo_Logotype.png"
-          alt="GetGo Logo"
-          width={180}
-          height={80}
-          className="w-28 md:w-40 lg:w-44 h-auto min-w-[120px] md:min-w-[160px] hover:scale-105 transition-transform"
-        />
-      </Link>
+    <header className="fixed top-0 left-0 w-full bg-white/85 backdrop-blur-xl z-50 border-b border-blue-100/60 shadow-sm transition-all duration-300">
+      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2 group">
+          <Image
+            src="/images/GetGo_Logotype.png"
+            alt="GetGo Logo"
+            width={160}
+            height={50}
+            className="w-32 sm:w-40 h-auto group-hover:scale-105 transition-transform duration-200"
+            priority
+          />
+        </Link>
 
-      {/* Mobile Menu Button */}
-      <button
-        type="button"
-        className="md:hidden p-2 rounded-lg text-[#000080] hover:text-[#db2392] hover:bg-blue-50 transition-colors"
-        onClick={() => setIsOpen(!isOpen)}
-        aria-label="Toggle Menu"
-      >
-        <Menu size={28} />
-      </button>
-
-      {/* Navigation Links */}
-      <nav
-        className={`${
-          isOpen ? "flex" : "hidden"
-        } md:flex flex-col md:flex-row absolute md:static top-16 left-0 w-full md:w-auto bg-white/95 md:bg-transparent backdrop-blur-xl md:backdrop-blur-none p-6 md:p-0 shadow-lg md:shadow-none border-b md:border-none border-blue-100`}
-      >
-        <ul className="flex flex-col md:flex-row gap-4 md:gap-8 text-sm md:text-base font-bold text-[#000080] items-center">
-          {/* Enlace "Quienes Somos" */}
-          <Link href="/about-us">
-            <li className="hover:text-[#db2392] cursor-pointer transition-colors">
-              Quienes Somos
-            </li>
+        {/* Desktop Nav Links */}
+        <nav className="hidden md:flex items-center gap-8 text-sm font-bold text-[#000080]">
+          <Link 
+            href={isHome ? "#pasajeros" : "/#pasajeros"} 
+            className="hover:text-[#db2392] transition-colors flex items-center gap-1"
+          >
+            Pasajeros
+          </Link>
+          
+          <Link 
+            href="/conductores" 
+            className={`transition-colors flex items-center gap-1 ${pathname === "/conductores" ? "text-[#db2392]" : "hover:text-[#db2392]"}`}
+          >
+            Conductores
           </Link>
 
-          {/* Enlace "Recuperar GetGoPass" */}
-          <Link href="/recover-getgo-pass">
-            <li className="hover:text-[#db2392] cursor-pointer transition-colors">
-              Recuperar GetGoPass
-            </li>
+          <Link 
+            href={isHome ? "#referidos" : "/#referidos"} 
+            className="hover:text-[#db2392] transition-colors flex items-center gap-1"
+          >
+            Referidos <span className="bg-pink-100 text-[#db2392] text-[10px] px-2 py-0.5 rounded-full font-extrabold shadow-xs">Gana $</span>
           </Link>
 
-          {/* Enlace "Contáctanos" */}
-          <li className="hover:text-[#db2392] cursor-pointer transition-colors">
+          <Link 
+            href={isHome ? "#servicios" : "/#servicios"} 
+            className="hover:text-[#db2392] transition-colors"
+          >
+            Servicios
+          </Link>
+
+          <Link 
+            href="/about-us" 
+            className={`transition-colors ${pathname === "/about-us" ? "text-[#db2392]" : "hover:text-[#db2392]"}`}
+          >
+            Nosotros
+          </Link>
+        </nav>
+
+        {/* Download App Button & Contact */}
+        <div className="hidden md:flex items-center gap-4">
+          <button
+            onClick={() => setIsFormOpen(true)}
+            className="text-xs font-bold text-[#000080] hover:text-[#db2392] transition-colors"
+          >
+            Contacto
+          </button>
+
+          <Link 
+            href={isHome ? "#descargar" : "/#descargar"} 
+            className="bg-gradient-to-r from-[#db2392] to-[#ff46b0] hover:from-[#b81b7a] hover:to-[#db2392] text-white px-6 py-2.5 rounded-full text-sm font-black shadow-pink-glow hover:shadow-lg transition-all transform hover:-translate-y-0.5 flex items-center gap-2"
+          >
+            <Sparkles size={16} />
+            <span>Descargar app</span>
+          </Link>
+        </div>
+
+        {/* Mobile Menu Toggle */}
+        <button 
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="md:hidden p-2 text-[#000080] hover:text-[#db2392] rounded-xl hover:bg-blue-50 transition-colors"
+          aria-label="Menú principal"
+        >
+          {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
+        </button>
+      </div>
+
+      {/* Mobile Menu Dropdown */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-white/95 backdrop-blur-2xl border-b border-blue-100 px-6 py-6 flex flex-col gap-4 text-[#000080] font-bold shadow-xl"
+          >
+            <Link 
+              href={isHome ? "#pasajeros" : "/#pasajeros"} 
+              onClick={() => setMobileMenuOpen(false)} 
+              className="py-2 border-b border-gray-100"
+            >
+              Pasajeros
+            </Link>
+
+            <Link 
+              href="/conductores" 
+              onClick={() => setMobileMenuOpen(false)} 
+              className="py-2 border-b border-gray-100"
+            >
+              Conductores
+            </Link>
+
+            <Link 
+              href={isHome ? "#referidos" : "/#referidos"} 
+              onClick={() => setMobileMenuOpen(false)} 
+              className="py-2 border-b border-gray-100 flex justify-between items-center"
+            >
+              <span>Programa de Referidos</span>
+              <span className="bg-pink-100 text-[#db2392] text-xs px-2.5 py-0.5 rounded-full font-black">Gana $</span>
+            </Link>
+
+            <Link 
+              href={isHome ? "#servicios" : "/#servicios"} 
+              onClick={() => setMobileMenuOpen(false)} 
+              className="py-2 border-b border-gray-100"
+            >
+              Servicios
+            </Link>
+
+            <Link 
+              href="/about-us" 
+              onClick={() => setMobileMenuOpen(false)} 
+              className="py-2 border-b border-gray-100"
+            >
+              Nosotros
+            </Link>
+
             <button
-              onClick={() => setIsFormOpen(!isFormOpen)} // Abrir/cerrar el formulario
-              className="text-[#000080] hover:text-[#db2392] font-bold"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                setIsFormOpen(true);
+              }}
+              className="py-2 text-left border-b border-gray-100 text-[#000080]"
             >
               Contáctanos
             </button>
-          </li>
-        </ul>
 
-        {/* Componente ContactForm */}
-        <ContactForm isFormOpen={isFormOpen} setIsFormOpen={setIsFormOpen} />
-      </nav>
+            <Link 
+              href={isHome ? "#descargar" : "/#descargar"} 
+              onClick={() => setMobileMenuOpen(false)}
+              className="mt-2 bg-gradient-to-r from-[#db2392] to-[#ff46b0] text-white text-center py-3.5 rounded-full font-black shadow-md flex items-center justify-center gap-2"
+            >
+              <Sparkles size={18} />
+              <span>Descargar GetGo</span>
+            </Link>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Contact Form Modal */}
+      <ContactForm isFormOpen={isFormOpen} setIsFormOpen={setIsFormOpen} />
     </header>
   );
 };

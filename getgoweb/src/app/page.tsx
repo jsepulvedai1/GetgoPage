@@ -1,25 +1,20 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Star, 
-  ChevronRight, 
-  ChevronLeft, 
-  ShieldCheck, 
-  Wallet, 
-  Headphones, 
-  Smartphone, 
-  UserPlus, 
-  Car, 
-  Gift, 
-  TrendingUp, 
-  Menu,
-  X,
+import { motion } from "framer-motion";
+import {
+  ChevronRight,
+  ChevronLeft,
+  ShieldCheck,
+  Wallet,
+  Headphones,
+  Smartphone,
+  UserPlus,
+  Car,
+  Gift,
+  TrendingUp,
   Sparkles,
-  MapPin,
   Share2,
   Coins
 } from "lucide-react";
@@ -27,8 +22,6 @@ import {
 export default function Home() {
   const [friendsCount, setFriendsCount] = useState(15);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [selectedVehicle, setSelectedVehicle] = useState<'car' | 'comfort'>('car');
 
   const estimatedEarnings = friendsCount * 2500;
 
@@ -71,103 +64,23 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#f4f9fd] text-slate-900 font-sans selection:bg-pink-100 selection:text-[#db2392]">
-      
-      {/* NAVBAR GLASS HEADER */}
-      <header className="fixed top-0 left-0 w-full bg-white/80 backdrop-blur-xl z-50 border-b border-blue-100/60 shadow-sm transition-all duration-300">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <Image
-              src="/images/GetGo_Logotype.png"
-              alt="GetGo Logo"
-              width={160}
-              height={50}
-              className="w-32 sm:w-40 h-auto group-hover:scale-105 transition-transform duration-200"
-              priority
-            />
-          </Link>
 
-          {/* Desktop Nav Links */}
-          <nav className="hidden md:flex items-center gap-8 text-sm font-semibold text-[#000080]">
-            <a href="#pasajeros" className="hover:text-[#db2392] transition-colors flex items-center gap-1">
-              Pasajeros
-            </a>
-            <a href="#conductores" className="hover:text-[#db2392] transition-colors flex items-center gap-1">
-              Conductores
-            </a>
-            <a href="#referidos" className="hover:text-[#db2392] transition-colors flex items-center gap-1">
-              Referidos <span className="bg-pink-100 text-[#db2392] text-[10px] px-2 py-0.5 rounded-full font-bold">Gana $</span>
-            </a>
-            <a href="#servicios" className="hover:text-[#db2392] transition-colors">Servicios</a>
-            <a href="/about-us" className="hover:text-[#db2392] transition-colors">Nosotros</a>
-          </nav>
 
-          {/* Download App Button */}
-          <div className="hidden md:flex items-center gap-3">
-            <a 
-              href="#descargar" 
-              className="bg-gradient-to-r from-[#db2392] to-[#ff46b0] hover:from-[#b81b7a] hover:to-[#db2392] text-white px-6 py-2.5 rounded-full text-sm font-bold shadow-pink-glow hover:shadow-lg transition-all transform hover:-translate-y-0.5 flex items-center gap-2"
-            >
-              <Sparkles size={16} />
-              <span>Descargar app</span>
-            </a>
-          </div>
-
-          {/* Mobile Menu Toggle */}
-          <button 
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-[#000080] hover:text-[#db2392] rounded-xl hover:bg-blue-50 transition-colors"
-            aria-label="Menú principal"
-          >
-            {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
-          </button>
-        </div>
-
-        {/* Mobile Dropdown */}
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <motion.div 
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-white/95 backdrop-blur-2xl border-b border-blue-100 px-6 py-6 flex flex-col gap-4 text-[#000080] font-semibold shadow-xl"
-            >
-              <a href="#pasajeros" onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-gray-100">Pasajeros</a>
-              <a href="#conductores" onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-gray-100">Conductores</a>
-              <a href="#referidos" onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-gray-100 flex justify-between items-center">
-                <span>Programa de Referidos</span>
-                <span className="bg-pink-100 text-[#db2392] text-xs px-2.5 py-0.5 rounded-full font-bold">Gana $</span>
-              </a>
-              <a href="#servicios" onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-gray-100">Servicios</a>
-              <a href="/about-us" onClick={() => setMobileMenuOpen(false)} className="py-2">Nosotros</a>
-              <a 
-                href="#descargar" 
-                onClick={() => setMobileMenuOpen(false)}
-                className="mt-2 bg-gradient-to-r from-[#db2392] to-[#ff46b0] text-white text-center py-3 rounded-full font-bold shadow-md flex items-center justify-center gap-2"
-              >
-                <Sparkles size={18} />
-                <span>Descargar GetGo</span>
-              </a>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </header>
 
       {/* HERO SECTION */}
       <section className="pt-32 pb-20 md:pt-40 md:pb-28 bg-gradient-to-b from-[#f4f9fd] via-[#eaf4fc] to-white relative overflow-hidden">
-        
+
         {/* Decorative Glowing Blobs */}
         <div className="absolute top-12 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-gradient-to-tr from-blue-300/30 via-pink-200/20 to-cyan-200/30 blur-[130px] rounded-full pointer-events-none"></div>
         <div className="absolute top-1/3 right-5 w-[350px] h-[350px] bg-[#db2392]/15 blur-[120px] rounded-full pointer-events-none animate-pulse"></div>
 
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
-          
+
           {/* Left Column Text */}
           <div className="lg:col-span-6 flex flex-col items-start text-left">
-            
+
             {/* Country Badge */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -178,7 +91,7 @@ export default function Home() {
             </motion.div>
 
             {/* Main Headline */}
-            <motion.h1 
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
@@ -188,7 +101,7 @@ export default function Home() {
             </motion.h1>
 
             {/* Description */}
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -198,42 +111,42 @@ export default function Home() {
             </motion.p>
 
             {/* Store Download Buttons */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              id="descargar" 
+              id="descargar"
               className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-8"
             >
-              
+
               {/* Google Play Button */}
-              <a 
+              <a
                 href={storeLinks.google}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-slate-950 hover:bg-slate-900 text-white px-6 py-3.5 rounded-2xl flex items-center justify-center gap-3.5 shadow-xl shadow-slate-950/15 hover:shadow-2xl transition-all transform hover:-translate-y-1 border border-slate-800 group"
               >
                 <svg viewBox="0 0 512 512" className="w-7 h-7 shrink-0 transition-transform group-hover:scale-110">
-                  <path fill="#EA4335" d="M26.4 17.5c-4 4.5-6.4 11.2-6.4 19.8v437.4c0 8.6 2.4 15.3 6.4 19.8l1.1 1.1L279.7 243.3 27.5 16.4l-1.1 1.1z"/>
-                  <path fill="#FBBC04" d="M363.8 327.4l-84.1-84.1v-3.7l84.1-84.1 1.1.6 99.7 56.7c28.5 16.2 28.5 42.7 0 58.9l-99.7 56.7-1.1-.6z"/>
-                  <path fill="#4285F4" d="M279.7 243.3L26.4 495.6c9.3 9.9 24.6 11.1 41.5 1.5l295.9-168.3-84.1-85.5z"/>
-                  <path fill="#34A853" d="M279.7 243.3L363.8 159 67.9 14.9C51 5.3 35.7 6.5 26.4 16.4l253.3 226.9z"/>
+                  <path fill="#EA4335" d="M26.4 17.5c-4 4.5-6.4 11.2-6.4 19.8v437.4c0 8.6 2.4 15.3 6.4 19.8l1.1 1.1L279.7 243.3 27.5 16.4l-1.1 1.1z" />
+                  <path fill="#FBBC04" d="M363.8 327.4l-84.1-84.1v-3.7l84.1-84.1 1.1.6 99.7 56.7c28.5 16.2 28.5 42.7 0 58.9l-99.7 56.7-1.1-.6z" />
+                  <path fill="#4285F4" d="M279.7 243.3L26.4 495.6c9.3 9.9 24.6 11.1 41.5 1.5l295.9-168.3-84.1-85.5z" />
+                  <path fill="#34A853" d="M279.7 243.3L363.8 159 67.9 14.9C51 5.3 35.7 6.5 26.4 16.4l253.3 226.9z" />
                 </svg>
                 <div className="flex flex-col text-left leading-tight">
                   <span className="text-[9px] text-slate-400 font-bold tracking-wider uppercase">DISPONIBLE EN</span>
                   <span className="text-base font-extrabold tracking-tight">Google Play</span>
                 </div>
               </a>
-              
+
               {/* App Store Button */}
-              <a 
+              <a
                 href={storeLinks.apple}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-slate-950 hover:bg-slate-900 text-white px-6 py-3.5 rounded-2xl flex items-center justify-center gap-3.5 shadow-xl shadow-slate-950/15 hover:shadow-2xl transition-all transform hover:-translate-y-1 border border-slate-800 group"
               >
-                <svg viewBox="0 0 170 170" className="w-7 h-7 fill-white shrink-0 transition-transform group-hover:scale-110">
-                  <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.34.13-9.14-1.9-14.4-6.07-3.69-3.04-7.69-7.85-12.01-14.43-5.26-8.02-9.4-16.92-12.43-26.7-3.03-9.78-4.55-19.14-4.55-28.08 0-12.74 3.09-23.32 9.27-31.75 6.18-8.43 14.07-12.7 23.68-12.83 4.58 0 9.56 1.15 14.94 3.44 5.38 2.29 9.17 3.44 11.37 3.44 1.95 0 5.8-1.22 11.55-3.66 5.75-2.44 10.66-3.57 14.73-3.39 10.29.5 18.73 4.3 25.32 11.4-9.15 5.53-13.62 13.15-13.41 22.86.21 7.64 3.12 14.15 8.73 19.53 5.61 5.38 12.38 8.43 20.31 9.15-1.95 5.66-4.37 11.27-7.26 16.83zM119.22 31.06c0-6.18 2.29-12.04 6.87-17.58 4.58-5.54 10.19-8.73 16.83-9.57.13.91.2 1.76.2 2.55 0 6.05-2.31 11.96-6.93 17.73-4.62 5.77-10.28 8.98-16.97 9.63-.07-.63-.1-1.2-.1-1.76z"/>
+                <svg viewBox="0 0 384 512" className="w-6 h-6 fill-white shrink-0 transition-transform group-hover:scale-110">
+                  <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-92.1zm-57.6-143.9c20.1-24.3 33.7-57.9 29.3-91.8-28.7 1.4-63.5 19.3-83.6 43-18 20.7-33.8 54.3-29.2 87.3 32 2.5 63.4-14.3 83.5-38.5z" />
                 </svg>
                 <div className="flex flex-col text-left leading-tight">
                   <span className="text-[9px] text-slate-400 font-bold tracking-wider uppercase">Consíguelo en el</span>
@@ -244,116 +157,37 @@ export default function Home() {
             </motion.div>
 
             {/* Ratings & Trust badge */}
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="flex items-center gap-3 bg-white/80 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-blue-100 shadow-sm"
-            >
-              <div className="flex text-[#f7da3a] gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={18} fill="currentColor" />
-                ))}
-              </div>
-              <span className="text-xs sm:text-sm font-extrabold text-[#000080]">
-                4.8 en Play Store y App Store
-              </span>
-            </motion.div>
+
 
           </div>
 
           {/* Right Column - Premium Smartphone Mockup & Floating Cards */}
           <div className="lg:col-span-6 relative flex justify-center items-center mt-8 lg:mt-0 min-h-[550px]">
-            
+
             {/* Ambient Shadow Ring */}
             <div className="absolute w-[300px] h-[500px] bg-gradient-to-b from-[#db2392]/20 to-[#000080]/30 rounded-[50px] blur-2xl transform rotate-3"></div>
 
             {/* Main Smartphone Graphic Frame */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 40, rotate: 0 }}
               animate={{ opacity: 1, y: 0, rotate: -2 }}
               transition={{ duration: 0.8, type: "spring" }}
-              className="relative z-10 w-[280px] sm:w-[325px] bg-[#000080] p-3.5 rounded-[50px] shadow-2xl border-4 border-blue-900/90 glow-blue"
+              className="relative z-10 w-[280px] sm:w-[325px] bg-[#000080] p-3 rounded-[50px] shadow-2xl border-4 border-blue-900/90 glow-blue overflow-hidden"
             >
-              {/* Dynamic Island Notch */}
-              <div className="absolute top-5 left-1/2 -translate-x-1/2 w-24 h-5 bg-black rounded-full z-30 flex items-center justify-end px-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-blue-900 border border-slate-700"></span>
-              </div>
-
               {/* Phone Screen Mockup */}
-              <div className="bg-slate-50 rounded-[40px] overflow-hidden aspect-[9/18] relative flex flex-col justify-between p-4 text-xs font-sans shadow-inner border border-slate-200">
-                
-                {/* Header App Bar */}
-                <div className="bg-white p-3 rounded-2xl shadow-sm border border-blue-50 flex items-center justify-between mt-4">
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-8 h-8 rounded-full bg-[#000080] text-white flex items-center justify-center font-black text-xs shadow-md">
-                      C
-                    </div>
-                    <div>
-                      <p className="font-extrabold text-[#000080] leading-tight">Hola, Camila 👋</p>
-                      <p className="text-[10px] text-slate-400 font-medium">¿A dónde vamos hoy?</p>
-                    </div>
-                  </div>
-                  <span className="bg-blue-50 p-2 rounded-full text-[#000080] font-bold">📍</span>
-                </div>
-
-                {/* Map View Representation */}
-                <div className="my-auto relative h-52 rounded-2xl bg-blue-100/50 overflow-hidden flex items-center justify-center border border-blue-200/60 shadow-inner">
-                  {/* Grid Lines Map Pattern */}
-                  <div className="absolute inset-0 bg-[radial-gradient(#000080_1.5px,transparent_1.5px)] [background-size:18px_18px] opacity-25"></div>
-                  
-                  {/* Route path glow */}
-                  <div className="w-28 h-28 border-2 border-dashed border-[#db2392] rounded-full flex items-center justify-center relative animate-spin-slow">
-                    <span className="w-4 h-4 rounded-full bg-[#db2392] absolute -top-2 shadow-lg shadow-pink-500/50 flex items-center justify-center">
-                      <span className="w-1.5 h-1.5 rounded-full bg-white"></span>
-                    </span>
-                    <span className="w-4 h-4 rounded-full bg-[#000080] absolute -bottom-2 shadow-lg shadow-blue-500/50"></span>
-                  </div>
-
-                  <div className="absolute bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-lg text-[10px] font-extrabold text-[#000080] flex items-center gap-1.5 border border-blue-100">
-                    <MapPin size={12} className="text-[#db2392]" />
-                    <span>Av. Providencia 123</span>
-                  </div>
-                </div>
-
-                {/* Car Selector Options */}
-                <div className="bg-white p-3 rounded-2xl shadow-sm border border-blue-50 flex flex-col gap-2">
-                  
-                  <button 
-                    onClick={() => setSelectedVehicle('car')}
-                    className={`flex items-center justify-between p-2.5 rounded-xl border transition-all text-left ${selectedVehicle === 'car' ? 'bg-pink-50/80 border-[#db2392] shadow-sm' : 'border-gray-100 hover:bg-slate-50'}`}
-                  >
-                    <div className="flex items-center gap-2.5">
-                      <Image src="/images/Icon-GetGoCar.png" width={32} height={22} alt="GetGo Car" className="object-contain" />
-                      <div>
-                        <p className="font-extrabold text-[#000080] text-[11px]">GetGo Car</p>
-                        <p className="text-[9px] text-slate-500 font-medium">Llega en 3 min</p>
-                      </div>
-                    </div>
-                    <span className="font-black text-[#db2392] text-xs">$2.500</span>
-                  </button>
-
-                  <button 
-                    onClick={() => setSelectedVehicle('comfort')}
-                    className={`flex items-center justify-between p-2.5 rounded-xl border transition-all text-left ${selectedVehicle === 'comfort' ? 'bg-pink-50/80 border-[#db2392] shadow-sm' : 'border-gray-100 hover:bg-slate-50'}`}
-                  >
-                    <div className="flex items-center gap-2.5">
-                      <Image src="/images/Icon-GetGoTaxi.png" width={32} height={22} alt="GetGo Comfort" className="object-contain" />
-                      <div>
-                        <p className="font-extrabold text-slate-800 text-[11px]">GetGo Comfort</p>
-                        <p className="text-[9px] text-slate-400 font-medium">Llega en 5 min</p>
-                      </div>
-                    </div>
-                    <span className="font-bold text-[#000080] text-xs">$3.200</span>
-                  </button>
-
-                </div>
-
+              <div className="bg-[#f4f9fd] rounded-[40px] overflow-hidden aspect-[9/18.5] relative shadow-inner border border-slate-200">
+                <Image
+                  src="/images/getgo_app_mobile_ui.png"
+                  alt="GetGo App Mobile UI"
+                  fill
+                  className="object-cover object-top rounded-[38px]"
+                  priority
+                />
               </div>
             </motion.div>
 
             {/* Floating Card 1: Top Right */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: 30, scale: 0.9 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ delay: 0.4, duration: 0.5 }}
@@ -371,7 +205,7 @@ export default function Home() {
             </motion.div>
 
             {/* Floating Card 2: Bottom Left */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -30, scale: 0.9 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ delay: 0.6, duration: 0.5 }}
@@ -382,7 +216,7 @@ export default function Home() {
                 <Coins size={14} className="text-[#f7da3a]" />
               </div>
               <span className="text-xl font-black text-white">24 amigos</span>
-              
+
               <div className="my-1.5 border-t border-blue-700/80"></div>
 
               <span className="text-[10px] text-blue-200 font-semibold">Ganancias totales</span>
@@ -410,7 +244,7 @@ export default function Home() {
           <p className="text-xs md:text-sm font-extrabold text-[#000080] tracking-wide max-w-[180px] leading-tight text-center md:text-left uppercase">
             Confían en nuestra plataforma
           </p>
-          
+
           <div className="flex flex-wrap items-center justify-center md:justify-end gap-8 sm:gap-12 md:gap-16 opacity-80 hover:opacity-100 transition-opacity">
             <span className="text-2xl font-black text-blue-900 italic tracking-tighter hover:scale-105 transition-transform cursor-pointer">lider</span>
             <span className="text-2xl font-extrabold text-cyan-600 tracking-tight hover:scale-105 transition-transform cursor-pointer">sura</span>
@@ -425,7 +259,7 @@ export default function Home() {
       {/* ¿CÓMO FUNCIONA? */}
       <section id="pasajeros" className="py-24 bg-white">
         <div className="max-w-6xl mx-auto px-6">
-          
+
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-xs font-black tracking-widest text-[#db2392] uppercase bg-pink-50 px-4 py-1.5 rounded-full border border-pink-100">
               Paso a Paso
@@ -439,7 +273,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 relative">
-            
+
             {[
               {
                 icon: <Smartphone size={26} className="text-[#000080]" />,
@@ -466,8 +300,8 @@ export default function Home() {
                 desc: "Recibes $2.500 CLP directamente en tu saldo GetGo para futuros viajes."
               }
             ].map((step, idx) => (
-              <div 
-                key={idx} 
+              <div
+                key={idx}
                 className="bg-[#f4f9fd] rounded-3xl p-7 border border-blue-100/80 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-start relative group"
               >
                 {/* Step Number Badge */}
@@ -496,15 +330,15 @@ export default function Home() {
       {/* PROGRAMA DE REFERIDOS (CARD + STATS) */}
       <section id="referidos" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          
+
           {/* Main Container */}
           <div className="bg-gradient-to-br from-[#f4f9fd] via-[#eaf4fc] to-[#f4f9fd] rounded-[40px] p-8 md:p-14 border border-blue-100/90 shadow-lg relative overflow-hidden">
-            
+
             {/* Ambient Background Glow */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-pink-200/30 blur-3xl pointer-events-none"></div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
-              
+
               {/* Left Column */}
               <div className="lg:col-span-6">
                 <span className="text-[11px] font-black tracking-widest text-[#000080] uppercase bg-white px-4 py-2 rounded-full mb-4 inline-block border border-blue-200/80 shadow-sm">
@@ -520,8 +354,8 @@ export default function Home() {
                   Por cada persona que se registre con tu código y complete su primer viaje, recibes dinero directo a tu saldo.
                 </p>
 
-                <a 
-                  href="#calculadora" 
+                <a
+                  href="#calculadora"
                   className="inline-flex items-center gap-2.5 bg-gradient-to-r from-[#db2392] to-[#ff46b0] hover:from-[#b81b7a] hover:to-[#db2392] text-white px-7 py-4 rounded-full font-extrabold text-sm shadow-pink-glow transition-all transform hover:-translate-y-0.5 mb-10"
                 >
                   <span>Calcula tus ganancias</span>
@@ -530,7 +364,7 @@ export default function Home() {
 
                 {/* 3 Step Flow Subcards */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  
+
                   <div className="bg-white/90 backdrop-blur-md p-4 rounded-2xl border border-blue-100 shadow-sm flex flex-col items-center text-center">
                     <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#000080] flex items-center justify-center font-bold mb-3">
                       <Share2 size={20} />
@@ -560,10 +394,10 @@ export default function Home() {
 
               {/* Right Column - Smartphone Preview */}
               <div className="lg:col-span-6 flex justify-center relative">
-                
+
                 <div className="w-[260px] sm:w-[290px] bg-[#000080] p-3.5 rounded-[45px] shadow-2xl border-4 border-blue-900 glow-blue">
                   <div className="bg-white rounded-[35px] p-5 aspect-[9/18] flex flex-col justify-between text-xs font-sans">
-                    
+
                     <div className="flex items-center justify-between font-extrabold text-[#000080] pb-3 border-b border-gray-100">
                       <span>Resumen de Referidos</span>
                       <span className="bg-pink-100 text-[#db2392] text-[9px] px-2 py-0.5 rounded-full font-bold">Activo</span>
@@ -632,7 +466,7 @@ export default function Home() {
       {/* CALCULATOR & PROMOS */}
       <section id="calculadora" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-8">
-          
+
           {/* Left: Calculator */}
           <div className="lg:col-span-7 bg-[#f4f9fd] rounded-3xl p-8 md:p-10 border border-blue-100 shadow-lg flex flex-col justify-between">
             <div>
@@ -649,7 +483,7 @@ export default function Home() {
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-12 gap-8 items-center">
-                
+
                 {/* Slider Control */}
                 <div className="sm:col-span-6">
                   <div className="flex justify-between items-center mb-4">
@@ -659,10 +493,10 @@ export default function Home() {
                     </span>
                   </div>
 
-                  <input 
-                    type="range" 
-                    min="1" 
-                    max="50" 
+                  <input
+                    type="range"
+                    min="1"
+                    max="50"
                     value={friendsCount}
                     onChange={(e) => setFriendsCount(Number(e.target.value))}
                     className="w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#db2392]"
@@ -720,7 +554,7 @@ export default function Home() {
       {/* VIAJES PARA CADA MOMENTO (SERVICES) */}
       <section id="servicios" className="py-24 bg-[#f4f9fd] border-t border-blue-100/70">
         <div className="max-w-7xl mx-auto px-6">
-          
+
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-14">
             <div>
               <span className="text-xs font-black tracking-widest text-[#000080] uppercase bg-white px-4 py-1.5 rounded-full border border-blue-200/80 shadow-sm">
@@ -735,68 +569,72 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            
-            {/* Left 3 Fleet Cards */}
-            <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-6">
-              
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+
+            {/* Left 4 Fleet Cards */}
+            <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-5">
+
               {/* GetGo Car */}
-              <div className="bg-white rounded-3xl p-6 border border-blue-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+              <div className="bg-white rounded-3xl p-5 border border-blue-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
                 <div>
-                  <div className="h-32 relative mb-4 group-hover:scale-105 transition-transform duration-300">
+                  <div className="h-28 relative mb-3 group-hover:scale-105 transition-transform duration-300">
                     <Image src="/images/Icon-GetGoCar.png" alt="GetGo Car" fill className="object-contain" />
                   </div>
                   <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100">
                     Más Económico
                   </span>
-                  <h3 className="font-black text-[#000080] text-lg mt-3 mb-1">
+                  <h3 className="font-black text-[#000080] text-base mt-2.5 mb-1">
                     GetGo Car
                   </h3>
-                  <p className="text-xs text-slate-500 font-medium mb-4">Autos modernos para tus trayectos diarios en la ciudad.</p>
-                </div>
-                <div className="pt-3 border-t border-slate-100">
-                  <span className="text-xs text-slate-400 font-bold block">Tarifa estimada</span>
-                  <p className="text-[#db2392] font-black text-lg">Desde $2.500 CLP</p>
+                  <p className="text-xs text-slate-500 font-medium leading-relaxed">Autos modernos para tus trayectos diarios en la ciudad.</p>
                 </div>
               </div>
 
               {/* GetGo Comfort */}
-              <div className="bg-white rounded-3xl p-6 border border-blue-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+              <div className="bg-white rounded-3xl p-5 border border-blue-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
                 <div>
-                  <div className="h-32 relative mb-4 group-hover:scale-105 transition-transform duration-300">
+                  <div className="h-28 relative mb-3 group-hover:scale-105 transition-transform duration-300">
                     <Image src="/images/Icon-GetGoTaxi.png" alt="GetGo Comfort" fill className="object-contain" />
                   </div>
                   <span className="text-[10px] font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded-full border border-blue-100">
                     Mayor Comodidad
                   </span>
-                  <h3 className="font-black text-[#000080] text-lg mt-3 mb-1">
+                  <h3 className="font-black text-[#000080] text-base mt-2.5 mb-1">
                     GetGo Comfort
                   </h3>
-                  <p className="text-xs text-slate-500 font-medium mb-4">Modelos sedán de alta gama con máxima amplitud y confort.</p>
-                </div>
-                <div className="pt-3 border-t border-slate-100">
-                  <span className="text-xs text-slate-400 font-bold block">Tarifa estimada</span>
-                  <p className="text-[#db2392] font-black text-lg">Desde $3.200 CLP</p>
+                  <p className="text-xs text-slate-500 font-medium leading-relaxed">Modelos sedán de alta gama con máxima amplitud y confort.</p>
                 </div>
               </div>
 
               {/* GetGo XL */}
-              <div className="bg-white rounded-3xl p-6 border border-blue-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+              <div className="bg-white rounded-3xl p-5 border border-blue-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
                 <div>
-                  <div className="h-32 relative mb-4 group-hover:scale-105 transition-transform duration-300">
+                  <div className="h-28 relative mb-3 group-hover:scale-105 transition-transform duration-300">
                     <Image src="/images/Icon-GetGoXL.png" alt="GetGo XL" fill className="object-contain" />
                   </div>
                   <span className="text-[10px] font-bold text-pink-700 bg-pink-50 px-2.5 py-1 rounded-full border border-pink-100">
                     Para Grupos
                   </span>
-                  <h3 className="font-black text-[#000080] text-lg mt-3 mb-1">
+                  <h3 className="font-black text-[#000080] text-base mt-2.5 mb-1">
                     GetGo XL
                   </h3>
-                  <p className="text-xs text-slate-500 font-medium mb-4">Vehículos espaciosos para hasta 6 pasajeros y equipaje.</p>
+                  <p className="text-xs text-slate-500 font-medium leading-relaxed">Vehículos espaciosos para hasta 6 pasajeros y equipaje.</p>
                 </div>
-                <div className="pt-3 border-t border-slate-100">
-                  <span className="text-xs text-slate-400 font-bold block">Tarifa estimada</span>
-                  <p className="text-[#db2392] font-black text-lg">Desde $4.500 CLP</p>
+              </div>
+
+              {/* GetGo Ejecutivo */}
+              <div className="bg-white rounded-3xl p-5 border border-blue-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                <div>
+                  <div className="h-28 relative mb-3 group-hover:scale-105 transition-transform duration-300">
+                    <Image src="/images/Icon-GetGoEjecutivo.png" alt="GetGo Ejecutivo" fill className="object-contain" />
+                  </div>
+                  <span className="text-[10px] font-bold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-100">
+                    Categoría Premium
+                  </span>
+                  <h3 className="font-black text-[#000080] text-base mt-2.5 mb-1">
+                    GetGo Ejecutivo
+                  </h3>
+                  <p className="text-xs text-slate-500 font-medium leading-relaxed">Sedanes de lujo, choferes profesionales y distinción corporativa.</p>
                 </div>
               </div>
 
@@ -804,7 +642,7 @@ export default function Home() {
 
             {/* Right Features List */}
             <div className="lg:col-span-4 bg-white rounded-3xl p-7 border border-blue-100 shadow-sm flex flex-col gap-6">
-              
+
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-2xl bg-blue-50 text-[#000080] flex items-center justify-center shrink-0 border border-blue-100">
                   <ShieldCheck size={24} />
@@ -845,7 +683,7 @@ export default function Home() {
       {/* TESTIMONIALS & DRIVER CTA */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          
+
           <div className="text-center max-w-xl mx-auto mb-16">
             <span className="text-xs font-black tracking-widest text-[#000080] uppercase bg-blue-50 px-4 py-1.5 rounded-full border border-blue-100">
               Comunidad GetGo
@@ -856,21 +694,21 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-            
+
             {/* Carousel Cards */}
             <div className="lg:col-span-7 flex flex-col justify-between">
-              
+
               <div className="bg-[#f4f9fd] rounded-3xl p-8 md:p-10 border border-blue-100 shadow-md relative min-h-[250px] flex flex-col justify-between">
-                
+
                 <p className="text-slate-800 font-semibold text-lg sm:text-xl italic leading-relaxed mb-8">
                   {testimonials[activeTestimonial].text}
                 </p>
 
                 <div className="flex items-center justify-between pt-6 border-t border-blue-100">
-                  
+
                   <div className="flex items-center gap-3.5">
-                    <img 
-                      src={testimonials[activeTestimonial].avatar} 
+                    <img
+                      src={testimonials[activeTestimonial].avatar}
                       alt={testimonials[activeTestimonial].name}
                       className="w-12 h-12 rounded-full object-cover border-2 border-[#db2392] shadow-sm"
                     />
@@ -891,15 +729,15 @@ export default function Home() {
               {/* Carousel Controls */}
               <div className="flex items-center justify-between mt-6 px-2">
                 <div className="flex items-center gap-3">
-                  <button 
+                  <button
                     onClick={prevTestimonial}
                     className="w-11 h-11 rounded-full border border-slate-200 bg-white flex items-center justify-center text-[#000080] hover:bg-blue-50 transition-colors shadow-sm"
                     aria-label="Anterior testimonio"
                   >
                     <ChevronLeft size={22} />
                   </button>
-                  
-                  <button 
+
+                  <button
                     onClick={nextTestimonial}
                     className="w-11 h-11 rounded-full border border-slate-200 bg-white flex items-center justify-center text-[#000080] hover:bg-blue-50 transition-colors shadow-sm"
                     aria-label="Siguiente testimonio"
@@ -930,17 +768,17 @@ export default function Home() {
 
                 <div className="flex flex-col sm:flex-row gap-3">
                   {/* Google Play */}
-                  <a 
+                  <a
                     href={storeLinks.google}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-slate-950 hover:bg-slate-900 text-white px-5 py-3 rounded-xl flex items-center gap-3 shadow-md border border-slate-800 transition-transform hover:-translate-y-0.5"
                   >
                     <svg viewBox="0 0 512 512" className="w-5 h-5 shrink-0">
-                      <path fill="#EA4335" d="M26.4 17.5c-4 4.5-6.4 11.2-6.4 19.8v437.4c0 8.6 2.4 15.3 6.4 19.8l1.1 1.1L279.7 243.3 27.5 16.4l-1.1 1.1z"/>
-                      <path fill="#FBBC04" d="M363.8 327.4l-84.1-84.1v-3.7l84.1-84.1 1.1.6 99.7 56.7c28.5 16.2 28.5 42.7 0 58.9l-99.7 56.7-1.1-.6z"/>
-                      <path fill="#4285F4" d="M279.7 243.3L26.4 495.6c9.3 9.9 24.6 11.1 41.5 1.5l295.9-168.3-84.1-85.5z"/>
-                      <path fill="#34A853" d="M279.7 243.3L363.8 159 67.9 14.9C51 5.3 35.7 6.5 26.4 16.4l253.3 226.9z"/>
+                      <path fill="#EA4335" d="M26.4 17.5c-4 4.5-6.4 11.2-6.4 19.8v437.4c0 8.6 2.4 15.3 6.4 19.8l1.1 1.1L279.7 243.3 27.5 16.4l-1.1 1.1z" />
+                      <path fill="#FBBC04" d="M363.8 327.4l-84.1-84.1v-3.7l84.1-84.1 1.1.6 99.7 56.7c28.5 16.2 28.5 42.7 0 58.9l-99.7 56.7-1.1-.6z" />
+                      <path fill="#4285F4" d="M279.7 243.3L26.4 495.6c9.3 9.9 24.6 11.1 41.5 1.5l295.9-168.3-84.1-85.5z" />
+                      <path fill="#34A853" d="M279.7 243.3L363.8 159 67.9 14.9C51 5.3 35.7 6.5 26.4 16.4l253.3 226.9z" />
                     </svg>
                     <div className="flex flex-col text-left leading-tight">
                       <span className="text-[8px] text-slate-300 font-bold uppercase">DISPONIBLE EN</span>
@@ -949,14 +787,14 @@ export default function Home() {
                   </a>
 
                   {/* App Store */}
-                  <a 
+                  <a
                     href={storeLinks.apple}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-slate-950 hover:bg-slate-900 text-white px-5 py-3 rounded-xl flex items-center gap-3 shadow-md border border-slate-800 transition-transform hover:-translate-y-0.5"
                   >
-                    <svg viewBox="0 0 170 170" className="w-5 h-5 fill-white shrink-0">
-                      <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.34.13-9.14-1.9-14.4-6.07-3.69-3.04-7.69-7.85-12.01-14.43-5.26-8.02-9.4-16.92-12.43-26.7-3.03-9.78-4.55-19.14-4.55-28.08 0-12.74 3.09-23.32 9.27-31.75 6.18-8.43 14.07-12.7 23.68-12.83 4.58 0 9.56 1.15 14.94 3.44 5.38 2.29 9.17 3.44 11.37 3.44 1.95 0 5.8-1.22 11.55-3.66 5.75-2.44 10.66-3.57 14.73-3.39 10.29.5 18.73 4.3 25.32 11.4-9.15 5.53-13.62 13.15-13.41 22.86.21 7.64 3.12 14.15 8.73 19.53 5.61 5.38 12.38 8.43 20.31 9.15-1.95 5.66-4.37 11.27-7.26 16.83zM119.22 31.06c0-6.18 2.29-12.04 6.87-17.58 4.58-5.54 10.19-8.73 16.83-9.57.13.91.2 1.76.2 2.55 0 6.05-2.31 11.96-6.93 17.73-4.62 5.77-10.28 8.98-16.97 9.63-.07-.63-.1-1.2-.1-1.76z"/>
+                    <svg viewBox="0 0 384 512" className="w-5 h-5 fill-white shrink-0">
+                      <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-92.1zm-57.6-143.9c20.1-24.3 33.7-57.9 29.3-91.8-28.7 1.4-63.5 19.3-83.6 43-18 20.7-33.8 54.3-29.2 87.3 32 2.5 63.4-14.3 83.5-38.5z" />
                     </svg>
                     <div className="flex flex-col text-left leading-tight">
                       <span className="text-[8px] text-slate-300 font-bold uppercase">Consíguelo en el</span>
@@ -980,7 +818,7 @@ export default function Home() {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="bg-gradient-to-r from-[#000080] via-blue-900 to-[#000080] text-white rounded-[40px] p-10 md:p-16 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden shadow-2xl border border-blue-900">
-            
+
             {/* Background Lighting Details */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-[#db2392]/20 rounded-full blur-3xl pointer-events-none"></div>
 
@@ -995,33 +833,33 @@ export default function Home() {
 
             <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto z-10">
               {/* Google Play */}
-              <a 
+              <a
                 href={storeLinks.google}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-slate-950 hover:bg-slate-900 text-white px-6 py-3.5 rounded-2xl flex items-center justify-center gap-3.5 shadow-xl border border-slate-800 transition-all transform hover:-translate-y-1"
               >
                 <svg viewBox="0 0 512 512" className="w-7 h-7 shrink-0">
-                  <path fill="#EA4335" d="M26.4 17.5c-4 4.5-6.4 11.2-6.4 19.8v437.4c0 8.6 2.4 15.3 6.4 19.8l1.1 1.1L279.7 243.3 27.5 16.4l-1.1 1.1z"/>
-                  <path fill="#FBBC04" d="M363.8 327.4l-84.1-84.1v-3.7l84.1-84.1 1.1.6 99.7 56.7c28.5 16.2 28.5 42.7 0 58.9l-99.7 56.7-1.1-.6z"/>
-                  <path fill="#4285F4" d="M279.7 243.3L26.4 495.6c9.3 9.9 24.6 11.1 41.5 1.5l295.9-168.3-84.1-85.5z"/>
-                  <path fill="#34A853" d="M279.7 243.3L363.8 159 67.9 14.9C51 5.3 35.7 6.5 26.4 16.4l253.3 226.9z"/>
+                  <path fill="#EA4335" d="M26.4 17.5c-4 4.5-6.4 11.2-6.4 19.8v437.4c0 8.6 2.4 15.3 6.4 19.8l1.1 1.1L279.7 243.3 27.5 16.4l-1.1 1.1z" />
+                  <path fill="#FBBC04" d="M363.8 327.4l-84.1-84.1v-3.7l84.1-84.1 1.1.6 99.7 56.7c28.5 16.2 28.5 42.7 0 58.9l-99.7 56.7-1.1-.6z" />
+                  <path fill="#4285F4" d="M279.7 243.3L26.4 495.6c9.3 9.9 24.6 11.1 41.5 1.5l295.9-168.3-84.1-85.5z" />
+                  <path fill="#34A853" d="M279.7 243.3L363.8 159 67.9 14.9C51 5.3 35.7 6.5 26.4 16.4l253.3 226.9z" />
                 </svg>
                 <div className="flex flex-col text-left leading-tight">
                   <span className="text-[9px] text-slate-300 font-bold tracking-wider uppercase">DISPONIBLE EN</span>
                   <span className="text-base font-black tracking-tight">Google Play</span>
                 </div>
               </a>
-              
+
               {/* App Store */}
-              <a 
+              <a
                 href={storeLinks.apple}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-slate-950 hover:bg-slate-900 text-white px-6 py-3.5 rounded-2xl flex items-center justify-center gap-3.5 shadow-xl border border-slate-800 transition-all transform hover:-translate-y-1"
               >
-                <svg viewBox="0 0 170 170" className="w-7 h-7 fill-white shrink-0">
-                  <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.34.13-9.14-1.9-14.4-6.07-3.69-3.04-7.69-7.85-12.01-14.43-5.26-8.02-9.4-16.92-12.43-26.7-3.03-9.78-4.55-19.14-4.55-28.08 0-12.74 3.09-23.32 9.27-31.75 6.18-8.43 14.07-12.7 23.68-12.83 4.58 0 9.56 1.15 14.94 3.44 5.38 2.29 9.17 3.44 11.37 3.44 1.95 0 5.8-1.22 11.55-3.66 5.75-2.44 10.66-3.57 14.73-3.39 10.29.5 18.73 4.3 25.32 11.4-9.15 5.53-13.62 13.15-13.41 22.86.21 7.64 3.12 14.15 8.73 19.53 5.61 5.38 12.38 8.43 20.31 9.15-1.95 5.66-4.37 11.27-7.26 16.83zM119.22 31.06c0-6.18 2.29-12.04 6.87-17.58 4.58-5.54 10.19-8.73 16.83-9.57.13.91.2 1.76.2 2.55 0 6.05-2.31 11.96-6.93 17.73-4.62 5.77-10.28 8.98-16.97 9.63-.07-.63-.1-1.2-.1-1.76z"/>
+                <svg viewBox="0 0 384 512" className="w-6 h-6 fill-white shrink-0">
+                  <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-92.1zm-57.6-143.9c20.1-24.3 33.7-57.9 29.3-91.8-28.7 1.4-63.5 19.3-83.6 43-18 20.7-33.8 54.3-29.2 87.3 32 2.5 63.4-14.3 83.5-38.5z" />
                 </svg>
                 <div className="flex flex-col text-left leading-tight">
                   <span className="text-[9px] text-slate-300 font-bold tracking-wider uppercase">Consíguelo en el</span>
@@ -1037,7 +875,7 @@ export default function Home() {
       {/* FOOTER */}
       <footer className="bg-[#000080] text-white py-16">
         <div className="max-w-7xl mx-auto px-6 flex flex-col items-center gap-10 text-center">
-          
+
           <Image
             src="/images/GetGo_Logo-Negative.png"
             alt="GetGo Logo Negative"
@@ -1062,11 +900,11 @@ export default function Home() {
               { name: "Facebook", icon: "f", link: "https://www.facebook.com/GetGoAppCL" },
               { name: "Twitter/X", icon: "x", link: "https://x.com/GetGoCL" },
             ].map((social, index) => (
-              <a 
-                key={index} 
-                href={social.link} 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                key={index}
+                href={social.link}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label={social.name}
                 className="bg-white/10 hover:bg-[#db2392] p-3.5 rounded-2xl transition-all duration-300 border border-white/10 shadow-sm"
               >
