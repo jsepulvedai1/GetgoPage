@@ -196,7 +196,7 @@ export default function AboutUs() {
           <div className="flex justify-center gap-6">
             {[
               {
-                name: "dd",
+                name: "tiktok",
                 link: "https://www.tiktok.com/@getgo.chile",
               },
               { name: "insta", link: "https://www.instagram.com/getgo.cl" },

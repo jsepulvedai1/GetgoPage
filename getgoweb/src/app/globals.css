@@ -2,45 +2,107 @@
 @tailwind components;
 @tailwind utilities;
 
-
 :root {
-  --primary-color: #007bff;
-  --secondary-color: #f6e15e;
-  --text-color: #ffffff;
+  --primary-color: #000080;
+  --accent-pink: #db2392;
+  --accent-cyan: #70cfdb;
+  --accent-yellow: #f7da3a;
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0f172a;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #f3fbff;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background-color: var(--background);
-  color: var(--text-color);
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 400;
-}
-
-
-h1, h2, h3, h4, h5, h6 {
   color: var(--foreground);
+  font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
 }
 
-a {
-  transition: color 0.2s;
+/* Glassmorphism & Card Utilities */
+.glass-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(219, 35, 146, 0.12);
 }
 
-a:hover {
-  color: var(--primary-color);
+.glass-card-dark {
+  background: rgba(0, 0, 128, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-@font-face {
-  font-family: 'MiFuentePersonalizada';
-  src: url('/fonts/Montserrat-Medium.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+/* Glowing Ambient Lights */
+.glow-pink {
+  box-shadow: 0 0 50px -10px rgba(219, 35, 146, 0.35);
+}
+
+.glow-blue {
+  box-shadow: 0 0 50px -10px rgba(0, 0, 128, 0.35);
+}
+
+/* Gradient Text Helper */
+.text-gradient-brand {
+  background: linear-gradient(135deg, #000080 0%, #db2392 50%, #000080 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-pink {
+  background: linear-gradient(135deg, #db2392 0%, #ff5ebc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Custom Range Slider Styling */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #db2392;
+  border: 3px solid #ffffff;
+  box-shadow: 0 4px 12px rgba(219, 35, 146, 0.4);
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  background: #b81b7a;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #db2392;
+  border: 3px solid #ffffff;
+  box-shadow: 0 4px 12px rgba(219, 35, 146, 0.4);
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+/* Keyframes for subtle float animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float-slow {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: float 5s ease-in-out infinite reverse;
 }
