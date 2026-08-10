@@ -25,6 +25,11 @@ export default function Home() {
 
   const estimatedEarnings = friendsCount * 1000;
 
+  const storeLinksDriver = {
+    apple: "https://apps.apple.com/cl/app/getgo-conductor/id6749026117",
+    google: "https://play.google.com/store/apps/details?id=com.getgodriver"
+  };
+
   const storeLinks = {
     apple: "https://apps.apple.com/cl/app/id6748690795",
     google: "https://play.google.com/store/apps/details?id=com.getgoapp.pasajero"
@@ -770,7 +775,7 @@ export default function Home() {
                 <div className="flex flex-col sm:flex-row gap-3">
                   {/* Google Play */}
                   <a
-                    href={storeLinks.google}
+                    href={storeLinksDriver.google}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-slate-950 hover:bg-slate-900 text-white px-5 py-3 rounded-xl flex items-center gap-3 shadow-md border border-slate-800 transition-transform hover:-translate-y-0.5"
@@ -789,7 +794,7 @@ export default function Home() {
 
                   {/* App Store */}
                   <a
-                    href={storeLinks.apple}
+                    href={storeLinksDriver.apple}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-slate-950 hover:bg-slate-900 text-white px-5 py-3 rounded-xl flex items-center gap-3 shadow-md border border-slate-800 transition-transform hover:-translate-y-0.5"
