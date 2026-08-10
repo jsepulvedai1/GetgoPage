@@ -2,13 +2,11 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 import {
   ShieldCheck,
   Wallet,
   Headphones,
   Gift,
-  TrendingUp,
   Sparkles,
   Clock,
   DollarSign,
@@ -16,12 +14,6 @@ import {
 } from "lucide-react";
 
 export default function Conductores() {
-  const [weeklyHours, setWeeklyHours] = useState(25);
-
-  // Estimación de ganancias promedio para conductores en Chile
-  const estimatedWeeklyEarnings = weeklyHours * 13500;
-  const estimatedMonthlyEarnings = estimatedWeeklyEarnings * 4;
-
   const storeLinks = {
     apple: "https://apps.apple.com/cl/app/id6748690795",
     google: "https://play.google.com/store/apps/details?id=com.getgoapp.pasajero"

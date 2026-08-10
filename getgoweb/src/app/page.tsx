@@ -387,7 +387,7 @@ export default function Home() {
                       <Car size={20} />
                     </div>
                     <h4 className="font-extrabold text-xs text-[#000080] mb-1">3.Tu red crece</h4>
-                    <p className="text-[10px] text-slate-500 font-medium">Acumulas gancias de tu red.</p>
+                    <p className="text-[10px] text-slate-500 font-medium">Acumulas ganancias de tu red.</p>
                   </div>
 
 
@@ -543,7 +543,7 @@ export default function Home() {
               <p className="text-blue-200 text-sm font-medium leading-relaxed mb-6">
                 Aprende cómo hacer crecer tu red, aumentar tus ganancias y aprovechar al máximo el programa de referidos.
 
-                📅 Martes y jueves
+                📅 Martes y Jueves
                 🕘 21:00 hrs (Chile)
                 💻 Reunión online por Zoom
 
@@ -595,7 +595,7 @@ export default function Home() {
                   <h3 className="font-black text-[#000080] text-base mt-2.5 mb-1">
                     GetGo Car
                   </h3>
-                  <p className="text-xs text-slate-500 font-medium leading-relaxed">Autos modernos para tus trayectos diarios en la ciudad.</p>
+                  <p className="text-xs text-slate-500 font-medium leading-relaxed">Viajes ágiles y accesibles para moverte por la ciudad todos los días.</p>
                 </div>
               </div>
 
@@ -606,12 +606,12 @@ export default function Home() {
                     <Image src="/images/Icon-GetGoTaxi.png" alt="GetGo Comfort" fill className="object-contain" />
                   </div>
                   <span className="text-[10px] font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded-full border border-blue-100">
-                    Mayor Comodidad
+                    Conductores Profesionales
                   </span>
                   <h3 className="font-black text-[#000080] text-base mt-2.5 mb-1">
-                    GetGo Comfort
+                    GetGo Taxi
                   </h3>
-                  <p className="text-xs text-slate-500 font-medium leading-relaxed">Modelos sedán de alta gama con máxima amplitud y confort.</p>
+                  <p className="text-xs text-slate-500 font-medium leading-relaxed">Vehículos con patente y permisos vigentes de TAXI.</p>
                 </div>
               </div>
 
@@ -627,7 +627,7 @@ export default function Home() {
                   <h3 className="font-black text-[#000080] text-base mt-2.5 mb-1">
                     GetGo XL
                   </h3>
-                  <p className="text-xs text-slate-500 font-medium leading-relaxed">Vehículos espaciosos para hasta 6 pasajeros y equipaje.</p>
+                  <p className="text-xs text-slate-500 font-medium leading-relaxed">Espacio de sobra para hasta 6 pasajeros y todo su equipaje.</p>
                 </div>
               </div>
 
@@ -638,12 +638,12 @@ export default function Home() {
                     <Image src="/images/Icon-GetGoEjecutivo.png" alt="GetGo Ejecutivo" fill className="object-contain" />
                   </div>
                   <span className="text-[10px] font-bold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-100">
-                    Categoría Premium
+                    Mayor comodidad
                   </span>
                   <h3 className="font-black text-[#000080] text-base mt-2.5 mb-1">
                     GetGo Ejecutivo
                   </h3>
-                  <p className="text-xs text-slate-500 font-medium leading-relaxed">Sedanes de lujo, choferes profesionales y distinción corporativa.</p>
+                  <p className="text-xs text-slate-500 font-medium leading-relaxed">SUV y sedanes pensados para viajar con más espacio y tranquilidad.</p>
                 </div>
               </div>
 
@@ -658,7 +658,7 @@ export default function Home() {
                 </div>
                 <div>
                   <h4 className="font-black text-[#000080] text-base mb-1">Viajes 100% seguros</h4>
-                  <p className="text-xs text-slate-500 font-medium leading-relaxed">Conductores rigurosamente verificados y monitoreo en tiempo real por GPS.</p>
+                  <p className="text-xs text-slate-500 font-medium leading-relaxed">Conductores y pasajeros rigurosamente verificados.</p>
                 </div>
               </div>
 
@@ -668,7 +668,7 @@ export default function Home() {
                 </div>
                 <div>
                   <h4 className="font-black text-[#000080] text-base mb-1">Medios de pago</h4>
-                  <p className="text-xs text-slate-500 font-medium leading-relaxed">Paga con tarjetas de débito/crédito, o mediante tu saldo de Getgo.</p>
+                  <p className="text-xs text-slate-500 font-medium leading-relaxed">Paga con tarjetas de débito, crédito o prepago, o usa tu saldo de referidos y ganancias acumuladas en la app.</p>
                 </div>
               </div>
 
@@ -677,8 +677,8 @@ export default function Home() {
                   <Headphones size={24} />
                 </div>
                 <div>
-                  <h4 className="font-black text-[#000080] text-base mb-1">Soporte 24/7 en Chile</h4>
-                  <p className="text-xs text-slate-500 font-medium leading-relaxed">Atención rápida y personalizada ante cualquier consulta o eventualidad.</p>
+                  <h4 className="font-black text-[#000080] text-base mb-1">Soporte en Chile</h4>
+                  <p className="text-xs text-slate-500 font-medium leading-relaxed">Atención personalizada, de persona a persona, ante cualquier consulta o eventualidad.</p>
                 </div>
               </div>
 
@@ -765,8 +765,8 @@ export default function Home() {
             {/* Right Side: Driver CTA Card with Store Badges */}
             <div id="conductores" className="lg:col-span-5 bg-gradient-to-br from-[#f4f9fd] via-white to-blue-50/50 rounded-3xl p-8 md:p-10 border border-blue-100 shadow-md flex flex-col justify-between">
               <div>
-                <span className="text-[10px] font-black uppercase text-[#db2392] tracking-wider bg-pink-50 px-3 py-1 rounded-full border border-pink-100 mb-4 inline-block">
-                  ¿Quieres ser Conductor Socio?
+                <span className="text-[10px] font-black  text-[#db2392] tracking-wider bg-pink-50 px-3 py-1 rounded-full border border-pink-100 mb-4 inline-block">
+                  Gana dinero manejando con GetGo
                 </span>
                 <h3 className="text-2xl font-black text-[#000080] mb-3 tracking-tight">
                   Maneja con GetGo y genera ingresos a tu propio ritmo
