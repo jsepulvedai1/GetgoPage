@@ -23,7 +23,7 @@ export default function Home() {
   const [friendsCount, setFriendsCount] = useState(15);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
 
-  const estimatedEarnings = friendsCount * 2500;
+  const estimatedEarnings = friendsCount * 1000;
 
   const storeLinks = {
     apple: "https://apps.apple.com/cl/app/id6748690795",
@@ -87,7 +87,7 @@ export default function Home() {
               className="inline-flex items-center gap-2.5 bg-white/90 backdrop-blur-md text-[#000080] px-4 py-2 rounded-full text-xs md:text-sm font-bold mb-6 border border-blue-200/80 shadow-sm hover:shadow transition-all"
             >
               <span className="w-2.5 h-2.5 rounded-full bg-[#db2392] animate-ping"></span>
-              <span className="text-slate-800">La app de movilidad hecha en Chile 🇨🇱</span>
+              <span className="text-slate-800">La app de movilidad creada en Chile 🇨🇱</span>
             </motion.div>
 
             {/* Main Headline */}
@@ -97,7 +97,7 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#000080] leading-[1.12] tracking-tight mb-6"
             >
-              Muévete por Chile y <span className="text-gradient-pink">gana</span> con cada invitación.
+              Muévete por Chile y <span className="text-gradient-pink">gana</span> con cada viaje.
             </motion.h1>
 
             {/* Description */}
@@ -107,7 +107,7 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-slate-600 text-base sm:text-lg font-medium leading-relaxed max-w-lg mb-8"
             >
-              Viaja seguro, rápido y al mejor precio. Además, acumula recompensas en tu saldo por cada amigo que realice su primer viaje.
+              Viaja seguro, rápido y al mejor precio. Además, acumulas recompensas en tu saldo por cada invitado que realice viajes en Getgo.
             </motion.p>
 
             {/* Store Download Buttons */}
@@ -195,13 +195,10 @@ export default function Home() {
             >
               <div className="flex items-center gap-1.5 text-[11px] font-extrabold text-[#000080]">
                 <Sparkles size={14} className="text-[#db2392]" />
-                <span>¡Tu amigo realizó su primer viaje!</span>
+                <span>¡Tenemos un bono de bienvenida!</span>
               </div>
-              <span className="text-2xl font-black text-[#db2392] tracking-tight">+$2.500</span>
-              <div className="border-t border-slate-100 pt-2 mt-0.5 flex justify-between items-center text-[10px]">
-                <span className="text-slate-400 font-medium">Saldo total</span>
-                <span className="font-black text-[#000080] text-xs">$18.000 CLP</span>
-              </div>
+              <span className="text-2xl font-black text-[#db2392] tracking-tight">$2.000 CLP</span>
+
             </motion.div>
 
             {/* Floating Card 2: Bottom Left */}
@@ -212,7 +209,7 @@ export default function Home() {
               className="absolute bottom-2 -left-2 sm:left-2 bg-[#000080] text-white p-4 rounded-2xl shadow-2xl z-20 border border-blue-700/80 flex flex-col gap-1 min-w-[210px] animate-float-reverse"
             >
               <div className="flex items-center justify-between">
-                <span className="text-[10px] text-blue-200 font-semibold uppercase tracking-wider">Has invitado</span>
+                <span className="text-[13px] text-blue-200 font-semibold uppercase tracking-wider">Por cada invitado ganas $1.000</span>
                 <Coins size={14} className="text-[#f7da3a]" />
               </div>
               <span className="text-xl font-black text-white">24 amigos</span>
@@ -220,7 +217,7 @@ export default function Home() {
               <div className="my-1.5 border-t border-blue-700/80"></div>
 
               <span className="text-[10px] text-blue-200 font-semibold">Ganancias totales</span>
-              <span className="text-2xl font-black text-[#f7da3a] tracking-tight">$96.000 CLP</span>
+              <span className="text-2xl font-black text-[#f7da3a] tracking-tight">$24.000 CLP</span>
 
               {/* Avatars */}
               <div className="flex items-center mt-2">
@@ -297,7 +294,7 @@ export default function Home() {
                 icon: <Wallet size={26} className="text-[#db2392]" />,
                 num: "04",
                 title: "¡Tú ganas en saldo!",
-                desc: "Recibes $2.500 CLP directamente en tu saldo GetGo para futuros viajes."
+                desc: "Getgo reparte el 15% de comision en 5 bonos."
               }
             ].map((step, idx) => (
               <div
@@ -347,11 +344,15 @@ export default function Home() {
 
                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#000080] leading-tight mb-4 tracking-tight">
                   Invita a tus amigos.<br />
-                  <span className="text-gradient-pink">Tú ganas siempre.</span>
+                  <span className="text-gradient-pink">Tu red crece y tus ganancias también.</span>
                 </h2>
 
                 <p className="text-slate-600 text-base md:text-lg font-medium mb-8 max-w-md">
-                  Por cada persona que se registre con tu código y complete su primer viaje, recibes dinero directo a tu saldo.
+                  No ganas solo por tus invitados. También ganas por la red que ellos crean.
+
+                  Invita a tus amigos, ellos invitan a sus amigos y tú recibes un porcentaje por los viajes que genere tu red.
+
+                  Mientras más grande tu red, mayores pueden ser tus ganancias.
                 </p>
 
                 <a
@@ -378,16 +379,18 @@ export default function Home() {
                       <Car size={20} />
                     </div>
                     <h4 className="font-extrabold text-xs text-[#000080] mb-1">2. Tu amigo viaja</h4>
-                    <p className="text-[10px] text-slate-500 font-medium">Realiza su primer viaje en la plataforma.</p>
+                    <p className="text-[10px] text-slate-500 font-medium">Tu ganas un porcentaje inmediato.</p>
                   </div>
 
                   <div className="bg-white/90 backdrop-blur-md p-4 rounded-2xl border border-blue-100 shadow-sm flex flex-col items-center text-center">
-                    <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold mb-3">
-                      <Gift size={20} />
+                    <div className="w-10 h-10 rounded-xl bg-pink-50 text-[#db2392] flex items-center justify-center font-bold mb-3">
+                      <Car size={20} />
                     </div>
-                    <h4 className="font-extrabold text-xs text-[#000080] mb-1">3. Recompensa lista</h4>
-                    <p className="text-[10px] text-slate-500 font-medium">Acreditada de inmediato a tu app.</p>
+                    <h4 className="font-extrabold text-xs text-[#000080] mb-1">3.Tu red crece</h4>
+                    <p className="text-[10px] text-slate-500 font-medium">Acumulas gancias de tu red.</p>
                   </div>
+
+
 
                 </div>
               </div>
@@ -443,20 +446,20 @@ export default function Home() {
             <div className="absolute top-0 right-0 w-64 h-64 bg-pink-500/10 blur-3xl pointer-events-none"></div>
 
             <div className="relative z-10">
-              <p className="text-3xl md:text-4xl font-black text-[#f7da3a] mb-1 tracking-tight">+28.000</p>
-              <p className="text-xs text-blue-200 font-medium leading-snug">personas ya ganan<br />con referidos en Chile</p>
+              <p className="text-3xl md:text-4xl font-black text-[#f7da3a] mb-1 tracking-tight">+17.000</p>
+              <p className="text-xs text-blue-200 font-medium leading-snug">Personas ya registradas<br />con referidos en Chile</p>
             </div>
             <div className="relative z-10">
-              <p className="text-3xl md:text-4xl font-black text-[#f7da3a] mb-1 tracking-tight">$12.500.000+</p>
-              <p className="text-xs text-blue-200 font-medium leading-snug">entregados en<br />recompensas reales</p>
+              <p className="text-3xl md:text-4xl font-black text-[#f7da3a] mb-1 tracking-tight">+5.500</p>
+              <p className="text-xs text-blue-200 font-medium leading-snug">Conductores<br />activos en la app</p>
             </div>
             <div className="relative z-10">
-              <p className="text-3xl md:text-4xl font-black text-[#f7da3a] mb-1 tracking-tight">$2.500 CLP</p>
-              <p className="text-xs text-blue-200 font-medium leading-snug">abono directo por<br />amigo invitado</p>
+              <p className="text-3xl md:text-4xl font-black text-[#f7da3a] mb-1 tracking-tight">+3</p>
+              <p className="text-xs text-blue-200 font-medium leading-snug">Contamos con<br />promociones activas</p>
             </div>
             <div className="relative z-10">
               <p className="text-3xl md:text-4xl font-black text-[#f7da3a] mb-1 tracking-tight">100%</p>
-              <p className="text-xs text-blue-200 font-medium leading-snug">transparencia y<br />pagos garantizados</p>
+              <p className="text-xs text-blue-200 font-medium leading-snug">Transparencia y<br />pagos garantizados</p>
             </div>
           </div>
 
@@ -472,7 +475,7 @@ export default function Home() {
             <div>
               <div className="flex items-center gap-2 mb-2">
                 <TrendingUp size={20} className="text-[#db2392]" />
-                <span className="text-xs font-black text-[#db2392] uppercase tracking-wider">Simulador interactivo</span>
+                <span className="text-xs font-black text-[#db2392] uppercase tracking-wider">Simulador interactivo Promoción</span>
               </div>
 
               <h3 className="text-2xl md:text-3xl font-black text-[#000080] mb-2 tracking-tight">
@@ -535,16 +538,22 @@ export default function Home() {
               </div>
 
               <h3 className="text-2xl font-black text-white mb-2 tracking-tight">
-                Bonos extra y promociones semanales
+                Conéctate a nuestras reuniones semanales 🚀
               </h3>
               <p className="text-blue-200 text-sm font-medium leading-relaxed mb-6">
-                Además de tus ganancias por referidos, participa en desafíos semanales para multiplicar tu saldo y obtener viajes gratis.
+                Aprende cómo hacer crecer tu red, aumentar tus ganancias y aprovechar al máximo el programa de referidos.
+
+                📅 Martes y jueves
+                🕘 21:00 hrs (Chile)
+                💻 Reunión online por Zoom
+
+                ¡Únete a la reunión y descubre cómo multiplicar tus oportunidades de ganar!
               </p>
             </div>
 
             <div className="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10 flex items-center gap-3">
               <Sparkles size={22} className="text-[#f7da3a] shrink-0" />
-              <p className="text-xs text-blue-100 font-bold">¡Activa tus notificaciones en la app para no perderte ningún bono!</p>
+              <p className="text-xs text-blue-100 font-bold">¡Unete!</p>
             </div>
           </div>
 
@@ -658,8 +667,8 @@ export default function Home() {
                   <Wallet size={24} />
                 </div>
                 <div>
-                  <h4 className="font-black text-[#000080] text-base mb-1">Múltiples medios de pago</h4>
-                  <p className="text-xs text-slate-500 font-medium leading-relaxed">Paga con tarjetas de débito/crédito, efectivo o mediante tu saldo de referidos.</p>
+                  <h4 className="font-black text-[#000080] text-base mb-1">Medios de pago</h4>
+                  <p className="text-xs text-slate-500 font-medium leading-relaxed">Paga con tarjetas de débito/crédito, o mediante tu saldo de Getgo.</p>
                 </div>
               </div>
 
