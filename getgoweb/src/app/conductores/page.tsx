@@ -370,8 +370,8 @@ export default function Conductores() {
             {[
               { name: "TikTok", icon: "tiktok", link: "https://www.tiktok.com/@getgo.chile" },
               { name: "Instagram", icon: "insta", link: "https://www.instagram.com/getgo.cl" },
-              { name: "Facebook", icon: "f", link: "https://www.facebook.com/GetGoAppCL" },
-              { name: "Twitter/X", icon: "x", link: "https://x.com/GetGoCL" },
+              { name: "Facebook", icon: "f", link: "https://www.facebook.com/getgo.cl" },
+              { name: "Twitter/X", icon: "x", link: "https://x.com/getgo.cl" },
             ].map((social, index) => (
               <a
                 key={index}

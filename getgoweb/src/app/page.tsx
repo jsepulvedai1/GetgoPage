@@ -288,7 +288,7 @@ export default function Home() {
                 icon: <Car size={26} className="text-[#000080]" />,
                 num: "03",
                 title: "Ellos realizan su viaje",
-                desc: "Tu invitado realiza su primer recorrido seguro con nuestros conductores."
+                desc: "Ganas por cada viaje que realicen tus amigos."
               },
               {
                 icon: <Wallet size={26} className="text-[#db2392]" />,
@@ -354,14 +354,6 @@ export default function Home() {
 
                   Mientras más grande tu red, mayores pueden ser tus ganancias.
                 </p>
-
-                <a
-                  href="#calculadora"
-                  className="inline-flex items-center gap-2.5 bg-gradient-to-r from-[#db2392] to-[#ff46b0] hover:from-[#b81b7a] hover:to-[#db2392] text-white px-7 py-4 rounded-full font-extrabold text-sm shadow-pink-glow transition-all transform hover:-translate-y-0.5 mb-10"
-                >
-                  <span>Calcula tus ganancias</span>
-                  <ChevronRight size={18} />
-                </a>
 
                 {/* 3 Step Flow Subcards */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -479,7 +471,7 @@ export default function Home() {
               </div>
 
               <h3 className="text-2xl md:text-3xl font-black text-[#000080] mb-2 tracking-tight">
-                ¿Cuánto puedes ganar invitando amigos?
+                ¿Cuánto puedes ganar con las promociones invitando amigos?
               </h3>
               <p className="text-slate-500 text-sm font-medium mb-8">
                 Desliza la barra para calcular tus ingresos estimados en saldo GetGo.
@@ -519,7 +511,7 @@ export default function Home() {
                   </div>
 
                   <div className="flex items-center justify-between mt-6 pt-3 border-t border-pink-400/40">
-                    <p className="text-[11px] text-pink-100 font-medium leading-tight">Sin límite de invitados. ¡Invita a más y gana más!</p>
+                    <p className="text-[11px] text-pink-100 font-medium leading-tight">Sin límite de invitados. ¡Invita a más y gana más! uso exclusivo en viajes.</p>
                     <Coins size={28} className="text-[#f7da3a] shrink-0 ml-2" />
                   </div>
                 </div>
@@ -904,10 +896,10 @@ export default function Home() {
           {/* Social Links */}
           <div className="flex justify-center gap-4">
             {[
-              { name: "TikTok", icon: "tiktok", link: "https://www.tiktok.com/@getgo.chile" },
+              { name: "TikTok", icon: "tiktok", link: "https://www.tiktok.com/@getgo.cl" },
               { name: "Instagram", icon: "insta", link: "https://www.instagram.com/getgo.cl" },
-              { name: "Facebook", icon: "f", link: "https://www.facebook.com/GetGoAppCL" },
-              { name: "Twitter/X", icon: "x", link: "https://x.com/GetGoCL" },
+              { name: "Facebook", icon: "f", link: "https://www.facebook.com/getgo.cl" },
+              { name: "Twitter/X", icon: "x", link: "https://x.com/getgo.cl" },
             ].map((social, index) => (
               <a
                 key={index}

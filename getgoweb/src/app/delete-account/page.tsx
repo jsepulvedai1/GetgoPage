@@ -14,7 +14,7 @@ export default function AboutUs() {
   // Cambia estas rutas cuando subas tus imágenes finales
   const gallery = [
     {
-      src: "/images/2.webp", 
+      src: "/images/2.webp",
       alt: "Pantalla de configuración de cuenta: opción Eliminar cuenta",
       w: 600,
       h: 600,
@@ -88,7 +88,7 @@ export default function AboutUs() {
                 t: "Selecciona Eliminar cuenta",
                 d: "Toca la opción ‘Eliminar cuenta’ y revisa la información mostrada.",
               },
-             
+
               {
                 n: 3,
                 t: "Confirma eliminación",
@@ -178,7 +178,7 @@ export default function AboutUs() {
           </h2>
           <div className="mt-6 space-y-3">
             {[
-             
+
               {
                 q: "¿Puedo reactivar mi cuenta luego?",
                 a: "No. La eliminación es definitiva. Puedes crear una cuenta nueva más adelante si lo deseas.",
@@ -213,7 +213,7 @@ export default function AboutUs() {
             {[
               { name: "dd", link: "https://www.tiktok.com/@getgo.chile" },
               { name: "insta", link: "https://www.instagram.com/getgo.cl" },
-              { name: "f", link: "https://www.facebook.com/GetGoAppCL" },
+              { name: "f", link: "https://www.facebook.com/getgo.cl" },
               { name: "x", link: "https://x.com/GetGoCL" },
             ].map((social, index) => (
               <a

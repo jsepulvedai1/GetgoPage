@@ -5,7 +5,7 @@ const SocialSidebar = () => {
   return (
     <div className="fixed right-4 top-1/2 transform -translate-y-1/2 flex flex-col gap-4 z-50">
       {[
-        { icon: FaFacebook, link: "https://www.facebook.com/GetGoAppCL" },
+        { icon: FaFacebook, link: "https://www.facebook.com/getgo.cl" },
         { icon: FaTwitter, link: "https://x.com/GetGoCL" },
         { icon: FaInstagram, link: "https://www.instagram.com/getgo.cl" },
         { icon: FaTiktok, link: "https://www.tiktok.com/@getgo.chile" },

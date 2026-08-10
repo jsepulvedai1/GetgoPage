@@ -48,12 +48,12 @@ export default function AboutUs() {
 
       {/* HERO SECTION */}
       <section className="pt-36 pb-16 md:pt-44 md:pb-24 bg-gradient-to-b from-[#f4f9fd] via-[#eaf4fc] to-white relative overflow-hidden text-center px-6">
-        
+
         {/* Ambient Glowing Light */}
         <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-tr from-blue-200/40 via-pink-200/20 to-cyan-200/30 blur-[130px] rounded-full pointer-events-none"></div>
 
         <div className="max-w-4xl mx-auto relative z-10">
-          
+
           <div className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-md text-[#000080] px-4 py-2 rounded-full text-xs md:text-sm font-extrabold mb-6 border border-blue-200/80 shadow-sm">
             <span className="w-2.5 h-2.5 rounded-full bg-[#db2392] animate-ping"></span>
             <span>Sobre Nosotros 🇨🇱</span>
@@ -73,9 +73,9 @@ export default function AboutUs() {
       {/* MISIÓN & VISIÓN SECTION */}
       <section className="py-16 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-            
+
             {/* Card Misión */}
             <div className="bg-[#f4f9fd] rounded-3xl p-8 border border-blue-100/90 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
               <div>
@@ -134,7 +134,7 @@ export default function AboutUs() {
       {/* LOS OBJETIVOS QUE NOS GUÍAN */}
       <section className="py-20 px-6 bg-[#f4f9fd] border-t border-blue-100/80">
         <div className="max-w-7xl mx-auto">
-          
+
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-xs font-black tracking-widest text-[#db2392] uppercase bg-pink-50 px-4 py-1.5 rounded-full border border-pink-100">
               Nuestros Valores
@@ -149,8 +149,8 @@ export default function AboutUs() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {objectives.map((obj, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="bg-white rounded-3xl p-8 border border-blue-100 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-start group"
               >
                 {/* Icon Container */}
@@ -180,7 +180,7 @@ export default function AboutUs() {
       {/* FOOTER */}
       <footer className="bg-[#000080] text-white py-16">
         <div className="max-w-7xl mx-auto px-6 flex flex-col items-center gap-10 text-center">
-          
+
           <Link href="/">
             <Image
               src="/images/GetGo_Logo-Negative.png"
@@ -202,15 +202,15 @@ export default function AboutUs() {
           {/* Social Links */}
           <div className="flex justify-center gap-4">
             {[
-              { name: "TikTok", icon: "tiktok", link: "https://www.tiktok.com/@getgo.chile" },
+              { name: "TikTok", icon: "tiktok", link: "https://www.tiktok.com/@getgo.cl" },
               { name: "Instagram", icon: "insta", link: "https://www.instagram.com/getgo.cl" },
-              { name: "Facebook", icon: "f", link: "https://www.facebook.com/GetGoAppCL" },
-              { name: "Twitter/X", icon: "x", link: "https://x.com/GetGoCL" },
+              { name: "Facebook", icon: "f", link: "https://www.facebook.com/getgo.cl" },
+              { name: "Twitter/X", icon: "x", link: "https://x.com/getgo.cl" },
             ].map((social, index) => (
-              <a 
-                key={index} 
-                href={social.link} 
-                target="_blank" 
+              <a
+                key={index}
+                href={social.link}
+                target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.name}
                 className="bg-white/10 hover:bg-[#db2392] p-3.5 rounded-2xl transition-all duration-300 border border-white/10 shadow-sm"

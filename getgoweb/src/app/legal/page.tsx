@@ -694,8 +694,8 @@ export default function TerminosYCondiciones() {
             {[
               { name: "tiktok", link: "https://www.tiktok.com/@getgo.chile" },
               { name: "insta", link: "https://www.instagram.com/getgo.cl" },
-              { name: "f", link: "https://www.facebook.com/GetGoAppCL" },
-              { name: "x", link: "https://x.com/GetGoCL" },
+              { name: "f", link: "https://www.facebook.com/getgo.cl" },
+              { name: "x", link: "https://x.com/getgo.cl" },
             ].map((social, index) => (
               <a
                 key={index}
