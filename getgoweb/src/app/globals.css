@@ -72,7 +72,7 @@ body {
   box-shadow: 0 10px 30px -5px rgba(219, 35, 146, 0.4);
 }
 
-.shadow-[#db2392]/20 {
+.shadow-\[\#db2392\]\/20 {
   box-shadow: 0 10px 25px -5px rgba(219, 35, 146, 0.2);
 }
 

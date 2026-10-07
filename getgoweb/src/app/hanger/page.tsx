@@ -106,7 +106,7 @@ function HangerContent() {
         >
           {isDownloading ? (
             <>
-              <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+              <div className="w-5 h-5 border-2 border-white border-opacity-30 border-t-white rounded-full animate-spin" />
               Generando PDF...
             </>
           ) : (
@@ -120,7 +120,7 @@ function HangerContent() {
 
       <div
         ref={hangerRef}
-        className="relative w-full aspect-[1414/1000] max-w-7xl overflow-hidden bg-white shadow-2xl"
+        className="relative w-full aspect-auto max-w-7xl overflow-hidden bg-white shadow-2xl" style={{ aspectRatio: "1.414" }}
       >
         <div className="absolute inset-0 z-0">
           <Image
@@ -142,7 +142,7 @@ function HangerContent() {
             aspectRatio: "1/1"
           }}
         >
-          <div className="p-2 bg-white rounded-[10%] shadow-lg w-full h-full flex items-center justify-center">
+          <div className="p-2 bg-white rounded-xl shadow-lg w-full h-full flex items-center justify-center">
             <QRCode 
               value={passengerUrl} 
               size={200} 

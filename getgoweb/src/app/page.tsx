@@ -21,7 +21,6 @@ import {
   CheckCircle2,
   Zap,
   Users,
-  ArrowRight,
   Clock
 } from "lucide-react";
 
@@ -224,7 +223,7 @@ export default function Home() {
               className="relative z-10 w-[285px] sm:w-[330px] bg-[#000080] p-3.5 rounded-[52px] shadow-2xl border-4 border-blue-900/90 glow-blue overflow-hidden"
             >
               {/* Phone Screen Mockup */}
-              <div className="bg-[#f4f9fd] rounded-[42px] overflow-hidden aspect-[9/18.5] relative shadow-inner border border-slate-200">
+              <div className="bg-[#f4f9fd] rounded-[42px] overflow-hidden aspect-auto relative shadow-inner border border-slate-200">
                 <Image
                   src="/images/getgo_app_mobile_ui.png"
                   alt="GetGo App Mobile UI"
@@ -440,7 +439,7 @@ export default function Home() {
               <div className="lg:col-span-6 flex justify-center relative">
 
                 <div className="w-[270px] sm:w-[300px] bg-[#000080] p-4 rounded-[46px] shadow-2xl border-4 border-blue-900 glow-blue">
-                  <div className="bg-white rounded-[36px] p-5 aspect-[9/18] flex flex-col justify-between text-xs font-sans">
+                  <div className="bg-white rounded-[36px] p-5 aspect-auto flex flex-col justify-between text-xs font-sans">
 
                     <div className="flex items-center justify-between font-extrabold text-[#000080] pb-3 border-b border-gray-100">
                       <span>Resumen de Referidos</span>
