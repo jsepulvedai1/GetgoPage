@@ -1,21 +1,18 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useEffect, useState, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import QRCode from "react-qr-code";
 import { Montserrat } from "next/font/google";
-
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "900"],
   display: "swap",
 });
-
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
-import { useRef, useState } from "react";
 
 const GETGO_LIGHT = "#e2f2f5";
 
@@ -26,47 +23,56 @@ function HangerContent() {
   const af_sub1 = searchParams.get("af_sub1") || code;
 
   const [isDownloading, setIsDownloading] = useState(false);
+  const [driverInfo, setDriverInfo] = useState<{ firstName?: string; phone?: string; avatar?: string } | null>(null);
 
   const hangerRef = useRef<HTMLDivElement>(null);
+
+  // Fetch driver info securely from backend using the code
+  useEffect(() => {
+    async function fetchDriverInfo() {
+      if (!code || code === "12345") return;
+      try {
+        const response = await fetch(`https://prod.getgoapp.com/api/v1/hanger-info/?code=${code}`);
+        if (response.ok) {
+          const data = await response.json();
+          setDriverInfo(data);
+        }
+      } catch (error) {
+        console.error("Error fetching driver info:", error);
+      }
+    }
+    fetchDriverInfo();
+  }, [code]);
 
   // URL construction based on user prompt
   const passengerUrl = `https://getgoapp.onelink.me/oZ2Z/tfis2x64?af_sub1=${af_sub1}&code=${code}&referral_code=${referral_code}`;
 
   const downloadAsPDF = async () => {
     if (!hangerRef.current) return;
-
-    setIsDownloading(true);
     setIsDownloading(true);
 
     try {
-      // Store original styles to restore them later
       const originalStyle = hangerRef.current.style.cssText;
-
-      // Force desktop dimensions for capture
       hangerRef.current.style.width = "1280px";
       hangerRef.current.style.minWidth = "1280px";
-      hangerRef.current.style.position = "absolute"; // Take out of flow to avoid layout breaks
-      hangerRef.current.style.left = "-9999px"; // Hide it during capture
+      hangerRef.current.style.position = "absolute"; 
+      hangerRef.current.style.left = "-9999px"; 
 
-      // Small delay to ensure any layout shifts and state changes are settled
       await new Promise(resolve => setTimeout(resolve, 800));
 
       const canvas = await html2canvas(hangerRef.current, {
-        scale: 2, // High quality
+        scale: 2, 
         useCORS: true,
         logging: false,
         backgroundColor: GETGO_LIGHT,
-        windowWidth: 1280, // Force media queries to desktop state
+        windowWidth: 1280, 
         width: 1280,
       });
 
-      // Restore original styles
       hangerRef.current.style.cssText = originalStyle;
 
       const imgData = canvas.toDataURL("image/png");
 
-      // Calculate PDF dimensions based on canvas aspect ratio
-      // Standard A4 is 210 x 297mm. We'll use the canvas dimensions for a pixel-perfect fit.
       const pdf = new jsPDF({
         orientation: canvas.width > canvas.height ? "landscape" : "portrait",
         unit: "px",
@@ -83,10 +89,14 @@ function HangerContent() {
     }
   };
 
+  // Helper to format phone number (e.g. 56995754059 -> 569 9575 4059 or similar)
+  const formatPhone = (phone?: string) => {
+    if (!phone) return "";
+    return `+${phone}`;
+  };
 
   return (
     <div className={`${montserrat.className} flex flex-col items-center justify-center min-h-screen bg-[#001438] p-0 overflow-hidden relative`}>
-      {/* Download Action Button */}
       <div className="fixed top-6 right-6 z-50 no-print">
         <button
           onClick={downloadAsPDF}
@@ -108,12 +118,10 @@ function HangerContent() {
         </button>
       </div>
 
-      {/* Main Hanger Container to Capture */}
       <div
         ref={hangerRef}
         className="relative w-full aspect-[1414/1000] max-w-7xl overflow-hidden bg-white shadow-2xl"
       >
-        {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/hanger1.jpg"
@@ -128,13 +136,13 @@ function HangerContent() {
         <div 
           className="absolute z-10"
           style={{
-            left: "8%",
-            top: "73%",
-            width: "15%",
+            left: "6.5%",
+            top: "67%",
+            width: "14%",
             aspectRatio: "1/1"
           }}
         >
-          <div className="p-2 bg-white rounded-xl shadow-lg w-full h-full flex items-center justify-center">
+          <div className="p-2 bg-white rounded-[10%] shadow-lg w-full h-full flex items-center justify-center">
             <QRCode 
               value={passengerUrl} 
               size={200} 
@@ -144,6 +152,51 @@ function HangerContent() {
             />
           </div>
         </div>
+
+        {/* Driver Contact Info Overlay */}
+        {driverInfo && (
+          <div 
+            className="absolute z-10 flex items-center gap-3"
+            style={{
+              left: "22%",
+              top: "70.5%",
+            }}
+          >
+            {/* WhatsApp Icon Box */}
+            <div className="bg-[#25D366] text-white rounded-full p-2.5 shadow-md flex items-center justify-center" style={{ width: "4vw", height: "4vw", maxWidth: "55px", maxHeight: "55px", minWidth: "35px", minHeight: "35px" }}>
+              <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+            </div>
+            
+            <div className="flex flex-col">
+              <span className="text-white font-bold tracking-wide" style={{ fontSize: "clamp(10px, 1.3vw, 20px)", lineHeight: "1.2" }}>WhatsApp</span>
+              <span className="text-white font-black" style={{ fontSize: "clamp(12px, 1.8vw, 24px)", lineHeight: "1.2" }}>{formatPhone(driverInfo.phone)}</span>
+              {driverInfo.firstName && (
+                <span className="text-[#e91e63] font-black mt-1" style={{ fontSize: "clamp(14px, 2vw, 26px)", lineHeight: "1" }}>
+                  {driverInfo.firstName.toUpperCase()}
+                </span>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Referral Code Overlay */}
+        <div 
+          className="absolute z-10 flex flex-col"
+          style={{
+            left: "6.5%",
+            bottom: "8%",
+          }}
+        >
+          <span className="text-white font-semibold tracking-wider mb-1" style={{ fontSize: "clamp(8px, 1vw, 16px)" }}>CÓDIGO DE REFERENCIA:</span>
+          <div className="bg-[#e91e63] rounded-lg flex items-center justify-center px-4 py-2 w-fit">
+            <span className="text-white font-black tracking-widest" style={{ fontSize: "clamp(14px, 2.5vw, 36px)" }}>
+              {code.toUpperCase()}
+            </span>
+          </div>
+        </div>
+
       </div>
     </div>
   );

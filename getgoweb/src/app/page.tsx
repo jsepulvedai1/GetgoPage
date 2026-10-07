@@ -2,7 +2,7 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronRight,
   ChevronLeft,
@@ -16,7 +16,13 @@ import {
   TrendingUp,
   Sparkles,
   Share2,
-  Coins
+  Coins,
+  Star,
+  CheckCircle2,
+  Zap,
+  Users,
+  ArrowRight,
+  Clock
 } from "lucide-react";
 
 export default function Home() {
@@ -41,6 +47,7 @@ export default function Home() {
       name: "Martín R.",
       city: "Concepción",
       earned: "$60.000",
+      rating: 5,
       avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&q=80"
     },
     {
@@ -48,6 +55,7 @@ export default function Home() {
       name: "Carla L.",
       city: "Santiago",
       earned: "$45.500",
+      rating: 5,
       avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80"
     },
     {
@@ -55,6 +63,7 @@ export default function Home() {
       name: "Javier P.",
       city: "Valparaíso",
       earned: "$32.000",
+      rating: 5,
       avatar: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=120&q=80"
     }
   ];
@@ -68,38 +77,54 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f4f9fd] text-slate-900 font-sans selection:bg-pink-100 selection:text-[#db2392]">
-
-
+    <div className="min-h-screen bg-[#f4f9fd] text-slate-900 font-sans selection:bg-pink-100 selection:text-[#db2392] overflow-x-hidden">
 
       {/* HERO SECTION */}
-      <section className="pt-32 pb-20 md:pt-40 md:pb-28 bg-gradient-to-b from-[#f4f9fd] via-[#eaf4fc] to-white relative overflow-hidden">
+      <section className="pt-32 pb-24 md:pt-40 md:pb-32 bg-gradient-to-b from-[#f4f9fd] via-[#e8f3fc] to-white relative overflow-hidden">
 
         {/* Decorative Glowing Blobs */}
-        <div className="absolute top-12 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-gradient-to-tr from-blue-300/30 via-pink-200/20 to-cyan-200/30 blur-[130px] rounded-full pointer-events-none"></div>
-        <div className="absolute top-1/3 right-5 w-[350px] h-[350px] bg-[#db2392]/15 blur-[120px] rounded-full pointer-events-none animate-pulse"></div>
+        <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[1000px] h-[550px] bg-gradient-to-tr from-blue-300/30 via-pink-200/25 to-cyan-200/30 blur-[140px] rounded-full pointer-events-none"></div>
+        <div className="absolute top-1/4 right-0 w-[400px] h-[400px] bg-[#db2392]/15 blur-[130px] rounded-full pointer-events-none animate-pulse-slow"></div>
+        <div className="absolute top-1/3 left-0 w-[350px] h-[350px] bg-[#000080]/10 blur-[120px] rounded-full pointer-events-none"></div>
 
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
 
           {/* Left Column Text */}
           <div className="lg:col-span-6 flex flex-col items-start text-left">
 
-            {/* Country Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2.5 bg-white/90 backdrop-blur-md text-[#000080] px-4 py-2 rounded-full text-xs md:text-sm font-bold mb-6 border border-blue-200/80 shadow-sm hover:shadow transition-all"
-            >
-              <span className="w-2.5 h-2.5 rounded-full bg-[#db2392] animate-ping"></span>
-              <span className="text-slate-800">La app de movilidad creada en Chile 🇨🇱</span>
-            </motion.div>
+            {/* Badges Container */}
+            <div className="flex flex-wrap items-center gap-3 mb-6">
+              {/* Country Badge */}
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="inline-flex items-center gap-2.5 bg-white/95 backdrop-blur-md text-[#000080] px-4 py-2 rounded-full text-xs md:text-sm font-bold border border-blue-200/80 shadow-sm hover:shadow transition-all"
+              >
+                <span className="w-2.5 h-2.5 rounded-full bg-[#db2392] animate-ping"></span>
+                <span className="text-slate-800 font-extrabold">La app de movilidad de Chile 🇨🇱</span>
+              </motion.div>
+
+              {/* Rating Badge */}
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="inline-flex items-center gap-1.5 bg-amber-50/90 text-amber-900 px-3.5 py-1.5 rounded-full text-xs font-extrabold border border-amber-200/80 shadow-xs"
+              >
+                <div className="flex text-amber-500">
+                  <Star size={13} className="fill-amber-400 text-amber-400" />
+                </div>
+                <span>4.9 / 5.0</span>
+                <span className="text-amber-700/70 font-semibold">(+17K usuarios)</span>
+              </motion.div>
+            </div>
 
             {/* Main Headline */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              transition={{ duration: 0.6, delay: 0.15 }}
               className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#000080] leading-[1.12] tracking-tight mb-6"
             >
               Muévete por Chile y <span className="text-gradient-pink">gana</span> con cada viaje.
@@ -109,7 +134,7 @@ export default function Home() {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.25 }}
               className="text-slate-600 text-base sm:text-lg font-medium leading-relaxed max-w-lg mb-8"
             >
               Viaja seguro, rápido y al mejor precio. Además, acumulas recompensas en tu saldo por cada invitado que realice viajes en Getgo.
@@ -119,7 +144,7 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.35 }}
               id="descargar"
               className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-8"
             >
@@ -129,7 +154,7 @@ export default function Home() {
                 href={storeLinks.google}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-slate-950 hover:bg-slate-900 text-white px-6 py-3.5 rounded-2xl flex items-center justify-center gap-3.5 shadow-xl shadow-slate-950/15 hover:shadow-2xl transition-all transform hover:-translate-y-1 border border-slate-800 group"
+                className="bg-slate-950 hover:bg-slate-900 text-white px-6 py-3.5 rounded-2xl flex items-center justify-center gap-3.5 shadow-xl shadow-slate-950/20 hover:shadow-2xl hover:shadow-pink-500/10 transition-all transform hover:-translate-y-1 border border-slate-800 group"
               >
                 <svg viewBox="0 0 512 512" className="w-7 h-7 shrink-0 transition-transform group-hover:scale-110">
                   <path fill="#EA4335" d="M26.4 17.5c-4 4.5-6.4 11.2-6.4 19.8v437.4c0 8.6 2.4 15.3 6.4 19.8l1.1 1.1L279.7 243.3 27.5 16.4l-1.1 1.1z" />
@@ -148,7 +173,7 @@ export default function Home() {
                 href={storeLinks.apple}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-slate-950 hover:bg-slate-900 text-white px-6 py-3.5 rounded-2xl flex items-center justify-center gap-3.5 shadow-xl shadow-slate-950/15 hover:shadow-2xl transition-all transform hover:-translate-y-1 border border-slate-800 group"
+                className="bg-slate-950 hover:bg-slate-900 text-white px-6 py-3.5 rounded-2xl flex items-center justify-center gap-3.5 shadow-xl shadow-slate-950/20 hover:shadow-2xl hover:shadow-pink-500/10 transition-all transform hover:-translate-y-1 border border-slate-800 group"
               >
                 <svg viewBox="0 0 384 512" className="w-6 h-6 fill-white shrink-0 transition-transform group-hover:scale-110">
                   <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-92.1zm-57.6-143.9c20.1-24.3 33.7-57.9 29.3-91.8-28.7 1.4-63.5 19.3-83.6 43-18 20.7-33.8 54.3-29.2 87.3 32 2.5 63.4-14.3 83.5-38.5z" />
@@ -161,31 +186,50 @@ export default function Home() {
 
             </motion.div>
 
-            {/* Ratings & Trust badge */}
-
+            {/* Quick feature highlights */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.5 }}
+              className="flex items-center gap-6 text-xs text-slate-500 font-bold pt-2 border-t border-blue-100/80 w-full"
+            >
+              <div className="flex items-center gap-1.5 text-emerald-600">
+                <CheckCircle2 size={16} />
+                <span>Registro en 1 min</span>
+              </div>
+              <div className="flex items-center gap-1.5 text-[#000080]">
+                <ShieldCheck size={16} className="text-[#db2392]" />
+                <span>Conductores Verificados</span>
+              </div>
+              <div className="flex items-center gap-1.5 text-blue-700">
+                <Zap size={16} className="text-amber-500" />
+                <span>Pago al instante</span>
+              </div>
+            </motion.div>
 
           </div>
 
           {/* Right Column - Premium Smartphone Mockup & Floating Cards */}
-          <div className="lg:col-span-6 relative flex justify-center items-center mt-8 lg:mt-0 min-h-[550px]">
+          <div className="lg:col-span-6 relative flex justify-center items-center mt-10 lg:mt-0 min-h-[560px]">
 
             {/* Ambient Shadow Ring */}
-            <div className="absolute w-[300px] h-[500px] bg-gradient-to-b from-[#db2392]/20 to-[#000080]/30 rounded-[50px] blur-2xl transform rotate-3"></div>
+            <div className="absolute w-[320px] h-[520px] bg-gradient-to-b from-[#db2392]/30 via-[#000080]/30 to-pink-500/20 rounded-[60px] blur-3xl transform rotate-3"></div>
 
             {/* Main Smartphone Graphic Frame */}
             <motion.div
               initial={{ opacity: 0, y: 40, rotate: 0 }}
               animate={{ opacity: 1, y: 0, rotate: -2 }}
-              transition={{ duration: 0.8, type: "spring" }}
-              className="relative z-10 w-[280px] sm:w-[325px] bg-[#000080] p-3 rounded-[50px] shadow-2xl border-4 border-blue-900/90 glow-blue overflow-hidden"
+              transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
+              whileHover={{ scale: 1.02, rotate: 0 }}
+              className="relative z-10 w-[285px] sm:w-[330px] bg-[#000080] p-3.5 rounded-[52px] shadow-2xl border-4 border-blue-900/90 glow-blue overflow-hidden"
             >
               {/* Phone Screen Mockup */}
-              <div className="bg-[#f4f9fd] rounded-[40px] overflow-hidden aspect-[9/18.5] relative shadow-inner border border-slate-200">
+              <div className="bg-[#f4f9fd] rounded-[42px] overflow-hidden aspect-[9/18.5] relative shadow-inner border border-slate-200">
                 <Image
                   src="/images/getgo_app_mobile_ui.png"
                   alt="GetGo App Mobile UI"
                   fill
-                  className="object-cover object-top rounded-[38px]"
+                  className="object-cover object-top rounded-[40px]"
                   priority
                 />
               </div>
@@ -196,14 +240,14 @@ export default function Home() {
               initial={{ opacity: 0, x: 30, scale: 0.9 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ delay: 0.4, duration: 0.5 }}
-              className="absolute -top-6 -right-2 sm:right-2 bg-white/95 backdrop-blur-xl p-4 rounded-2xl shadow-xl z-20 border border-pink-100 flex flex-col gap-1.5 max-w-[220px] animate-float-slow"
+              className="absolute -top-4 -right-2 sm:right-2 bg-white/95 backdrop-blur-xl p-4 rounded-2xl shadow-xl z-20 border border-pink-100 flex flex-col gap-1.5 max-w-[230px] animate-float-slow"
             >
               <div className="flex items-center gap-1.5 text-[11px] font-extrabold text-[#000080]">
-                <Sparkles size={14} className="text-[#db2392]" />
-                <span>¡Tenemos un bono de bienvenida!</span>
+                <Sparkles size={15} className="text-[#db2392]" />
+                <span>Bono de bienvenida</span>
               </div>
               <span className="text-2xl font-black text-[#db2392] tracking-tight">$2.000 CLP</span>
-
+              <span className="text-[10px] text-slate-400 font-semibold">Carga inmediata en tu saldo GetGo</span>
             </motion.div>
 
             {/* Floating Card 2: Bottom Left */}
@@ -211,27 +255,29 @@ export default function Home() {
               initial={{ opacity: 0, x: -30, scale: 0.9 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ delay: 0.6, duration: 0.5 }}
-              className="absolute bottom-2 -left-2 sm:left-2 bg-[#000080] text-white p-4 rounded-2xl shadow-2xl z-20 border border-blue-700/80 flex flex-col gap-1 min-w-[210px] animate-float-reverse"
+              className="absolute bottom-4 -left-2 sm:left-2 bg-[#000080] text-white p-4.5 rounded-2xl shadow-2xl z-20 border border-blue-700/80 flex flex-col gap-1.5 min-w-[230px] animate-float-reverse"
             >
               <div className="flex items-center justify-between">
-                <span className="text-[13px] text-blue-200 font-semibold uppercase tracking-wider">Por cada invitado ganas $1.000</span>
-                <Coins size={14} className="text-[#f7da3a]" />
+                <span className="text-[12px] text-blue-200 font-semibold uppercase tracking-wider">Tus referidos</span>
+                <Coins size={16} className="text-[#f7da3a]" />
               </div>
-              <span className="text-xl font-black text-white">24 amigos</span>
+              <span className="text-xl font-black text-white">24 amigos activos</span>
 
-              <div className="my-1.5 border-t border-blue-700/80"></div>
+              <div className="my-1 border-t border-blue-700/80"></div>
 
-              <span className="text-[10px] text-blue-200 font-semibold">Ganancias totales</span>
-              <span className="text-2xl font-black text-[#f7da3a] tracking-tight">$24.000 CLP</span>
+              <div className="flex justify-between items-baseline">
+                <span className="text-[10px] text-blue-200 font-semibold">Ganancias totales</span>
+                <span className="text-2xl font-black text-[#f7da3a] tracking-tight">$24.000 CLP</span>
+              </div>
 
               {/* Avatars */}
-              <div className="flex items-center mt-2">
+              <div className="flex items-center justify-between mt-2 pt-1 border-t border-blue-800/80">
                 <div className="flex -space-x-2 overflow-hidden">
-                  <div className="w-6 h-6 rounded-full border-2 border-[#000080] bg-slate-300 flex items-center justify-center text-[9px] font-bold text-slate-700">M</div>
-                  <div className="w-6 h-6 rounded-full border-2 border-[#000080] bg-pink-400 flex items-center justify-center text-[9px] font-bold text-white">C</div>
-                  <div className="w-6 h-6 rounded-full border-2 border-[#000080] bg-blue-400 flex items-center justify-center text-[9px] font-bold text-white">J</div>
+                  <div className="w-6.5 h-6.5 rounded-full border-2 border-[#000080] bg-slate-300 flex items-center justify-center text-[9px] font-bold text-slate-700">M</div>
+                  <div className="w-6.5 h-6.5 rounded-full border-2 border-[#000080] bg-pink-500 flex items-center justify-center text-[9px] font-bold text-white">C</div>
+                  <div className="w-6.5 h-6.5 rounded-full border-2 border-[#000080] bg-blue-500 flex items-center justify-center text-[9px] font-bold text-white">J</div>
                 </div>
-                <span className="text-[10px] font-extrabold text-[#f7da3a] ml-2.5">+21 más</span>
+                <span className="text-[10px] font-extrabold text-[#f7da3a]">+21 más en tu red</span>
               </div>
             </motion.div>
 
@@ -241,13 +287,13 @@ export default function Home() {
       </section>
 
       {/* EMPRESAS QUE CONFIAN EN NOSOTROS */}
-      <section className="border-y border-blue-100/70 bg-white py-9">
+      <section className="border-y border-blue-100/80 bg-white py-8 shadow-xs">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-          <p className="text-xs md:text-sm font-extrabold text-[#000080] tracking-wide max-w-[180px] leading-tight text-center md:text-left uppercase">
+          <p className="text-xs md:text-sm font-extrabold text-[#000080] tracking-wider uppercase text-center md:text-left">
             Confían en nuestra plataforma
           </p>
 
-          <div className="flex flex-wrap items-center justify-center md:justify-end gap-8 sm:gap-12 md:gap-16 opacity-80 hover:opacity-100 transition-opacity">
+          <div className="flex flex-wrap items-center justify-center md:justify-end gap-8 sm:gap-12 md:gap-14 opacity-85 hover:opacity-100 transition-opacity">
             <span className="text-2xl font-black text-blue-900 italic tracking-tighter hover:scale-105 transition-transform cursor-pointer">lider</span>
             <span className="text-2xl font-extrabold text-cyan-600 tracking-tight hover:scale-105 transition-transform cursor-pointer">sura</span>
             <span className="text-2xl font-black text-[#000080] tracking-tighter hover:scale-105 transition-transform cursor-pointer">Bci</span>
@@ -259,22 +305,22 @@ export default function Home() {
       </section>
 
       {/* ¿CÓMO FUNCIONA? */}
-      <section id="pasajeros" className="py-24 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
+      <section id="pasajeros" className="py-24 bg-white relative">
+        <div className="max-w-6xl mx-auto px-6 relative">
 
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-xs font-black tracking-widest text-[#db2392] uppercase bg-pink-50 px-4 py-1.5 rounded-full border border-pink-100">
+            <span className="text-xs font-black tracking-widest text-[#db2392] uppercase bg-pink-50 px-4 py-1.5 rounded-full border border-pink-100 shadow-xs">
               Paso a Paso
             </span>
             <h2 className="text-3xl md:text-4xl font-black text-[#000080] mt-4 tracking-tight">
               ¿Cómo funciona GetGo?
             </h2>
             <p className="text-slate-500 font-medium text-sm sm:text-base mt-2">
-              Comenzar a viajar y ganar recompensas es rápido y sencillo.
+              Comenzar a viajar y ganar recompensas es rápido, sencillo y transparente.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
 
             {[
               {
@@ -293,18 +339,22 @@ export default function Home() {
                 icon: <Car size={26} className="text-[#000080]" />,
                 num: "03",
                 title: "Ellos realizan su viaje",
-                desc: "Ganas por cada viaje que realicen tus amigos."
+                desc: "Ganas comisiones por cada viaje realizado por las personas que invitaste."
               },
               {
                 icon: <Wallet size={26} className="text-[#db2392]" />,
                 num: "04",
                 title: "¡Tú ganas en saldo!",
-                desc: "Getgo reparte el 15% de comision en 5 bonos."
+                desc: "Getgo reparte el 15% de comisión acumulable hasta en 5 niveles de tu red."
               }
             ].map((step, idx) => (
-              <div
+              <motion.div
                 key={idx}
-                className="bg-[#f4f9fd] rounded-3xl p-7 border border-blue-100/80 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-start relative group"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.1 }}
+                className="bg-[#f4f9fd] rounded-3xl p-7 border border-blue-100/90 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-start relative group"
               >
                 {/* Step Number Badge */}
                 <span className="absolute top-6 right-6 font-black text-2xl text-slate-300 group-hover:text-[#db2392] transition-colors">
@@ -322,7 +372,7 @@ export default function Home() {
                 <p className="text-xs text-slate-500 font-medium leading-relaxed">
                   {step.desc}
                 </p>
-              </div>
+              </motion.div>
             ))}
 
           </div>
@@ -330,64 +380,58 @@ export default function Home() {
       </section>
 
       {/* PROGRAMA DE REFERIDOS (CARD + STATS) */}
-      <section id="referidos" className="py-16 bg-white">
+      <section id="referidos" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
 
           {/* Main Container */}
-          <div className="bg-gradient-to-br from-[#f4f9fd] via-[#eaf4fc] to-[#f4f9fd] rounded-[40px] p-8 md:p-14 border border-blue-100/90 shadow-lg relative overflow-hidden">
+          <div className="bg-gradient-to-br from-[#f4f9fd] via-[#e6f1fb] to-[#f4f9fd] rounded-[44px] p-8 md:p-14 border border-blue-200/80 shadow-xl relative overflow-hidden">
 
             {/* Ambient Background Glow */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-pink-200/30 blur-3xl pointer-events-none"></div>
+            <div className="absolute top-0 right-0 w-[450px] h-[450px] bg-pink-200/30 blur-3xl pointer-events-none"></div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
 
               {/* Left Column */}
               <div className="lg:col-span-6">
-                <span className="text-[11px] font-black tracking-widest text-[#000080] uppercase bg-white px-4 py-2 rounded-full mb-4 inline-block border border-blue-200/80 shadow-sm">
+                <span className="text-[11px] font-black tracking-widest text-[#000080] uppercase bg-white px-4 py-2 rounded-full mb-4 inline-block border border-blue-200/80 shadow-xs">
                   Programa de Referidos GetGo
                 </span>
 
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#000080] leading-tight mb-4 tracking-tight">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#000080] leading-tight mb-5 tracking-tight">
                   Invita a tus amigos.<br />
                   <span className="text-gradient-pink">Tu red crece y tus ganancias también.</span>
                 </h2>
 
-                <p className="text-slate-600 text-base md:text-lg font-medium mb-8 max-w-md">
-                  No ganas solo por tus invitados. También ganas por la red que ellos crean.
-
-                  Invita a tus amigos, ellos invitan a sus amigos y tú recibes un porcentaje por los viajes que genere tu red.
-
-                  Mientras más grande tu red, mayores pueden ser tus ganancias.
+                <p className="text-slate-600 text-base md:text-lg font-medium mb-8 max-w-md leading-relaxed">
+                  No ganas solo por tus invitados directos. También acumulas comisiones por la red de invitados que ellos generen hasta en 5 niveles.
                 </p>
 
                 {/* 3 Step Flow Subcards */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
 
-                  <div className="bg-white/90 backdrop-blur-md p-4 rounded-2xl border border-blue-100 shadow-sm flex flex-col items-center text-center">
+                  <div className="bg-white/90 backdrop-blur-md p-4.5 rounded-2xl border border-blue-100 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-all">
                     <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#000080] flex items-center justify-center font-bold mb-3">
                       <Share2 size={20} />
                     </div>
-                    <h4 className="font-extrabold text-xs text-[#000080] mb-1">1. Comparte tu código</h4>
-                    <p className="text-[10px] text-slate-500 font-medium">Vía WhatsApp, Instagram o Link directo.</p>
+                    <h4 className="font-extrabold text-xs text-[#000080] mb-1">1. Comparte código</h4>
+                    <p className="text-[10px] text-slate-500 font-medium">Por WhatsApp, redes o enlace.</p>
                   </div>
 
-                  <div className="bg-white/90 backdrop-blur-md p-4 rounded-2xl border border-blue-100 shadow-sm flex flex-col items-center text-center">
+                  <div className="bg-white/90 backdrop-blur-md p-4.5 rounded-2xl border border-blue-100 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-all">
                     <div className="w-10 h-10 rounded-xl bg-pink-50 text-[#db2392] flex items-center justify-center font-bold mb-3">
                       <Car size={20} />
                     </div>
                     <h4 className="font-extrabold text-xs text-[#000080] mb-1">2. Tu amigo viaja</h4>
-                    <p className="text-[10px] text-slate-500 font-medium">Tu ganas un porcentaje inmediato.</p>
+                    <p className="text-[10px] text-slate-500 font-medium">Recibes un bono instantáneo.</p>
                   </div>
 
-                  <div className="bg-white/90 backdrop-blur-md p-4 rounded-2xl border border-blue-100 shadow-sm flex flex-col items-center text-center">
-                    <div className="w-10 h-10 rounded-xl bg-pink-50 text-[#db2392] flex items-center justify-center font-bold mb-3">
-                      <Car size={20} />
+                  <div className="bg-white/90 backdrop-blur-md p-4.5 rounded-2xl border border-blue-100 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-all">
+                    <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold mb-3">
+                      <Coins size={20} />
                     </div>
-                    <h4 className="font-extrabold text-xs text-[#000080] mb-1">3.Tu red crece</h4>
-                    <p className="text-[10px] text-slate-500 font-medium">Acumulas ganancias de tu red.</p>
+                    <h4 className="font-extrabold text-xs text-[#000080] mb-1">3. Tu red se expande</h4>
+                    <p className="text-[10px] text-slate-500 font-medium">Multiplica tu saldo acumulado.</p>
                   </div>
-
-
 
                 </div>
               </div>
@@ -395,18 +439,18 @@ export default function Home() {
               {/* Right Column - Smartphone Preview */}
               <div className="lg:col-span-6 flex justify-center relative">
 
-                <div className="w-[260px] sm:w-[290px] bg-[#000080] p-3.5 rounded-[45px] shadow-2xl border-4 border-blue-900 glow-blue">
-                  <div className="bg-white rounded-[35px] p-5 aspect-[9/18] flex flex-col justify-between text-xs font-sans">
+                <div className="w-[270px] sm:w-[300px] bg-[#000080] p-4 rounded-[46px] shadow-2xl border-4 border-blue-900 glow-blue">
+                  <div className="bg-white rounded-[36px] p-5 aspect-[9/18] flex flex-col justify-between text-xs font-sans">
 
                     <div className="flex items-center justify-between font-extrabold text-[#000080] pb-3 border-b border-gray-100">
                       <span>Resumen de Referidos</span>
                       <span className="bg-pink-100 text-[#db2392] text-[9px] px-2 py-0.5 rounded-full font-bold">Activo</span>
                     </div>
 
-                    <div className="bg-gradient-to-br from-[#db2392] to-[#b81b7a] text-white p-4 rounded-2xl shadow-lg">
+                    <div className="bg-gradient-to-br from-[#db2392] to-[#b81b7a] text-white p-4.5 rounded-2xl shadow-lg relative overflow-hidden">
                       <p className="text-[10px] text-pink-100 font-semibold">Ganancias totales acumuladas</p>
                       <p className="text-3xl font-black my-1 tracking-tight">$96.000 CLP</p>
-                      <span className="text-[9px] text-pink-200 underline font-medium">Ver historial de retiros &gt;</span>
+                      <span className="text-[9px] text-pink-200 underline font-medium cursor-pointer">Ver historial de retiros &gt;</span>
                     </div>
 
                     <div className="space-y-2.5">
@@ -452,7 +496,7 @@ export default function Home() {
             </div>
             <div className="relative z-10">
               <p className="text-3xl md:text-4xl font-black text-[#f7da3a] mb-1 tracking-tight">+3</p>
-              <p className="text-xs text-blue-200 font-medium leading-snug">Contamos con<br />promociones activas</p>
+              <p className="text-xs text-blue-200 font-medium leading-snug">Promociones activas<br />este mes</p>
             </div>
             <div className="relative z-10">
               <p className="text-3xl md:text-4xl font-black text-[#f7da3a] mb-1 tracking-tight">100%</p>
@@ -467,16 +511,16 @@ export default function Home() {
       <section id="calculadora" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-8">
 
-          {/* Left: Calculator */}
-          <div className="lg:col-span-7 bg-[#f4f9fd] rounded-3xl p-8 md:p-10 border border-blue-100 shadow-lg flex flex-col justify-between">
+          {/* Left: Interactive Calculator */}
+          <div className="lg:col-span-7 bg-[#f4f9fd] rounded-3xl p-8 md:p-10 border border-blue-100/90 shadow-lg flex flex-col justify-between">
             <div>
               <div className="flex items-center gap-2 mb-2">
                 <TrendingUp size={20} className="text-[#db2392]" />
-                <span className="text-xs font-black text-[#db2392] uppercase tracking-wider">Simulador interactivo Promoción</span>
+                <span className="text-xs font-black text-[#db2392] uppercase tracking-wider">Simulador interactivo</span>
               </div>
 
               <h3 className="text-2xl md:text-3xl font-black text-[#000080] mb-2 tracking-tight">
-                ¿Cuánto puedes ganar con las promociones invitando amigos?
+                ¿Cuánto puedes ganar invitando amigos?
               </h3>
               <p className="text-slate-500 text-sm font-medium mb-8">
                 Desliza la barra para calcular tus ingresos estimados en saldo GetGo.
@@ -487,8 +531,8 @@ export default function Home() {
                 {/* Slider Control */}
                 <div className="sm:col-span-6">
                   <div className="flex justify-between items-center mb-4">
-                    <span className="text-xs font-bold text-[#000080]">Amigos invitados</span>
-                    <span className="bg-white text-[#000080] font-black text-xl px-4 py-1.5 rounded-xl border border-blue-200 shadow-sm">
+                    <span className="text-xs font-extrabold text-[#000080]">Amigos invitados</span>
+                    <span className="bg-white text-[#000080] font-black text-xl px-4 py-1.5 rounded-xl border border-blue-200 shadow-xs">
                       {friendsCount}
                     </span>
                   </div>
@@ -499,7 +543,7 @@ export default function Home() {
                     max="50"
                     value={friendsCount}
                     onChange={(e) => setFriendsCount(Number(e.target.value))}
-                    className="w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#db2392]"
+                    className="w-full h-3.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#db2392]"
                   />
 
                   <div className="flex justify-between text-[11px] text-slate-400 font-extrabold mt-2">
@@ -511,13 +555,13 @@ export default function Home() {
                 {/* Earnings Display Card */}
                 <div className="sm:col-span-6 bg-gradient-to-br from-[#db2392] to-[#b81b7a] text-white rounded-2xl p-6 shadow-pink-glow relative overflow-hidden flex flex-col justify-between min-h-[170px]">
                   <div>
-                    <p className="text-xs text-pink-100 font-bold mb-1 uppercase tracking-wider">Tus ganancias estimadas</p>
-                    <p className="text-4xl font-black text-white tracking-tight">${estimatedEarnings.toLocaleString('es-CL')} CLP</p>
+                    <p className="text-xs text-pink-100 font-extrabold mb-1 uppercase tracking-wider">Tus ganancias estimadas</p>
+                    <p className="text-3xl sm:text-4xl font-black text-white tracking-tight">${estimatedEarnings.toLocaleString('es-CL')} CLP</p>
                   </div>
 
                   <div className="flex items-center justify-between mt-6 pt-3 border-t border-pink-400/40">
-                    <p className="text-[11px] text-pink-100 font-medium leading-tight">Sin límite de invitados. ¡Invita a más y gana más! uso exclusivo en viajes.</p>
-                    <Coins size={28} className="text-[#f7da3a] shrink-0 ml-2" />
+                    <p className="text-[11px] text-pink-100 font-medium leading-tight">Sin límite de invitados. Uso exclusivo para viajes en GetGo.</p>
+                    <Coins size={28} className="text-[#f7da3a] shrink-0 ml-2 animate-bounce" />
                   </div>
                 </div>
 
@@ -525,13 +569,19 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right: Promos Card */}
-          <div className="lg:col-span-5 bg-gradient-to-br from-[#000080] to-blue-950 text-white rounded-3xl p-8 md:p-10 shadow-xl border border-blue-900 flex flex-col justify-between relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-48 h-48 bg-pink-500/10 rounded-full blur-2xl pointer-events-none"></div>
+          {/* Right: Promos & Zoom Card */}
+          <div className="lg:col-span-5 bg-gradient-to-br from-[#000080] via-[#000066] to-blue-950 text-white rounded-3xl p-8 md:p-10 shadow-xl border border-blue-900 flex flex-col justify-between relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-48 h-48 bg-pink-500/15 rounded-full blur-2xl pointer-events-none"></div>
 
             <div>
-              <div className="w-14 h-14 rounded-2xl bg-white/10 text-[#f7da3a] flex items-center justify-center mb-6 backdrop-blur-md border border-white/10">
-                <Gift size={32} />
+              <div className="flex items-center justify-between mb-6">
+                <div className="w-14 h-14 rounded-2xl bg-white/10 text-[#f7da3a] flex items-center justify-center backdrop-blur-md border border-white/10">
+                  <Gift size={32} />
+                </div>
+                <span className="inline-flex items-center gap-2 bg-pink-500/20 text-pink-200 border border-pink-500/30 text-xs px-3 py-1 rounded-full font-bold">
+                  <span className="w-2 h-2 rounded-full bg-pink-400 animate-ping"></span>
+                  Reunión Semanal
+                </span>
               </div>
 
               <h3 className="text-2xl font-black text-white mb-2 tracking-tight">
@@ -539,18 +589,26 @@ export default function Home() {
               </h3>
               <p className="text-blue-200 text-sm font-medium leading-relaxed mb-6">
                 Aprende cómo hacer crecer tu red, aumentar tus ganancias y aprovechar al máximo el programa de referidos.
-
-                📅 Martes y Jueves
-                🕘 21:00 hrs (Chile)
-                💻 Reunión online por Zoom
-
-                ¡Únete a la reunión y descubre cómo multiplicar tus oportunidades de ganar!
               </p>
+
+              <div className="space-y-2 bg-white/5 p-4 rounded-2xl border border-white/10 text-xs text-blue-100 font-semibold mb-6">
+                <div className="flex items-center gap-2">
+                  <Clock size={16} className="text-[#f7da3a]" />
+                  <span>📅 Martes y Jueves — 21:00 hrs (Chile)</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Users size={16} className="text-[#70cfdb]" />
+                  <span>💻 Transmisión Online vía Zoom</span>
+                </div>
+              </div>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10 flex items-center gap-3">
-              <Sparkles size={22} className="text-[#f7da3a] shrink-0" />
-              <p className="text-xs text-blue-100 font-bold">¡Unete!</p>
+            <div className="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <Sparkles size={22} className="text-[#f7da3a] shrink-0" />
+                <p className="text-xs text-blue-100 font-bold">¡Únete gratis y multiplica tus ganancias!</p>
+              </div>
+              <ChevronRight size={18} className="text-white shrink-0" />
             </div>
           </div>
 
@@ -563,7 +621,7 @@ export default function Home() {
 
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-14">
             <div>
-              <span className="text-xs font-black tracking-widest text-[#000080] uppercase bg-white px-4 py-1.5 rounded-full border border-blue-200/80 shadow-sm">
+              <span className="text-xs font-black tracking-widest text-[#000080] uppercase bg-white px-4 py-1.5 rounded-full border border-blue-200/80 shadow-xs">
                 Nuestra Flota
               </span>
               <h2 className="text-3xl md:text-4xl font-black text-[#000080] mt-3 tracking-tight">
@@ -578,50 +636,50 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
 
             {/* Left 4 Fleet Cards */}
-            <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
 
               {/* GetGo Car */}
-              <div className="bg-white rounded-3xl p-5 border border-blue-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+              <div className="bg-white rounded-3xl p-6 border border-blue-100 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
                 <div>
-                  <div className="h-28 relative mb-3 group-hover:scale-105 transition-transform duration-300">
+                  <div className="h-32 relative mb-4 group-hover:scale-105 transition-transform duration-300">
                     <Image src="/images/Icon-GetGoCar.png" alt="GetGo Car" fill className="object-contain" />
                   </div>
-                  <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100">
+                  <span className="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">
                     Más Económico
                   </span>
-                  <h3 className="font-black text-[#000080] text-base mt-2.5 mb-1">
+                  <h3 className="font-black text-[#000080] text-lg mt-3 mb-1">
                     GetGo Car
                   </h3>
                   <p className="text-xs text-slate-500 font-medium leading-relaxed">Viajes ágiles y accesibles para moverte por la ciudad todos los días.</p>
                 </div>
               </div>
 
-              {/* GetGo Comfort */}
-              <div className="bg-white rounded-3xl p-5 border border-blue-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+              {/* GetGo Taxi */}
+              <div className="bg-white rounded-3xl p-6 border border-blue-100 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
                 <div>
-                  <div className="h-28 relative mb-3 group-hover:scale-105 transition-transform duration-300">
-                    <Image src="/images/Icon-GetGoTaxi.png" alt="GetGo Comfort" fill className="object-contain" />
+                  <div className="h-32 relative mb-4 group-hover:scale-105 transition-transform duration-300">
+                    <Image src="/images/Icon-GetGoTaxi.png" alt="GetGo Taxi" fill className="object-contain" />
                   </div>
-                  <span className="text-[10px] font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded-full border border-blue-100">
+                  <span className="text-[10px] font-extrabold text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
                     Conductores Profesionales
                   </span>
-                  <h3 className="font-black text-[#000080] text-base mt-2.5 mb-1">
+                  <h3 className="font-black text-[#000080] text-lg mt-3 mb-1">
                     GetGo Taxi
                   </h3>
-                  <p className="text-xs text-slate-500 font-medium leading-relaxed">Vehículos con patente y permisos vigentes de TAXI.</p>
+                  <p className="text-xs text-slate-500 font-medium leading-relaxed">Vehículos con patente y permisos vigentes de TAXI oficial en Chile.</p>
                 </div>
               </div>
 
               {/* GetGo XL */}
-              <div className="bg-white rounded-3xl p-5 border border-blue-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+              <div className="bg-white rounded-3xl p-6 border border-blue-100 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
                 <div>
-                  <div className="h-28 relative mb-3 group-hover:scale-105 transition-transform duration-300">
+                  <div className="h-32 relative mb-4 group-hover:scale-105 transition-transform duration-300">
                     <Image src="/images/Icon-GetGoXL.png" alt="GetGo XL" fill className="object-contain" />
                   </div>
-                  <span className="text-[10px] font-bold text-pink-700 bg-pink-50 px-2.5 py-1 rounded-full border border-pink-100">
-                    Para Grupos
+                  <span className="text-[10px] font-extrabold text-pink-700 bg-pink-50 px-3 py-1 rounded-full border border-pink-100">
+                    Para Grupos (6 p.)
                   </span>
-                  <h3 className="font-black text-[#000080] text-base mt-2.5 mb-1">
+                  <h3 className="font-black text-[#000080] text-lg mt-3 mb-1">
                     GetGo XL
                   </h3>
                   <p className="text-xs text-slate-500 font-medium leading-relaxed">Espacio de sobra para hasta 6 pasajeros y todo su equipaje.</p>
@@ -629,25 +687,25 @@ export default function Home() {
               </div>
 
               {/* GetGo Ejecutivo */}
-              <div className="bg-white rounded-3xl p-5 border border-blue-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+              <div className="bg-white rounded-3xl p-6 border border-blue-100 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
                 <div>
-                  <div className="h-28 relative mb-3 group-hover:scale-105 transition-transform duration-300">
+                  <div className="h-32 relative mb-4 group-hover:scale-105 transition-transform duration-300">
                     <Image src="/images/Icon-GetGoEjecutivo.png" alt="GetGo Ejecutivo" fill className="object-contain" />
                   </div>
-                  <span className="text-[10px] font-bold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-100">
-                    Mayor comodidad
+                  <span className="text-[10px] font-extrabold text-amber-800 bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
+                    Mayor Comodidad
                   </span>
-                  <h3 className="font-black text-[#000080] text-base mt-2.5 mb-1">
+                  <h3 className="font-black text-[#000080] text-lg mt-3 mb-1">
                     GetGo Ejecutivo
                   </h3>
-                  <p className="text-xs text-slate-500 font-medium leading-relaxed">SUV y sedanes pensados para viajar con más espacio y tranquilidad.</p>
+                  <p className="text-xs text-slate-500 font-medium leading-relaxed">SUV y sedanes de gama alta pensados para viajar con la máxima tranquilidad.</p>
                 </div>
               </div>
 
             </div>
 
             {/* Right Features List */}
-            <div className="lg:col-span-4 bg-white rounded-3xl p-7 border border-blue-100 shadow-sm flex flex-col gap-6">
+            <div className="lg:col-span-4 bg-white rounded-3xl p-8 border border-blue-100 shadow-sm flex flex-col justify-between gap-6">
 
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-2xl bg-blue-50 text-[#000080] flex items-center justify-center shrink-0 border border-blue-100">
@@ -655,7 +713,7 @@ export default function Home() {
                 </div>
                 <div>
                   <h4 className="font-black text-[#000080] text-base mb-1">Viajes 100% seguros</h4>
-                  <p className="text-xs text-slate-500 font-medium leading-relaxed">Conductores y pasajeros rigurosamente verificados.</p>
+                  <p className="text-xs text-slate-500 font-medium leading-relaxed">Conductores y pasajeros rigurosamente verificados ante el Ministerio de Transportes.</p>
                 </div>
               </div>
 
@@ -664,8 +722,8 @@ export default function Home() {
                   <Wallet size={24} />
                 </div>
                 <div>
-                  <h4 className="font-black text-[#000080] text-base mb-1">Medios de pago</h4>
-                  <p className="text-xs text-slate-500 font-medium leading-relaxed">Paga con tarjetas de débito, crédito o prepago, o usa tu saldo de referidos y ganancias acumuladas en la app.</p>
+                  <h4 className="font-black text-[#000080] text-base mb-1">Medios de pago flexibles</h4>
+                  <p className="text-xs text-slate-500 font-medium leading-relaxed">Paga con tarjetas de débito, crédito o prepago, o usa tu saldo acumulado en la app.</p>
                 </div>
               </div>
 
@@ -674,7 +732,7 @@ export default function Home() {
                   <Headphones size={24} />
                 </div>
                 <div>
-                  <h4 className="font-black text-[#000080] text-base mb-1">Soporte en Chile</h4>
+                  <h4 className="font-black text-[#000080] text-base mb-1">Soporte humano en Chile</h4>
                   <p className="text-xs text-slate-500 font-medium leading-relaxed">Atención personalizada, de persona a persona, ante cualquier consulta o eventualidad.</p>
                 </div>
               </div>
@@ -691,7 +749,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
 
           <div className="text-center max-w-xl mx-auto mb-16">
-            <span className="text-xs font-black tracking-widest text-[#000080] uppercase bg-blue-50 px-4 py-1.5 rounded-full border border-blue-100">
+            <span className="text-xs font-black tracking-widest text-[#000080] uppercase bg-blue-50 px-4 py-1.5 rounded-full border border-blue-100 shadow-xs">
               Comunidad GetGo
             </span>
             <h2 className="text-3xl md:text-4xl font-black text-[#000080] mt-3 tracking-tight">
@@ -701,34 +759,57 @@ export default function Home() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
 
-            {/* Carousel Cards */}
+            {/* Carousel Cards with Framer Motion AnimatePresence */}
             <div className="lg:col-span-7 flex flex-col justify-between">
 
-              <div className="bg-[#f4f9fd] rounded-3xl p-8 md:p-10 border border-blue-100 shadow-md relative min-h-[250px] flex flex-col justify-between">
+              <div className="bg-[#f4f9fd] rounded-3xl p-8 md:p-10 border border-blue-100/90 shadow-md relative min-h-[270px] flex flex-col justify-between overflow-hidden">
 
-                <p className="text-slate-800 font-semibold text-lg sm:text-xl italic leading-relaxed mb-8">
-                  {testimonials[activeTestimonial].text}
-                </p>
-
-                <div className="flex items-center justify-between pt-6 border-t border-blue-100">
-
-                  <div className="flex items-center gap-3.5">
-                    <img
-                      src={testimonials[activeTestimonial].avatar}
-                      alt={testimonials[activeTestimonial].name}
-                      className="w-12 h-12 rounded-full object-cover border-2 border-[#db2392] shadow-sm"
-                    />
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeTestimonial}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.3 }}
+                    className="flex flex-col justify-between h-full"
+                  >
                     <div>
-                      <p className="font-black text-[#000080] text-base">{testimonials[activeTestimonial].name}</p>
-                      <p className="text-xs text-slate-400 font-bold">{testimonials[activeTestimonial].city}</p>
+                      {/* Rating Stars */}
+                      <div className="flex gap-1 text-amber-400 mb-4">
+                        {[...Array(testimonials[activeTestimonial].rating)].map((_, i) => (
+                          <Star key={i} size={16} className="fill-amber-400" />
+                        ))}
+                      </div>
+
+                      <p className="text-slate-800 font-semibold text-lg sm:text-xl italic leading-relaxed mb-8">
+                        {testimonials[activeTestimonial].text}
+                      </p>
                     </div>
-                  </div>
 
-                  <div className="bg-pink-100 text-[#db2392] font-black text-xs px-4 py-2 rounded-full border border-pink-200 shadow-sm">
-                    {testimonials[activeTestimonial].earned} ganados
-                  </div>
+                    <div className="flex items-center justify-between pt-6 border-t border-blue-100">
 
-                </div>
+                      <div className="flex items-center gap-3.5">
+                        <img
+                          src={testimonials[activeTestimonial].avatar}
+                          alt={testimonials[activeTestimonial].name}
+                          className="w-12 h-12 rounded-full object-cover border-2 border-[#db2392] shadow-sm"
+                        />
+                        <div>
+                          <div className="flex items-center gap-1.5">
+                            <p className="font-black text-[#000080] text-base">{testimonials[activeTestimonial].name}</p>
+                            <CheckCircle2 size={14} className="text-blue-600 fill-blue-100" />
+                          </div>
+                          <p className="text-xs text-slate-400 font-bold">{testimonials[activeTestimonial].city}</p>
+                        </div>
+                      </div>
+
+                      <div className="bg-pink-100 text-[#db2392] font-black text-xs px-4 py-2 rounded-full border border-pink-200 shadow-xs">
+                        {testimonials[activeTestimonial].earned} ganados
+                      </div>
+
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
 
               </div>
 
@@ -737,7 +818,7 @@ export default function Home() {
                 <div className="flex items-center gap-3">
                   <button
                     onClick={prevTestimonial}
-                    className="w-11 h-11 rounded-full border border-slate-200 bg-white flex items-center justify-center text-[#000080] hover:bg-blue-50 transition-colors shadow-sm"
+                    className="w-11 h-11 rounded-full border border-slate-200 bg-white flex items-center justify-center text-[#000080] hover:bg-blue-50 hover:border-blue-300 transition-all shadow-xs active:scale-95"
                     aria-label="Anterior testimonio"
                   >
                     <ChevronLeft size={22} />
@@ -745,7 +826,7 @@ export default function Home() {
 
                   <button
                     onClick={nextTestimonial}
-                    className="w-11 h-11 rounded-full border border-slate-200 bg-white flex items-center justify-center text-[#000080] hover:bg-blue-50 transition-colors shadow-sm"
+                    className="w-11 h-11 rounded-full border border-slate-200 bg-white flex items-center justify-center text-[#000080] hover:bg-blue-50 hover:border-blue-300 transition-all shadow-xs active:scale-95"
                     aria-label="Siguiente testimonio"
                   >
                     <ChevronRight size={22} />
@@ -760,20 +841,20 @@ export default function Home() {
             </div>
 
             {/* Right Side: Driver CTA Card with Store Badges */}
-            <div id="conductores" className="lg:col-span-5 bg-gradient-to-br from-[#f4f9fd] via-white to-blue-50/50 rounded-3xl p-8 md:p-10 border border-blue-100 shadow-md flex flex-col justify-between">
+            <div id="conductores" className="lg:col-span-5 bg-gradient-to-br from-[#f4f9fd] via-white to-blue-50/60 rounded-3xl p-8 md:p-10 border border-blue-100 shadow-md flex flex-col justify-between">
               <div>
-                <span className="text-[10px] font-black  text-[#db2392] tracking-wider bg-pink-50 px-3 py-1 rounded-full border border-pink-100 mb-4 inline-block">
+                <span className="text-[10px] font-black text-[#db2392] tracking-wider bg-pink-50 px-3 py-1 rounded-full border border-pink-100 mb-4 inline-block">
                   Gana dinero manejando con GetGo
                 </span>
                 <h3 className="text-2xl font-black text-[#000080] mb-3 tracking-tight">
                   Maneja con GetGo y genera ingresos a tu propio ritmo
                 </h3>
                 <p className="text-slate-600 text-sm font-medium mb-8 leading-relaxed">
-                  Excelentes tasas de comisión, soporte constante y pagos oportunos garantizados.
+                  Excelentes tasas de comisión, soporte constante y pagos oportunos garantizados para conductores en Chile.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-3">
-                  {/* Google Play */}
+                  {/* Google Play Driver */}
                   <a
                     href={storeLinksDriver.google}
                     target="_blank"
@@ -792,7 +873,7 @@ export default function Home() {
                     </div>
                   </a>
 
-                  {/* App Store */}
+                  {/* App Store Driver */}
                   <a
                     href={storeLinksDriver.apple}
                     target="_blank"
@@ -811,7 +892,7 @@ export default function Home() {
               </div>
 
               <div className="mt-8 flex justify-end">
-                <Image src="/images/Icon-GetGoCar.png" width={140} height={70} alt="GetGo App" className="object-contain" />
+                <Image src="/images/Icon-GetGoCar.png" width={140} height={70} alt="GetGo App" className="object-contain hover:scale-105 transition-transform" />
               </div>
             </div>
 
@@ -827,6 +908,7 @@ export default function Home() {
 
             {/* Background Lighting Details */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-[#db2392]/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 w-72 h-72 bg-blue-400/10 rounded-full blur-2xl pointer-events-none"></div>
 
             <div className="max-w-xl text-center md:text-left z-10">
               <h2 className="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight">
@@ -879,7 +961,7 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-[#000080] text-white py-16">
+      <footer className="bg-[#000080] text-white py-16 border-t border-blue-900">
         <div className="max-w-7xl mx-auto px-6 flex flex-col items-center gap-10 text-center">
 
           <Image
@@ -887,7 +969,7 @@ export default function Home() {
             alt="GetGo Logo Negative"
             width={150}
             height={50}
-            className="w-36 h-auto opacity-95"
+            className="w-36 h-auto opacity-95 hover:opacity-100 transition-opacity"
           />
 
           <div className="flex flex-wrap justify-center gap-8 text-sm font-bold text-blue-100">
@@ -912,7 +994,7 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.name}
-                className="bg-white/10 hover:bg-[#db2392] p-3.5 rounded-2xl transition-all duration-300 border border-white/10 shadow-sm"
+                className="bg-white/10 hover:bg-[#db2392] p-3.5 rounded-2xl transition-all duration-300 border border-white/10 shadow-sm transform hover:-translate-y-1"
               >
                 <Image src={`/images/${social.icon}.png`} alt={social.name} width={20} height={20} className="w-5 h-5 invert brightness-0" />
               </a>
