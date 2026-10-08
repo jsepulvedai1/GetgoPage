@@ -64,8 +64,8 @@ function HangerContent() {
 
     try {
       const originalStyle = hangerRef.current.style.cssText;
-      hangerRef.current.style.width = "1280px";
-      hangerRef.current.style.minWidth = "1280px";
+      hangerRef.current.style.width = "1414px";
+      hangerRef.current.style.minWidth = "1414px";
       hangerRef.current.style.position = "absolute"; 
       hangerRef.current.style.left = "-9999px"; 
 
@@ -76,8 +76,8 @@ function HangerContent() {
         useCORS: true,
         logging: false,
         backgroundColor: GETGO_LIGHT,
-        windowWidth: 1280, 
-        width: 1280,
+        windowWidth: 1414, 
+        width: 1414,
       });
 
       hangerRef.current.style.cssText = originalStyle;
@@ -91,7 +91,7 @@ function HangerContent() {
       });
 
       pdf.addImage(imgData, "PNG", 0, 0, canvas.width, canvas.height);
-      pdf.save(`GetGo_Hanger_${code}.pdf`);
+      pdf.save(`GetGo_Hanger_${code}_${Date.now()}.pdf`);
     } catch (error) {
       console.error("Error generating PDF:", error);
       alert("Hubo un error al generar el PDF. Por favor intenta de nuevo.");
