@@ -156,13 +156,7 @@ function HangerContent() {
           <style dangerouslySetInnerHTML={{__html: `
             @media (max-width: 1450px) {
               .origin-top {
-                --scale: calc(100vw / 1450);
-                margin-bottom: calc(-1000px * (1 - var(--scale)));
-              }
-            }
-            @media (max-width: 640px) {
-              .origin-top {
-                --scale: calc(100vw / 400); 
+                --scale: calc((100vw - 32px) / 1414);
                 margin-bottom: calc(-1000px * (1 - var(--scale)));
               }
             }
