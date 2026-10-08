@@ -26,6 +26,23 @@ function HangerContent() {
   const [driverInfo, setDriverInfo] = useState<{ firstName?: string; lastName?: string; phone?: string; avatar?: string } | null>(null);
 
   const hangerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(1);
+  const [pdfReadyUrl, setPdfReadyUrl] = useState<string | null>(null);
+
+  // Calculate scale dynamically to fit mobile screens perfectly
+  useEffect(() => {
+    function updateScale() {
+      if (containerRef.current) {
+        const containerWidth = containerRef.current.clientWidth;
+        const newScale = Math.min(containerWidth / 1414, 1);
+        setScale(newScale);
+      }
+    }
+    updateScale();
+    window.addEventListener("resize", updateScale);
+    return () => window.removeEventListener("resize", updateScale);
+  }, []);
 
   // Fetch driver info securely from backend using the code
   useEffect(() => {
@@ -94,7 +111,14 @@ function HangerContent() {
       });
 
       pdf.addImage(imgData, "PNG", 0, 0, canvas.width, canvas.height);
-      pdf.save(`GetGo_Hanger_${code}_${Date.now()}.pdf`);
+      const filename = `GetGo_Hanger_${code}_${Date.now()}.pdf`;
+      pdf.save(filename);
+      
+      // Crear una URL temporal para que el usuario pueda abrir el PDF directamente
+      const pdfBlob = pdf.output("blob");
+      const blobUrl = URL.createObjectURL(pdfBlob);
+      setPdfReadyUrl(blobUrl);
+      
     } catch (error) {
       console.error("Error generating PDF:", error);
       alert("Hubo un error al generar el PDF. Por favor intenta de nuevo.");
@@ -120,6 +144,39 @@ function HangerContent() {
 
   return (
     <div className={`${montserrat.className} flex flex-col items-center justify-start min-h-screen bg-[#001438] p-4 sm:p-8 overflow-y-auto overflow-x-hidden relative`} style={{ paddingTop: '100px' }}>
+      
+      {/* Modal de Éxito para usuarios mayores */}
+      {pdfReadyUrl && (
+        <div className="fixed inset-0 z-[100] bg-black bg-opacity-80 flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl animate-fade-in">
+            <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg className="w-10 h-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <h2 className="text-2xl font-black text-[#001438] mb-4">¡Descarga Exitosa!</h2>
+            <p className="text-gray-600 mb-8 text-lg font-medium">
+              El archivo se ha guardado en tu dispositivo. Si no lo encuentras, puedes abrirlo directamente aquí:
+            </p>
+            <div className="flex flex-col gap-4">
+              <a 
+                href={pdfReadyUrl} 
+                target="_blank" 
+                rel="noreferrer"
+                className="bg-[#e91e63] text-white font-black py-4 px-6 rounded-xl text-lg hover:bg-[#c2185b] transition-colors"
+                onClick={() => setTimeout(() => setPdfReadyUrl(null), 1000)} // Ocultar después de hacer clic
+              >
+                ABRIR PDF AHORA
+              </a>
+              <button 
+                onClick={() => setPdfReadyUrl(null)}
+                className="text-gray-500 font-bold py-3 uppercase tracking-wider text-sm hover:text-gray-800"
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="fixed top-3 right-6 z-50 no-print">
         <button
           onClick={downloadAsPDF}
@@ -141,30 +198,19 @@ function HangerContent() {
       </div>
 
       {/* Contenedor responsivo que escala el Flyer */}
-      <div className="w-full max-w-[1414px] relative mx-auto" style={{ perspective: '1000px' }}>
+      <div ref={containerRef} className="w-full max-w-[1414px] relative mx-auto overflow-hidden flex justify-center" style={{ perspective: '1000px', height: `${1000 * scale}px` }}>
         
         {/* El Flyer con medidas y fuentes FIJAS ABSOLUTAS */}
         <div
           ref={hangerRef}
-          className="relative bg-white shadow-2xl origin-top-left"
+          className="relative bg-white shadow-2xl origin-top"
           style={{
             width: "1414px",
             height: "1000px",
-            // Un pequeño truco de CSS moderno para que el contenedor escale en base al ancho de su padre sin perder sus proporciones absolutas internamente.
-            transform: "scale(var(--scale, 1))",
-            transformOrigin: "top left",
+            transform: `scale(${scale})`,
+            transformOrigin: "top center",
           }}
         >
-          {/* Script inline para calcular y setear la escala CSS en base al ancho de la pantalla */}
-          <style dangerouslySetInnerHTML={{__html: `
-            @media (max-width: 1450px) {
-              .origin-top-left {
-                --scale: calc((100vw - 32px) / 1414);
-                margin-bottom: calc(-1000px * (1 - var(--scale)));
-                margin-right: calc(-1414px * (1 - var(--scale)));
-              }
-            }
-          `}} />
 
           <div className="absolute inset-0 z-0">
             <Image
