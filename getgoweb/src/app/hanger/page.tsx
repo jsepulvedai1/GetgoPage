@@ -23,7 +23,7 @@ function HangerContent() {
   const af_sub1 = searchParams.get("af_sub1") || code;
 
   const [isDownloading, setIsDownloading] = useState(false);
-  const [driverInfo, setDriverInfo] = useState<{ firstName?: string; phone?: string; avatar?: string } | null>(null);
+  const [driverInfo, setDriverInfo] = useState<{ firstName?: string; lastName?: string; phone?: string; avatar?: string } | null>(null);
 
   const hangerRef = useRef<HTMLDivElement>(null);
 
@@ -31,6 +31,10 @@ function HangerContent() {
   useEffect(() => {
     async function fetchDriverInfo() {
       if (!code || code === "12345") return;
+      if (code === "mock" && process.env.NODE_ENV === "development") {
+        setDriverInfo({ firstName: "JAVIER", lastName: "SEPÚLVEDA", phone: "56987654321" });
+        return;
+      }
       try {
         const response = await fetch(`https://prod.getgoapp.com/api/v1/hanger-info/?code=${code}`);
         if (response.ok) {
@@ -39,6 +43,9 @@ function HangerContent() {
         }
       } catch (error) {
         console.error("Error fetching driver info:", error);
+        if (process.env.NODE_ENV === "development") {
+          setDriverInfo({ firstName: "JAVIER", lastName: "SEPÚLVEDA", phone: "56912345678" });
+        }
       }
     }
     fetchDriverInfo();
@@ -97,7 +104,7 @@ function HangerContent() {
 
   return (
     <div className={`${montserrat.className} flex flex-col items-center justify-start min-h-screen bg-[#001438] p-4 sm:p-8 overflow-y-auto overflow-x-hidden relative`} style={{ paddingTop: '100px' }}>
-      <div className="fixed top-6 right-6 z-50 no-print">
+      <div className="fixed top-3 right-6 z-50 no-print">
         <button
           onClick={downloadAsPDF}
           disabled={isDownloading}
@@ -158,6 +165,19 @@ function HangerContent() {
             />
           </div>
 
+          {/* Dynamic "Descarga aquí" Text */}
+          <div 
+            className="absolute z-10 w-[198px] text-center"
+            style={{
+              left: "92px",
+              top: "640px",
+            }}
+          >
+            <span className="text-white font-black tracking-widest uppercase" style={{ fontSize: "16px" }}>
+              DESCARGA AQUÍ
+            </span>
+          </div>
+
           {/* QR Code Overlay (Medidas absolutas) */}
           <div 
             className="absolute z-10"
@@ -200,7 +220,7 @@ function HangerContent() {
                 <span className="text-white font-black" style={{ fontSize: "25px", lineHeight: "1.2" }}>{formatPhone(driverInfo.phone)}</span>
                 {driverInfo.firstName && (
                   <span className="text-[#e91e63] font-black mt-1" style={{ fontSize: "28px", lineHeight: "1" }}>
-                    {driverInfo.firstName.toUpperCase()}
+                    {driverInfo.firstName.toUpperCase()}{driverInfo.lastName ? ` ${driverInfo.lastName.toUpperCase()}` : ''}
                   </span>
                 )}
               </div>
@@ -212,7 +232,7 @@ function HangerContent() {
             className="absolute z-10 flex flex-col"
             style={{
               left: "92px",
-              bottom: "80px",
+              top: "890px",
             }}
           >
             <span className="text-white font-semibold tracking-wider mb-2" style={{ fontSize: "16px" }}>CÓDIGO DE REFERENCIA:</span>
