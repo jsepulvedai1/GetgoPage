@@ -138,26 +138,27 @@ function HangerContent() {
       </div>
 
       {/* Contenedor responsivo que escala el Flyer */}
-      <div className="w-full max-w-[1414px] relative flex justify-center" style={{ perspective: '1000px' }}>
+      <div className="w-full max-w-[1414px] relative mx-auto" style={{ perspective: '1000px' }}>
         
         {/* El Flyer con medidas y fuentes FIJAS ABSOLUTAS */}
         <div
           ref={hangerRef}
-          className="relative bg-white shadow-2xl origin-top"
+          className="relative bg-white shadow-2xl origin-top-left"
           style={{
             width: "1414px",
             height: "1000px",
             // Un pequeño truco de CSS moderno para que el contenedor escale en base al ancho de su padre sin perder sus proporciones absolutas internamente.
             transform: "scale(var(--scale, 1))",
-            transformOrigin: "top center",
+            transformOrigin: "top left",
           }}
         >
           {/* Script inline para calcular y setear la escala CSS en base al ancho de la pantalla */}
           <style dangerouslySetInnerHTML={{__html: `
             @media (max-width: 1450px) {
-              .origin-top {
+              .origin-top-left {
                 --scale: calc((100vw - 32px) / 1414);
                 margin-bottom: calc(-1000px * (1 - var(--scale)));
+                margin-right: calc(-1414px * (1 - var(--scale)));
               }
             }
           `}} />
