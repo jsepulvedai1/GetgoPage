@@ -66,8 +66,11 @@ function HangerContent() {
       const originalStyle = hangerRef.current.style.cssText;
       hangerRef.current.style.width = "1414px";
       hangerRef.current.style.minWidth = "1414px";
+      hangerRef.current.style.height = "1000px";
+      hangerRef.current.style.margin = "0";
       hangerRef.current.style.position = "absolute"; 
       hangerRef.current.style.left = "-9999px"; 
+      hangerRef.current.style.transform = "none";
 
       await new Promise(resolve => setTimeout(resolve, 800));
 
