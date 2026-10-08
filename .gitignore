@@ -1,0 +1,169 @@
+# ==============================================================================
+# GitIgnore - GetGo Web
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. Agentes de IA, Herramientas y Asistentes
+# ------------------------------------------------------------------------------
+.agents/
+**/.agents/
+.gemini/
+**/.gemini/
+.claude/
+**/.claude/
+.cursor/
+**/.cursor/
+.windsurf/
+**/.windsurf/
+
+# ------------------------------------------------------------------------------
+# 2. Python (Scripts, entornos virtuales, binarios, byte-code, caches)
+# ------------------------------------------------------------------------------
+*.py
+*.pyw
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+.Python
+*.so
+
+# Entornos virtuales
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Distribución / empaquetado Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Caches de pruebas / linters Python
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ------------------------------------------------------------------------------
+# 3. Node.js & Next.js
+# ------------------------------------------------------------------------------
+node_modules/
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# Next.js build & output
+.next/
+/.next/
+out/
+/out/
+build/
+/build/
+
+# Testing & Cobertura
+coverage/
+/coverage/
+
+# Logs de dependencias / debug
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Vercel & TypeScript
+.vercel/
+*.tsbuildinfo
+next-env.d.ts
+
+# ------------------------------------------------------------------------------
+# 4. Variables de Entorno y Secretos
+# ------------------------------------------------------------------------------
+.env*
+*.pem
+*.key
+*.cert
+*.crt
+
+# ------------------------------------------------------------------------------
+# 5. Sistema Operativo (macOS, Windows, Linux)
+# ------------------------------------------------------------------------------
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+[Dd]esktop.ini
+
+# Copias accidentales de Finder / Explorador
+* copy/
+* copy */
+* copy*
+* copia/
+* copia */
+* copia*
+
+# ------------------------------------------------------------------------------
+# 6. Editores & IDEs
+# ------------------------------------------------------------------------------
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.sublime-workspace
+*.sublime-project
+*.swp
+*.swo
+*~
+
+# ------------------------------------------------------------------------------
+# 7. Scripts temporales, parches y archivos residuales
+# ------------------------------------------------------------------------------
+fix_*
+*.patch
+*.diff
+*.orig
+*.rej
+*.tmp
+*.temp
+*.bak

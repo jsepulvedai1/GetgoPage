@@ -39,7 +39,11 @@ function HangerContent() {
         const response = await fetch(`https://prod.getgoapp.com/api/v1/hanger-info/?code=${code}`);
         if (response.ok) {
           const data = await response.json();
-          setDriverInfo(data);
+          setDriverInfo({
+            ...data,
+            firstName: data.firstName || data.first_name,
+            lastName: data.lastName || data.last_name,
+          });
         }
       } catch (error) {
         console.error("Error fetching driver info:", error);
@@ -99,7 +103,16 @@ function HangerContent() {
   // Helper to format phone number (e.g. 56995754059 -> 569 9575 4059 or similar)
   const formatPhone = (phone?: string) => {
     if (!phone) return "";
-    return `+${phone}`;
+    let cleanPhone = phone.replace(/\D/g, "");
+    if (cleanPhone.startsWith("9") && cleanPhone.length === 9) {
+      cleanPhone = "56" + cleanPhone;
+    } else if (!cleanPhone.startsWith("56")) {
+      cleanPhone = "56" + cleanPhone;
+    }
+    if (cleanPhone.length === 11 && cleanPhone.startsWith("569")) {
+      return `+56 9 ${cleanPhone.substring(3, 7)} ${cleanPhone.substring(7)}`;
+    }
+    return `+${cleanPhone}`;
   };
 
   return (
@@ -170,7 +183,7 @@ function HangerContent() {
             className="absolute z-10 w-[198px] text-center"
             style={{
               left: "92px",
-              top: "640px",
+              top: "625px",
             }}
           >
             <span className="text-white font-black tracking-widest uppercase" style={{ fontSize: "16px" }}>
@@ -183,7 +196,7 @@ function HangerContent() {
             className="absolute z-10"
             style={{
               left: "92px",
-              top: "670px",
+              top: "655px",
               width: "198px",
               height: "198px",
             }}
@@ -205,7 +218,7 @@ function HangerContent() {
               className="absolute z-10 flex items-center gap-4"
               style={{
                 left: "311px",
-                top: "710px",
+                top: "695px",
               }}
             >
               {/* WhatsApp Icon Box */}
@@ -232,10 +245,10 @@ function HangerContent() {
             className="absolute z-10 flex flex-col"
             style={{
               left: "92px",
-              top: "890px",
+              top: "865px",
             }}
           >
-            <span className="text-white font-semibold tracking-wider mb-2" style={{ fontSize: "16px" }}>CÓDIGO DE REFERENCIA:</span>
+            <span className="text-white font-semibold tracking-wider mb-2" style={{ fontSize: "16px" }}>CÓDIGO DE REFERIDO:</span>
             <div className="bg-[#e91e63] rounded-xl flex items-center justify-center px-6 py-3 w-fit">
               <span className="text-white font-black tracking-widest" style={{ fontSize: "38px" }}>
                 {code.toUpperCase()}
