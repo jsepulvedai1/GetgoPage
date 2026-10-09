@@ -31,9 +31,9 @@ export default function ReferralPage() {
   // Ejemplo: https://getgo-page-h84g.vercel.app/refer?code=ABC123&device_id=9774d56d682e549c
   const getDeviceId = useCallback((): string => {
     if (typeof window === "undefined") return "";
-    
+
     const STORAGE_KEY = "getgo_device_id";
-    
+
     try {
       // PRIORIDAD 1: Obtener desde URL (si viene de la app móvil)
       // La app debe pasar el device_id (Android ID o iOS IDFV) en el deeplink
@@ -45,14 +45,14 @@ export default function ReferralPage() {
         console.log("📱 Device ID recibido de la app:", deviceIdFromUrl);
         return deviceIdFromUrl;
       }
-      
+
       // PRIORIDAD 2: Recuperar de localStorage (si ya se guardó antes)
       const existingId = localStorage.getItem(STORAGE_KEY);
       if (existingId && existingId !== "unknown") {
         console.log("💾 Device ID recuperado de localStorage:", existingId);
         return existingId;
       }
-      
+
       // PRIORIDAD 3: Fallback - generar UUID temporal
       // Esto solo pasa si el usuario abre el link directamente en el navegador
       // (sin pasar por la app móvil)
@@ -63,12 +63,12 @@ export default function ReferralPage() {
           return v.toString(16);
         });
       };
-      
+
       const fallbackId = generateUUID();
       localStorage.setItem(STORAGE_KEY, fallbackId);
       console.warn("⚠️ Device ID no recibido de la app, usando UUID temporal:", fallbackId);
       console.warn("⚠️ La app móvil debe pasar device_id en el deeplink para que coincidan");
-      
+
       return fallbackId;
     } catch (error) {
       console.error("❌ Error obteniendo device_id:", error);
@@ -127,7 +127,7 @@ export default function ReferralPage() {
       // Obtener código de referido de la URL
       const urlParams = new URLSearchParams(window.location.search);
       let code = urlParams.get("code") || "N/A";
-      
+
       // IMPORTANTE: SIEMPRE guardar el código en localStorage Y backend cuando hay uno en la URL
       // Esto asegura que no se pierda aunque la app se abra o redirija a la tienda
       if (code !== "N/A") {
@@ -136,7 +136,7 @@ export default function ReferralPage() {
           localStorage.setItem("getgo_referral_code", code);
           localStorage.setItem("getgo_referral_timestamp", Date.now().toString());
           console.log(`✅ Código guardado en localStorage desde URL: ${code}`);
-          
+
           // Guardar en backend (persistencia más robusta)
           saveCodeToBackend(code);
         } catch (error) {
@@ -148,12 +148,12 @@ export default function ReferralPage() {
         try {
           const storedCode = localStorage.getItem("getgo_referral_code");
           const storedTimestamp = localStorage.getItem("getgo_referral_timestamp");
-          
+
           // Solo usar el código guardado si tiene menos de 7 días (604800000 ms)
           if (storedCode && storedTimestamp) {
             const age = Date.now() - parseInt(storedTimestamp, 10);
             const maxAge = 7 * 24 * 60 * 60 * 1000; // 7 días
-            
+
             if (age < maxAge) {
               code = storedCode;
               console.log(`✅ Código recuperado de localStorage: ${code}`);
@@ -168,10 +168,10 @@ export default function ReferralPage() {
           console.error("❌ Error leyendo localStorage:", error);
         }
       }
-      
+
       console.log("URL completa:", window.location.href);
       console.log("Código obtenido:", code);
-      
+
       setReferralCode(code);
 
       // Detectar plataforma
@@ -250,7 +250,7 @@ export default function ReferralPage() {
     document.addEventListener("visibilitychange", handleVisibilityChange);
     window.addEventListener("pagehide", handlePageHide);
     window.addEventListener("focusout", handleFocusOut);
-    
+
     // Verificar iframe después de un pequeño delay
     setTimeout(checkIfInIframe, 500);
 
@@ -278,10 +278,10 @@ export default function ReferralPage() {
         localStorage.setItem("getgo_referral_code", referralCode);
         localStorage.setItem("getgo_referral_timestamp", Date.now().toString());
         console.log(`💾 Código guardado en localStorage antes de redirigir a tienda: ${referralCode}`);
-        
+
         // Guardar en backend (persistencia más robusta)
         saveCodeToBackend(referralCode);
-        
+
         console.log(`📱 La app puede recuperar este código desde:`);
         console.log(`   - localStorage: getgo_referral_code`);
         console.log(`   - Backend API: https://prod.getgoapp.com/api/v1/save-referral-code/?device_id=...`);
@@ -341,7 +341,7 @@ export default function ReferralPage() {
     // Para iOS y Android, intentar abrir la app primero con App Links / Universal Links
     if (platform === "ios" || platform === "android") {
       if (typeof window === "undefined") return;
-      
+
       // Evitar intentos múltiples
       if (deeplinkAttemptedRef.current) {
         console.log("Deeplink already attempted, skipping");
@@ -351,7 +351,7 @@ export default function ReferralPage() {
       const currentHost = window.location.hostname;
       const encodedCode = encodeURIComponent(referralCode);
       const deeplinkDomain = "getgo-page-h84g.vercel.app";
-      
+
       // Si ya estamos en el dominio de deeplink, NO intentar deeplink (evita loop)
       // Solo esperar y redirigir a la store si la app no se abre
       if (currentHost === deeplinkDomain || currentHost.includes(deeplinkDomain)) {
@@ -359,7 +359,7 @@ export default function ReferralPage() {
         console.log(`⏳ Waiting for app to open (App Links should handle this automatically)`);
         console.log(`💡 If you see a dialog, choose "Open with GetGo"`);
         deeplinkAttemptedRef.current = true;
-        
+
         // IMPORTANTE: Guardar código ANTES de esperar (por si acaso)
         // Esto asegura que el código esté guardado incluso si la app se abre rápidamente
         if (typeof window !== "undefined" && referralCode !== "N/A") {
@@ -368,30 +368,30 @@ export default function ReferralPage() {
             localStorage.setItem("getgo_referral_code", referralCode);
             localStorage.setItem("getgo_referral_timestamp", Date.now().toString());
             console.log(`✅ Código guardado en localStorage (preventivo): ${referralCode}`);
-            
+
             // Guardar en backend (persistencia más robusta)
             saveCodeToBackend(referralCode);
           } catch (error) {
             console.error("❌ Error guardando código en localStorage:", error);
           }
         }
-        
+
         // Para iOS: Universal Links pueden tardar más en abrir la app
         // Para Android: App Links verificados abren instantáneamente, pero no verificados pueden tardar
         // Si App Links no están verificados, Android muestra un diálogo que puede tardar más
         // Aumentamos el timeout significativamente para dar tiempo al usuario de elegir la app
         const timeoutDuration = platform === "ios" ? 5000 : 6000; // Más tiempo, especialmente para Android con diálogo
-        
+
         console.log(`⏳ Esperando ${timeoutDuration}ms para ver si la app se abre...`);
         console.log(`💡 Si ves un diálogo, elige "Abrir con GetGo" para que la app se abra`);
-        
+
         // Verificar periódicamente si la página perdió el foco (más confiable que eventos)
         let checkCount = 0;
         const maxChecks = Math.floor(timeoutDuration / 500); // Verificar cada 500ms
-        
+
         const checkInterval = setInterval(() => {
           checkCount++;
-          
+
           // Si la página está oculta o perdió el foco, probablemente la app se abrió
           if (document.hidden || !document.hasFocus()) {
             console.log("✅ Página oculta o sin foco detectado, app probablemente abierta");
@@ -403,17 +403,17 @@ export default function ReferralPage() {
             }
             return;
           }
-          
+
           // Si llegamos al máximo de checks, detener
           if (checkCount >= maxChecks) {
             clearInterval(checkInterval);
           }
         }, 500);
-        
+
         // Esperar un momento para ver si la app se abre
         timeoutRef.current = setTimeout(() => {
           clearInterval(checkInterval);
-          
+
           if (!appOpenedRef.current) {
             console.log("⏱️ Timeout reached, app did not open, redirecting to store...");
             console.log(`💾 Código ya guardado en localStorage: ${referralCode}`);
@@ -424,7 +424,7 @@ export default function ReferralPage() {
             console.log(`💾 Código guardado en localStorage: ${referralCode}`);
           }
         }, timeoutDuration);
-        
+
         return;
       }
 
@@ -433,9 +433,9 @@ export default function ReferralPage() {
       console.log(`Redirecting to ${deeplinkDomain} for deeplink`);
       deeplinkAttemptedRef.current = true;
       const deepLinkUrl = `https://${deeplinkDomain}/refer?code=${encodedCode}`;
-      
+
       // Redirigir al dominio correcto (solo una vez)
-      window.location.href = deepLinkUrl;
+
 
       // Limpiar timeout si el componente se desmonta
       return () => {
@@ -477,42 +477,42 @@ export default function ReferralPage() {
           background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
         }}
       >
-      <div className="bg-white rounded-[20px] p-10 max-w-[500px] w-full shadow-[0_20px_60px_rgba(0,0,0,0.3)] text-center">
-        <div className="w-[120px] h-[120px] mx-auto mb-8 rounded-[30px] flex items-center justify-center text-5xl text-white font-bold bg-gradient-to-br from-[#667eea] to-[#764ba2]">
-          GG
-        </div>
-        <h1 className="text-[#333] mb-4 text-[28px] font-semibold">
-          ¡Únete a GetGo!
-        </h1>
-        <div className="bg-[#f5f5f5] p-5 rounded-xl my-6 text-[32px] font-bold tracking-[4px] text-[#667eea] font-mono">
-          {displayCode}
-        </div>
-        <p className="text-[#666] mb-8 leading-relaxed text-base">
-          {message}
-        </p>
-        {showLoading && (
-          <div className="mt-5">
-            <div className="w-10 h-10 mx-auto border-4 border-[#f3f3f3] border-t-[#667eea] rounded-full animate-spin" />
+        <div className="bg-white rounded-[20px] p-10 max-w-[500px] w-full shadow-[0_20px_60px_rgba(0,0,0,0.3)] text-center">
+          <div className="w-[120px] h-[120px] mx-auto mb-8 rounded-[30px] flex items-center justify-center text-5xl text-white font-bold bg-gradient-to-br from-[#667eea] to-[#764ba2]">
+            GG
           </div>
-        )}
-        {showFallback && (
-          <div className="mt-8 pt-8 border-t border-[#eee]">
-            <p className="mb-4">Si no se redirige automáticamente:</p>
-            <a
-              href={playStoreUrl}
-              onClick={handleManualClick}
-              className="block mb-2 text-[#667eea] no-underline text-sm hover:underline"
-            >
-              Descargar desde Play Store
-            </a>
-            <a
-              href={appStoreUrl}
-              className="inline-block px-10 py-4 bg-gradient-to-br from-[#667eea] to-[#764ba2] text-white no-underline rounded-xl font-semibold text-lg transition-transform hover:-translate-y-0.5 hover:shadow-[0_10px_25px_rgba(102,126,234,0.4)] active:translate-y-0 mt-2"
-            >
-              Descargar desde App Store
-            </a>
+          <h1 className="text-[#333] mb-4 text-[28px] font-semibold">
+            ¡Únete a GetGo!
+          </h1>
+          <div className="bg-[#f5f5f5] p-5 rounded-xl my-6 text-[32px] font-bold tracking-[4px] text-[#667eea] font-mono">
+            {displayCode}
           </div>
-        )}
+          <p className="text-[#666] mb-8 leading-relaxed text-base">
+            {message}
+          </p>
+          {showLoading && (
+            <div className="mt-5">
+              <div className="w-10 h-10 mx-auto border-4 border-[#f3f3f3] border-t-[#667eea] rounded-full animate-spin" />
+            </div>
+          )}
+          {showFallback && (
+            <div className="mt-8 pt-8 border-t border-[#eee]">
+              <p className="mb-4">Si no se redirige automáticamente:</p>
+              <a
+                href={playStoreUrl}
+                onClick={handleManualClick}
+                className="block mb-2 text-[#667eea] no-underline text-sm hover:underline"
+              >
+                Descargar desde Play Store
+              </a>
+              <a
+                href={appStoreUrl}
+                className="inline-block px-10 py-4 bg-gradient-to-br from-[#667eea] to-[#764ba2] text-white no-underline rounded-xl font-semibold text-lg transition-transform hover:-translate-y-0.5 hover:shadow-[0_10px_25px_rgba(102,126,234,0.4)] active:translate-y-0 mt-2"
+              >
+                Descargar desde App Store
+              </a>
+            </div>
+          )}
         </div>
       </div>
     </>
