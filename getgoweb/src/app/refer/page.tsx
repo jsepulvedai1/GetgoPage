@@ -349,7 +349,7 @@ export default function ReferralPage() {
       }
 
       const currentHost = window.location.hostname;
-      const encodedCode = encodeURIComponent(referralCode);
+      // const encodedCode = encodeURIComponent(referralCode);
       const deeplinkDomain = "getgo-page-h84g.vercel.app";
 
       // Si ya estamos en el dominio de deeplink, NO intentar deeplink (evita loop)
