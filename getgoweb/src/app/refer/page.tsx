@@ -430,9 +430,9 @@ export default function ReferralPage() {
 
       // Si estamos en otro dominio, redirigir al dominio de deeplink
       // Esto permite que los App Links funcionen correctamente
-      console.log(`Redirecting to ${deeplinkDomain} for deeplink`);
-      deeplinkAttemptedRef.current = true;
-      const deepLinkUrl = `https://${deeplinkDomain}/refer?code=${encodedCode}`;
+      // console.log(`Redirecting to ${deeplinkDomain} for deeplink`);
+      // deeplinkAttemptedRef.current = true;
+      // const deepLinkUrl = `https://${deeplinkDomain}/refer?code=${encodedCode}`;
 
       // Redirigir al dominio correcto (solo una vez)
 
