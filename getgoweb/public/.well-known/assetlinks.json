@@ -7,6 +7,16 @@
       "sha256_cert_fingerprints": [
         "71:E0:56:5B:E0:B4:83:05:7F:22:C0:70:78:AE:1A:9B:52:0D:F8:F1:AF:20:23:56:55:B4:F8:84:4D:0A:F0:D6"
       ]
+    },
+    "relation_extensions": {
+      "delegate_permission/common.handle_all_urls": {
+        "dynamic_app_link_components": [
+          { "/": "/refer*" },
+          { "/": "/share*" },
+          { "/": "/hanger*", "exclude": true },
+          { "/": "/hanger", "exclude": true }
+        ]
+      }
     }
   }
 ]
