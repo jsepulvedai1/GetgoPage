@@ -209,10 +209,10 @@ export default function Home() {
           </div>
 
           {/* Right Column - Premium Smartphone Mockup & Floating Cards */}
-          <div className="lg:col-span-6 relative flex justify-center items-center mt-10 lg:mt-0 min-h-[560px]">
+          <div className="lg:col-span-6 relative flex justify-center items-center mt-12 lg:mt-0 min-h-[580px] lg:min-h-[650px]">
 
             {/* Ambient Shadow Ring */}
-            <div className="absolute w-[320px] h-[520px] bg-gradient-to-b from-[#db2392]/30 via-[#000080]/30 to-pink-500/20 rounded-[60px] blur-3xl transform rotate-3"></div>
+            <div className="absolute w-[320px] h-[520px] bg-gradient-to-b from-[#db2392]/30 via-[#000080]/30 to-pink-500/20 rounded-[60px] blur-3xl transform rotate-3 pointer-events-none"></div>
 
             {/* Main Smartphone Graphic Frame */}
             <motion.div
@@ -220,10 +220,10 @@ export default function Home() {
               animate={{ opacity: 1, y: 0, rotate: -2 }}
               transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
               whileHover={{ scale: 1.02, rotate: 0 }}
-              className="relative z-10 w-[285px] sm:w-[330px] bg-[#000080] p-3.5 rounded-[52px] shadow-2xl border-4 border-blue-900/90 glow-blue overflow-hidden"
+              className="relative z-10 w-[285px] sm:w-[325px] bg-[#000080] p-3.5 rounded-[52px] shadow-2xl border-4 border-blue-900/90 glow-blue overflow-hidden"
             >
               {/* Phone Screen Mockup */}
-              <div className="bg-[#f4f9fd] rounded-[42px] overflow-hidden aspect-auto relative shadow-inner border border-slate-200">
+              <div className="bg-[#f4f9fd] rounded-[42px] overflow-hidden aspect-[9/18.5] relative shadow-inner border border-slate-200">
                 <Image
                   src="/images/getgo_app_mobile_ui.png"
                   alt="GetGo App Mobile UI"
@@ -239,7 +239,7 @@ export default function Home() {
               initial={{ opacity: 0, x: 30, scale: 0.9 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ delay: 0.4, duration: 0.5 }}
-              className="absolute -top-4 -right-2 sm:right-2 bg-white/95 backdrop-blur-xl p-4 rounded-2xl shadow-xl z-20 border border-pink-100 flex flex-col gap-1.5 max-w-[230px] animate-float-slow"
+              className="absolute -top-3 right-0 sm:right-2 lg:-right-4 bg-white/95 backdrop-blur-xl p-4 sm:p-5 rounded-2xl shadow-xl z-20 border border-pink-100 flex flex-col gap-1.5 max-w-[215px] sm:max-w-[230px] animate-float-slow"
             >
               <div className="flex items-center gap-1.5 text-[11px] font-extrabold text-[#000080]">
                 <Sparkles size={15} className="text-[#db2392]" />
@@ -254,27 +254,27 @@ export default function Home() {
               initial={{ opacity: 0, x: -30, scale: 0.9 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ delay: 0.6, duration: 0.5 }}
-              className="absolute bottom-4 -left-2 sm:left-2 bg-[#000080] text-white p-4.5 rounded-2xl shadow-2xl z-20 border border-blue-700/80 flex flex-col gap-1.5 min-w-[230px] animate-float-reverse"
+              className="absolute bottom-6 sm:bottom-10 left-0 sm:left-2 lg:-left-6 bg-[#000080] text-white p-4 sm:p-5 rounded-2xl shadow-2xl z-20 border border-blue-700/80 flex flex-col gap-2 min-w-[220px] sm:min-w-[245px] animate-float-reverse"
             >
               <div className="flex items-center justify-between">
-                <span className="text-[12px] text-blue-200 font-semibold uppercase tracking-wider">Tus referidos</span>
+                <span className="text-xs text-blue-200 font-semibold uppercase tracking-wider">Tus referidos</span>
                 <Coins size={16} className="text-[#f7da3a]" />
               </div>
               <span className="text-xl font-black text-white">24 amigos activos</span>
 
-              <div className="my-1 border-t border-blue-700/80"></div>
+              <div className="my-0.5 border-t border-blue-700/80"></div>
 
-              <div className="flex justify-between items-baseline">
+              <div className="flex justify-between items-baseline gap-2">
                 <span className="text-[10px] text-blue-200 font-semibold">Ganancias totales</span>
                 <span className="text-2xl font-black text-[#f7da3a] tracking-tight">$24.000 CLP</span>
               </div>
 
               {/* Avatars */}
-              <div className="flex items-center justify-between mt-2 pt-1 border-t border-blue-800/80">
-                <div className="flex -space-x-2 overflow-hidden">
-                  <div className="w-6.5 h-6.5 rounded-full border-2 border-[#000080] bg-slate-300 flex items-center justify-center text-[9px] font-bold text-slate-700">M</div>
-                  <div className="w-6.5 h-6.5 rounded-full border-2 border-[#000080] bg-pink-500 flex items-center justify-center text-[9px] font-bold text-white">C</div>
-                  <div className="w-6.5 h-6.5 rounded-full border-2 border-[#000080] bg-blue-500 flex items-center justify-center text-[9px] font-bold text-white">J</div>
+              <div className="flex items-center justify-between mt-1 pt-1.5 border-t border-blue-800/80">
+                <div className="flex -space-x-1.5">
+                  <div className="w-6 h-6 rounded-full border-2 border-[#000080] bg-slate-300 flex items-center justify-center text-[9px] font-bold text-slate-700">M</div>
+                  <div className="w-6 h-6 rounded-full border-2 border-[#000080] bg-pink-500 flex items-center justify-center text-[9px] font-bold text-white">C</div>
+                  <div className="w-6 h-6 rounded-full border-2 border-[#000080] bg-blue-500 flex items-center justify-center text-[9px] font-bold text-white">J</div>
                 </div>
                 <span className="text-[10px] font-extrabold text-[#f7da3a]">+21 más en tu red</span>
               </div>
@@ -285,7 +285,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* EMPRESAS QUE CONFIAN EN NOSOTROS */}
+      {/* EMPRESAS QUE CONFIAN EN NOSOTROS - Comentado temporalmente hasta tener los sponsors */}
+      {/* 
       <section className="border-y border-blue-100/80 bg-white py-8 shadow-xs">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
           <p className="text-xs md:text-sm font-extrabold text-[#000080] tracking-wider uppercase text-center md:text-left">
@@ -302,6 +303,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      */}
 
       {/* ¿CÓMO FUNCIONA? */}
       <section id="pasajeros" className="py-24 bg-white relative">
@@ -408,7 +410,7 @@ export default function Home() {
                 {/* 3 Step Flow Subcards */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
 
-                  <div className="bg-white/90 backdrop-blur-md p-4.5 rounded-2xl border border-blue-100 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-all">
+                  <div className="bg-white/90 backdrop-blur-md p-4 rounded-2xl border border-blue-100 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-all">
                     <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#000080] flex items-center justify-center font-bold mb-3">
                       <Share2 size={20} />
                     </div>
@@ -416,7 +418,7 @@ export default function Home() {
                     <p className="text-[10px] text-slate-500 font-medium">Por WhatsApp, redes o enlace.</p>
                   </div>
 
-                  <div className="bg-white/90 backdrop-blur-md p-4.5 rounded-2xl border border-blue-100 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-all">
+                  <div className="bg-white/90 backdrop-blur-md p-4 rounded-2xl border border-blue-100 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-all">
                     <div className="w-10 h-10 rounded-xl bg-pink-50 text-[#db2392] flex items-center justify-center font-bold mb-3">
                       <Car size={20} />
                     </div>
@@ -424,7 +426,7 @@ export default function Home() {
                     <p className="text-[10px] text-slate-500 font-medium">Recibes un bono instantáneo.</p>
                   </div>
 
-                  <div className="bg-white/90 backdrop-blur-md p-4.5 rounded-2xl border border-blue-100 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-all">
+                  <div className="bg-white/90 backdrop-blur-md p-4 rounded-2xl border border-blue-100 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-all">
                     <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold mb-3">
                       <Coins size={20} />
                     </div>
@@ -446,7 +448,7 @@ export default function Home() {
                       <span className="bg-pink-100 text-[#db2392] text-[9px] px-2 py-0.5 rounded-full font-bold">Activo</span>
                     </div>
 
-                    <div className="bg-gradient-to-br from-[#db2392] to-[#b81b7a] text-white p-4.5 rounded-2xl shadow-lg relative overflow-hidden">
+                    <div className="bg-gradient-to-br from-[#db2392] to-[#b81b7a] text-white p-4 sm:p-5 rounded-2xl shadow-lg relative overflow-hidden">
                       <p className="text-[10px] text-pink-100 font-semibold">Ganancias totales acumuladas</p>
                       <p className="text-3xl font-black my-1 tracking-tight">$96.000 CLP</p>
                       <span className="text-[9px] text-pink-200 underline font-medium cursor-pointer">Ver historial de retiros &gt;</span>
